@@ -1,12 +1,97 @@
 'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { Plus } from 'lucide-react'
-import { Product } from '@/lib/products'
+import type { Product } from '@/lib/types'
 import { useCart } from '@/lib/store'
-import { formatPrice, badgeLabel } from '@/lib/utils'
+import { getUniverseName, getVoletPath } from '@/lib/data/all-products'
 
-export function ProductCard({ product }: { product: Product }) {
-  const add = useCart((s) => s.addItem)
-  return <article className="group"><Link href={`/produit/${product.slug}`}><div className="relative aspect-[4/5] overflow-hidden bg-secondary"><Image src={product.image} alt={product.name} fill className="object-cover transition duration-500 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 25vw"/>{product.badge && <span className="absolute left-3 top-3 bg-background px-2 py-1 text-[10px] uppercase tracking-widest">{badgeLabel(product.badge)}</span>}<button aria-label={`Ajouter ${product.name}`} onClick={(e) => { e.preventDefault(); add({ id: product.id, name: product.name, price: product.price, image: product.image }) }} className="absolute bottom-3 right-3 flex h-10 w-10 translate-y-2 items-center justify-center bg-primary text-primary-foreground opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100"><Plus size={18}/></button></div></Link><div className="flex items-start justify-between gap-3 pt-4"><div><p className="text-xs uppercase tracking-widest text-muted-foreground">{product.category}</p><Link href={`/produit/${product.slug}`} className="mt-1 block text-sm hover:underline">{product.name}</Link></div><div className="text-right text-sm"><p>{formatPrice(product.price)}</p>{product.oldPrice && <p className="text-xs text-muted-foreground line-through">{formatPrice(product.oldPrice)}</p>}</div></div></article>
+interface ProductCardProps {
+  product: Product
+}
+
+export function ProductCard({ product }: ProductCardProps) {
+  const addItem = useCart((s) => s.addItem)
+
+  // Définir le volet path selon le volet
+  const voletPath = getVoletPath(product.volet)
+  const productUrl = `/${voletPath}/${product.slug}`
+
+  // Couleur badge selon volet
+  const badgeClass = product.volet === 'sweet-hair' ? 'bg-sh-light text-sh-olive' :
+                     product.volet === 'fragrance' ? 'bg-fr-light text-fr-plum' :
+                     'bg-cr-light text-cr-earth'
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+    })
+  }
+
+  return (
+    <article className="group">
+      <Link href={productUrl}>
+        {/* Image Container */}
+        <div className="relative aspect-[4/5] overflow-hidden bg-warm-gray-100 rounded-soft mb-4">
+          <Image 
+            src={product.image} 
+            alt={product.name} 
+            fill 
+            className="object-cover transition duration-slower group-hover:scale-105" 
+            sizes="(max-width: 768px) 50vw, 25vw"
+          />
+          
+          {/* Badge */}
+          {product.badge && (
+            <span className={`absolute left-3 top-3 px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider ${badgeClass}`}>
+              {product.badge}
+            </span>
+          )}
+
+          {/* Bouton Add to Cart au hover */}
+          <button 
+            aria-label={`Ajouter ${product.name} au panier`}
+            onClick={handleAddToCart}
+            className="absolute bottom-3 right-3 flex h-11 w-11 items-center justify-center bg-deep-black text-cream-white rounded-full opacity-0 translate-y-2 transition-all duration-normal group-hover:translate-y-0 group-hover:opacity-100 hover:bg-champagne-gold hover:text-deep-black"
+          >
+            <Plus size={20} />
+          </button>
+        </div>
+      </Link>
+
+      {/* Info Produit */}
+      <div className="space-y-2">
+        {/* Catégorie / Univers */}
+        <p className="text-xs uppercase tracking-wider text-warm-500">
+          {product.category}
+        </p>
+
+        {/* Nom */}
+        <Link 
+          href={productUrl} 
+          className="block font-display text-lg leading-tight text-deep-black hover:text-champagne-gold transition-colors"
+        >
+          {product.name}
+        </Link>
+
+        {/* Prix */}
+        <div className="flex items-baseline gap-2">
+          <p className="font-mono text-base font-bold text-champagne-gold">
+            {product.price.toLocaleString('fr-FR')} FCFA
+          </p>
+          {product.oldPrice && (
+            <p className="text-sm text-warm-500 line-through">
+              {product.oldPrice.toLocaleString('fr-FR')} FCFA
+            </p>
+          )}
+        </div>
+      </div>
+    </article>
+  )
 }

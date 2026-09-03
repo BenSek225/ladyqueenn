@@ -1,97 +1,47 @@
-import { AnyProduct, Volet } from '../types'
 import { sweetHairProducts } from './sweet-hair-products'
 import { fragranceProducts } from './fragrance-products'
 import { crochetProducts } from './crochet-products'
+import type { Product } from '@/lib/types'
 
-// Tous les produits de la plateforme
-export const allProducts: AnyProduct[] = [
+// Fusionner tous les produits
+export const allProducts: Product[] = [
   ...sweetHairProducts,
   ...fragranceProducts,
-  ...crochetProducts
+  ...crochetProducts,
 ]
 
-// Recherche globale
-export function searchProducts(query: string): AnyProduct[] {
-  const lowerQuery = query.toLowerCase().trim()
-  
-  if (!lowerQuery) return []
-
-  return allProducts.filter(product => {
-    const searchText = `
-      ${product.name} 
-      ${product.description} 
-      ${product.category || ''} 
-      ${product.volet}
-    `.toLowerCase()
-    
-    return searchText.includes(lowerQuery)
-  })
+// Helper pour convertir volet en nom univers
+export function getUniverseName(volet: string): string {
+  if (volet === 'sweet-hair') return 'Sweet-Hair'
+  if (volet === 'fragrance') return 'Fragrance'
+  if (volet === 'crochet-by-thed') return 'Crochet by THED'
+  return 'Lady Queenn'
 }
 
-// Recherche par volet
-export function searchProductsByVolet(query: string, volet: Volet): AnyProduct[] {
-  const results = searchProducts(query)
-  return results.filter(p => p.volet === volet)
+// Helper pour convertir volet en path
+export function getVoletPath(volet: string): string {
+  if (volet === 'sweet-hair') return 'cheveux'
+  if (volet === 'fragrance') return 'corps'
+  if (volet === 'crochet-by-thed') return 'maison'
+  return ''
 }
 
-// Obtenir un produit par ID (tous volets confondus)
-export function getProductById(id: string): AnyProduct | undefined {
-  return allProducts.find(p => p.id === id)
+// Fonction pour récupérer un produit par slug
+export function getProductBySlug(slug: string): Product | undefined {
+  return allProducts.find((product) => product.slug === slug)
 }
 
-// Obtenir un produit par slug (tous volets confondus)
-export function getProductBySlug(slug: string): AnyProduct | undefined {
-  return allProducts.find(p => p.slug === slug)
-}
-
-// Obtenir tous les produits d'un volet
-export function getProductsByVolet(volet: Volet): AnyProduct[] {
-  return allProducts.filter(p => p.volet === volet)
-}
-
-// Obtenir les nouveautés (badge nouveau)
-export function getNewProducts(limit = 6): AnyProduct[] {
+// Fonction pour récupérer des produits similaires (même volet, excluant le produit actuel)
+export function getSimilarProducts(productId: string, volet: string, limit: number = 4): Product[] {
   return allProducts
-    .filter(p => p.badge === 'nouveau')
+    .filter((product) => product.volet === volet && product.id !== productId)
     .slice(0, limit)
 }
 
-// Obtenir les promos
-export function getPromotions(limit = 6): AnyProduct[] {
-  return allProducts
-    .filter(p => p.badge === 'promo' && p.oldPrice)
-    .slice(0, limit)
-}
-
-// Obtenir les coups de cœur
-export function getFavorites(limit = 6): AnyProduct[] {
-  return allProducts
-    .filter(p => p.badge === 'coup-de-coeur')
-    .slice(0, limit)
-}
-
-// Produits similaires (même volet, même catégorie)
-export function getSimilarProducts(productId: string, limit = 4): AnyProduct[] {
-  const product = getProductById(productId)
-  if (!product) return []
-
-  return allProducts
-    .filter(p => 
-      p.id !== productId && 
-      p.volet === product.volet &&
-      p.category === product.category
-    )
-    .slice(0, limit)
-}
-
-// Statistiques
-export function getProductStats() {
-  return {
-    total: allProducts.length,
-    sweetHair: sweetHairProducts.length,
-    fragrance: fragranceProducts.length,
-    crochet: crochetProducts.length,
-    inStock: allProducts.filter(p => p.stock > 0).length,
-    outOfStock: allProducts.filter(p => p.stock === 0).length
-  }
+// Fonction pour générer les chemins statiques (pour generateStaticParams)
+export function getAllProductPaths() {
+  return allProducts.map((product) => ({
+    volet: getVoletPath(product.volet),
+    slug: product.slug,
+  }))
 }
