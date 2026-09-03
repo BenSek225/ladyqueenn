@@ -48,39 +48,70 @@
 
 :root {
   color-scheme: light;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  
+  /* Lady Queenn Design System - Luxury Editorial × Organic Minimal */
+  
+  /* Couleurs principales */
+  --cream-white: #F9F6F1;
+  --cream-light: #F7F3EC;
+  --deep-black: #1A1714;
+  --dark-gray: #2D2A27;
+  --champagne-gold: #C6A87C;
+  --soft-gold: #B89B6A;
+  --gold-dark: #9D8159;
+  
+  /* Backgrounds & Cards */
+  --background: oklch(0.98 0.01 75); /* Cream white chaud */
+  --foreground: oklch(0.12 0.01 30); /* Deep black */
+  --card: oklch(1 0 0); /* Pure white pour cards */
+  --card-foreground: oklch(0.12 0.01 30);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --brand-accent: oklch(0.72 0.12 75);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.12 0.01 30);
+  
+  /* Primaire (Deep Black) */
+  --primary: oklch(0.12 0.01 30);
+  --primary-foreground: oklch(0.98 0.01 75);
+  
+  /* Accent (Champagne Gold) */
+  --brand-accent: oklch(0.70 0.08 75);
+  --accent: oklch(0.70 0.08 75);
+  --accent-foreground: oklch(0.12 0.01 30);
+  
+  /* Secondaire (Warm Gray) */
+  --secondary: oklch(0.95 0.01 60);
+  --secondary-foreground: oklch(0.12 0.01 30);
+  
+  /* Muted */
+  --muted: oklch(0.93 0.01 60);
+  --muted-foreground: oklch(0.55 0.01 30);
+  
+  /* Destructive */
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  
+  /* Borders & Inputs */
+  --border: oklch(0.91 0.01 60);
+  --input: oklch(0.91 0.01 60);
+  --ring: oklch(0.70 0.08 75);
+  
+  /* Charts */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  
+  /* Border Radius - Soft (8px) */
+  --radius: 0.5rem;
+  
+  /* Sidebar */
+  --sidebar: oklch(0.98 0.01 75);
+  --sidebar-foreground: oklch(0.12 0.01 30);
+  --sidebar-primary: oklch(0.12 0.01 30);
+  --sidebar-primary-foreground: oklch(0.98 0.01 75);
+  --sidebar-accent: oklch(0.95 0.01 60);
+  --sidebar-accent-foreground: oklch(0.12 0.01 30);
+  --sidebar-border: oklch(0.91 0.01 60);
+  --sidebar-ring: oklch(0.70 0.08 75);
 }
 
 .dark {
@@ -166,4 +197,186 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+/* ============================================
+   Lady Queenn - Custom Styles
+   Design System: Luxury Editorial × Organic Minimal
+   ============================================ */
+
+@layer base {
+  /* Typography - Luxury Editorial */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+  
+  /* Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Body avec fond crème chaud */
+  body {
+    @apply bg-cream-white text-deep-black font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* Eyebrow - Labels élégants */
+  .eyebrow-label {
+    @apply text-xs uppercase tracking-[0.18em] text-warm-500 font-medium;
+  }
+  
+  /* Bouton Primaire - Luxury */
+  .btn-primary {
+    @apply bg-deep-black text-cream-white px-8 py-3.5 rounded-soft font-medium
+           transition-all duration-normal ease-smooth-out
+           hover:bg-gold-champagne hover:text-deep-black hover:-translate-y-0.5 hover:shadow-gold-glow;
+  }
+  
+  /* Bouton Secondaire - Outline */
+  .btn-secondary {
+    @apply bg-transparent border border-deep-black text-deep-black px-8 py-3.5 rounded-soft font-medium
+           transition-all duration-normal ease-smooth-out
+           hover:bg-deep-black hover:text-cream-white;
+  }
+  
+  /* Bouton Tertiaire - Ghost */
+  .btn-ghost {
+    @apply bg-transparent text-deep-black underline underline-offset-4
+           transition-colors duration-normal
+           hover:text-gold-champagne hover:no-underline;
+  }
+  
+  /* Card Produit - Editorial Style */
+  .product-card {
+    @apply bg-white rounded-soft p-6 transition-all duration-normal ease-smooth-out
+           hover:shadow-elevated hover:scale-[1.02];
+  }
+  
+  /* Badge - Par Volet */
+  .badge-nouveau {
+    @apply bg-sh-light text-sh-olive px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider;
+  }
+  
+  .badge-promo {
+    @apply bg-fr-light text-fr-plum px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider;
+  }
+  
+  .badge-coup-de-coeur {
+    @apply bg-gold-champagne text-deep-black px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider;
+  }
+  
+  /* Section avec fond alterné */
+  .section-alt {
+    @apply bg-cream-light;
+  }
+  
+  /* Container avec marges luxueuses */
+  .container-luxury {
+    @apply max-w-7xl mx-auto px-5 lg:px-20;
+  }
+  
+  /* Hero Section - Plein écran */
+  .hero-section {
+    @apply min-h-[85vh] flex items-center justify-center;
+  }
+  
+  /* Grid Swiss - Catalogue */
+  .grid-swiss {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8;
+  }
+  
+  /* Asymétrique 60/40 */
+  .grid-asymmetric {
+    @apply grid grid-cols-1 lg:grid-cols-[60%_40%] gap-8 lg:gap-12;
+  }
+  
+  /* Prix - Mono élégant */
+  .price {
+    @apply font-mono text-lg font-bold text-gold-dark;
+  }
+  
+  /* Reveal Animation au Scroll */
+  .reveal-on-scroll {
+    @apply opacity-0 translate-y-5 transition-all duration-slow ease-smooth-out;
+  }
+  
+  .reveal-on-scroll.revealed {
+    @apply opacity-100 translate-y-0;
+  }
+}
+
+@layer utilities {
+  /* Text Balance pour titres */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Smooth Transitions */
+  .transition-smooth {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  /* Ombre dorée douce */
+  .shadow-gold-soft {
+    box-shadow: 0 4px 16px rgba(198, 168, 124, 0.2);
+  }
+}
+
+/* ============================================
+   Volet-Specific Accents
+   ============================================ */
+
+/* Sweet-Hair - Nature & Soin */
+.volet-sweet-hair {
+  --volet-color: var(--sh-olive);
+  --volet-light: var(--sh-light);
+}
+
+/* Fragrance - Luxe & Mystère */
+.volet-fragrance {
+  --volet-color: var(--fr-plum);
+  --volet-light: var(--fr-light);
+}
+
+/* Crochet by THED - Artisanat & Chaleur */
+.volet-crochet {
+  --volet-color: var(--cr-earth);
+  --volet-light: var(--cr-light);
+}
+
+/* ============================================
+   Animations Personnalisées
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleInSoft {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-scale-in-soft {
+  animation: scaleInSoft 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
