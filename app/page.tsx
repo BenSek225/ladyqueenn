@@ -1,6 +1,206 @@
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
-import { SiteChrome } from '@/components/site-header'
-import { ProductGrid } from '@/components/product-grid'
-import { CartDrawer } from '@/components/cart-drawer'
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { UniverseCard } from '@/components/home/universe-card'
+import { ProductCard } from '@/components/product-card'
+import { sweetHairProducts } from '@/lib/data/sweet-hair-products'
+import { fragranceProducts } from '@/lib/data/fragrance-products'
+import { crochetProducts } from '@/lib/data/crochet-products'
 
-export default function Page() { return <SiteChrome><CartDrawer/><main><section className="hero-grid mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-20"><div className="flex flex-col justify-center py-8 lg:py-16"><p className="eyebrow">Objets choisis · Abidjan</p><h1 className="mt-6 max-w-xl text-balance text-6xl font-semibold leading-[0.95] tracking-[-0.06em] md:text-8xl">Le beau<br/><span className="font-serif font-normal italic">au quotidien.</span></h1><p className="mt-8 max-w-sm text-sm leading-6 text-muted-foreground">Une collection sensible de soins, d’objets et de gestes qui racontent notre maison.</p><a href="#boutique" className="mt-9 flex w-fit items-center gap-3 border-b border-primary pb-2 text-xs uppercase tracking-[0.18em]">Découvrir la sélection <ArrowDownRight size={16}/></a></div><div className="relative min-h-[480px] overflow-hidden bg-secondary"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=85" alt="Objets de soin naturels Lady Queenn" className="absolute inset-0 h-full w-full object-cover"/><div className="absolute bottom-5 left-5 bg-background px-4 py-3 text-xs">Édition 01 — Matières naturelles</div></div></section><ProductGrid/><section id="journal" className="border-y border-border bg-secondary"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[1fr_1.2fr] lg:px-8 lg:py-28"><div><p className="eyebrow">Le journal de la maison</p><h2 className="mt-4 max-w-lg text-4xl leading-tight tracking-tight md:text-6xl">Prendre le temps de <span className="font-serif italic">bien faire.</span></h2></div><div className="flex flex-col justify-end"><p className="max-w-md text-sm leading-7 text-muted-foreground">Du karité récolté avec soin aux mains qui façonnent chaque pièce, nous croyons aux histoires derrière les objets. Découvrez nos inspirations, nos artisans et les rituels qui nous accompagnent.</p><a href="https://wa.me/2250710504007" className="mt-8 flex w-fit items-center gap-3 text-xs uppercase tracking-widest underline underline-offset-8">Parler à un conseiller <ArrowUpRight size={15}/></a></div></div></section></main></SiteChrome> }
+export default function HomePage() {
+  // Sélectionner 6 produits récents (2 de chaque univers)
+  const featuredProducts = [
+    ...sweetHairProducts.slice(0, 2),
+    ...fragranceProducts.slice(0, 2),
+    ...crochetProducts.slice(0, 2),
+  ]
+
+  return (
+    <main>
+      {/* Hero Section - Embrace Your Queenn Energy */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 -z-10">
+          <Image
+            src="/placeholder.jpg"
+            alt="Lady Queenn - Embrace Your Queenn Energy"
+            fill
+            priority
+            quality={90}
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-black/40 via-transparent to-cream-white/80" />
+        </div>
+
+        {/* Content */}
+        <div className="container-luxury text-center px-6 py-20">
+          <p className="eyebrow-label text-champagne-gold mb-6 animate-fade-in">
+            BEAUTY. ROOTS. RITUAL.
+          </p>
+
+          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl leading-[0.95] mb-8 text-deep-black animate-slide-up" style={{ animationDelay: '150ms' }}>
+            Embrace Your
+            <br />
+            <span className="italic font-normal text-champagne-gold">Queenn Energy</span>
+          </h1>
+
+          <p className="text-base md:text-lg lg:text-xl text-dark-gray max-w-2xl mx-auto mb-12 leading-relaxed animate-slide-up" style={{ animationDelay: '300ms' }}>
+            Soins naturels, parfums intemporels et pièces artisanales qui célèbrent 
+            l'élégance africaine et le luxe conscient.
+          </p>
+
+          <Link 
+            href="#universes" 
+            className="btn-primary inline-flex items-center gap-3 animate-scale-in" 
+            style={{ animationDelay: '450ms' }}
+          >
+            Découvrir nos univers
+            <ArrowRight size={20} />
+          </Link>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-champagne-gold rounded-full flex justify-center p-2">
+            <div className="w-1.5 h-1.5 bg-champagne-gold rounded-full animate-pulse" />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3 Univers */}
+      <section id="universes" className="py-20 lg:py-32 bg-cream-white">
+        <div className="container-luxury">
+          <div className="text-center mb-16">
+            <p className="eyebrow-label mb-4">Nos Collections</p>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">
+              Trois univers du raffinement
+            </h2>
+            <p className="text-lg text-warm-500 max-w-2xl mx-auto">
+              Chaque volet raconte une histoire d'authenticité, de savoir-faire et d'excellence.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <UniverseCard
+              title="Sweet-Hair"
+              subtitle="SOINS CAPILLAIRES NATURELS"
+              description="Nourrir, hydrater et célébrer vos textures naturelles avec des soins végétaux d'exception."
+              image="/placeholder.jpg"
+              href="/cheveux"
+              accent="sage"
+            />
+            <UniverseCard
+              title="Fragrance"
+              subtitle="PARFUMS DE LUXE"
+              description="Des fragrances inspirées par l'héritage africain, créées pour sublimer votre signature olfactive."
+              image="/placeholder.jpg"
+              href="/corps"
+              accent="plum"
+            />
+            <UniverseCard
+              title="Crochet by THED"
+              subtitle="CRÉATIONS ARTISANALES"
+              description="Pièces intemporelles au crochet, confectionnées avec intention et enracinées dans la tradition."
+              image="/placeholder.jpg"
+              href="/maison"
+              accent="terracotta"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Section Nouveautés */}
+      <section className="py-20 lg:py-32 bg-cream-light">
+        <div className="container-luxury">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+            <div>
+              <p className="eyebrow-label mb-3">Nouveautés</p>
+              <h2 className="font-display text-4xl md:text-5xl">
+                Nos dernières créations
+              </h2>
+            </div>
+            <Link 
+              href="#boutique" 
+              className="text-sm font-medium uppercase tracking-wider text-deep-black hover:text-champagne-gold transition-colors inline-flex items-center gap-2"
+            >
+              Voir tout
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 lg:gap-8">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section Inspiration (Editorial) */}
+      <section className="py-20 lg:py-32 bg-deep-black text-cream-white">
+        <div className="container-luxury">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="eyebrow-label text-champagne-gold mb-6">NOTRE INSPIRATION</p>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+                Du karité récolté avec soin aux mains qui façonnent chaque pièce
+              </h2>
+              <p className="text-lg text-warm-300 leading-relaxed mb-8">
+                Nous croyons aux histoires derrière les objets. Découvrez nos inspirations, 
+                nos artisans et les rituels qui nous accompagnent au quotidien.
+              </p>
+              <a 
+                href="https://wa.me/2250710504007" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 text-sm uppercase tracking-wider text-champagne-gold hover:text-soft-gold transition-colors"
+              >
+                Parler à un conseiller
+                <ArrowRight size={16} />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div className="relative aspect-square rounded-soft overflow-hidden">
+                  <Image
+                    src="/placeholder.jpg"
+                    alt="Inspiration Lady Queenn"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-[4/5] rounded-soft overflow-hidden">
+                  <Image
+                    src="/placeholder.jpg"
+                    alt="Artisanat Lady Queenn"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="space-y-4 pt-8">
+                <div className="relative aspect-[4/5] rounded-soft overflow-hidden">
+                  <Image
+                    src="/placeholder.jpg"
+                    alt="Matières naturelles"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-square rounded-soft overflow-hidden">
+                  <Image
+                    src="/placeholder.jpg"
+                    alt="Savoir-faire"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
