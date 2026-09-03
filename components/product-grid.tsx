@@ -1,0 +1,5 @@
+'use client'
+import { useState } from 'react'
+import { products, getCategories } from '@/lib/products'
+import { ProductCard } from './product-card'
+export function ProductGrid() { const [category, setCategory] = useState('Tout'); const shown = category === 'Tout' ? products : products.filter(p => p.category === category); return <section id="boutique" className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28"><div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end"><div><p className="eyebrow">La sélection</p><h2 className="mt-3 font-serif text-4xl italic md:text-5xl">Choisir avec intention.</h2></div><div className="flex flex-wrap gap-2">{['Tout', ...getCategories()].map(c => <button key={c} onClick={() => setCategory(c)} className={`border px-3 py-2 text-xs transition ${category === c ? 'border-primary bg-primary text-primary-foreground' : 'border-border hover:border-primary'}`}>{c}</button>)}</div></div><div className="grid grid-cols-2 gap-x-3 gap-y-10 md:grid-cols-3 lg:grid-cols-4 lg:gap-x-5">{shown.map(p => <ProductCard key={p.id} product={p}/>)}</div></section> }
