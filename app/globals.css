@@ -851,3 +851,114 @@ a {
 a:active {
   @apply opacity-70;
 }
+
+/* ============================================
+   Mobile Optimizations - Typography & Touch
+   ============================================ */
+
+@layer base {
+  /* Typographie mobile optimisée */
+  @media (max-width: 640px) {
+    html {
+      font-size: 15px; /* Base légèrement réduite pour mobile */
+    }
+    
+    body {
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Titres mobiles - meilleure lisibilité */
+    h1 {
+      font-size: 2rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    h2 {
+      font-size: 1.75rem;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    h4 {
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+    
+    /* Paragraphes mobiles */
+    p {
+      font-size: 1rem;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+    }
+    
+    /* Eyebrow plus petits sur mobile */
+    .eyebrow-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+    }
+  }
+  
+  /* Touch targets minimum 44px (WCAG AAA) */
+  button,
+  a[role="button"],
+  input[type="button"],
+  input[type="submit"],
+  [role="tab"],
+  [role="menuitem"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Améliorer la lisibilité des petits textes */
+  @media (max-width: 640px) {
+    small,
+    .text-xs,
+    .text-sm {
+      line-height: 1.5;
+    }
+  }
+}
+
+/* Container responsive avec padding optimal */
+@layer utilities {
+  .container-luxury {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container-luxury {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container-luxury {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+}
+
+/* Smooth scroll Lenis - Désactiver sur mobile */
+@media (max-width: 768px) {
+  html.lenis {
+    overflow: auto;
+  }
+  
+  html.lenis body {
+    overflow: auto;
+  }
+}

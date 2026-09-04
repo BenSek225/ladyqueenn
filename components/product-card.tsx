@@ -112,7 +112,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
               aria-label={`Ajouter ${product.name} au panier`}
               onClick={handleAddToCart}
               disabled={isAdding || justAdded}
-              className={`absolute bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full shadow-xl
+              className={`absolute bottom-4 right-4 flex items-center justify-center rounded-full shadow-xl min-w-[48px] min-h-[48px]
                 opacity-0 translate-y-2 transition-all duration-300
                 group-hover:translate-y-0 group-hover:opacity-100
                 ${justAdded 
