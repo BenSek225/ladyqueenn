@@ -77,9 +77,9 @@ lib/
 ```
 
 **Actions** :
-- [ ] Supprimer `/app/produit/` (obsolète)
-- [ ] Supprimer `/lib/products.ts` (remplacé)
-- [ ] Sauvegarder backup si nécessaire
+- [x] Supprimer `/app/produit/` (obsolète)
+- [x] Supprimer `/lib/products.ts` (remplacé)
+- [x] Sauvegarder backup si nécessaire
 
 #### 0.2 - Intégration des Fonts
 
@@ -121,13 +121,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ```
 
 **Actions** :
-- [ ] Intégrer les 3 fonts Google
-- [ ] Tester l'affichage des fonts
-- [ ] Vérifier les variables CSS
+- [x] Intégrer les 3 fonts Google
+- [x] Tester l'affichage des fonts
+- [x] Vérifier les variables CSS
 
 ---
 
-### 🏗️ Phase 1 : Layout & Navigation (Priorité CRITIQUE) 🔴
+### 🏗️ Phase 1 : Layout & Navigation (Priorité CRITIQUE) 🔴 ✅ TERMINÉ
 
 #### 1.1 - Header Unifié avec Navigation 3 Univers
 
@@ -222,11 +222,11 @@ export function SiteHeader() {
 ```
 
 **Actions** :
-- [ ] Créer `components/layout/site-header.tsx`
-- [ ] Implémenter navigation 3 univers
-- [ ] Ajouter icônes avec compteur panier
-- [ ] Rendre sticky au scroll
-- [ ] Version mobile (hamburger menu)
+- [x] Créer `components/layout/site-header.tsx`
+- [x] Implémenter navigation 3 univers
+- [x] Ajouter icônes avec compteur panier
+- [x] Rendre sticky au scroll
+- [x] Version mobile (hamburger menu)
 
 #### 1.2 - Footer Élégant
 
@@ -235,10 +235,10 @@ export function SiteHeader() {
 **Structure** : 4 colonnes + Social
 
 **Actions** :
-- [ ] Créer footer avec 4 colonnes
-- [ ] Links : À propos, Univers, Légal, Social
-- [ ] Background : Deep Black
-- [ ] Texte : Cream White
+- [x] Créer footer avec 4 colonnes
+- [x] Links : À propos, Univers, Légal, Social
+- [x] Background : Deep Black
+- [x] Texte : Cream White
 - [ ] Newsletter signup (optionnel)
 
 #### 1.3 - Breadcrumb Élégant
@@ -248,13 +248,13 @@ export function SiteHeader() {
 **Style** : `ACCUEIL / CHEVEUX / HUILE CAPILLAIRE`
 
 **Actions** :
-- [ ] Composant breadcrumb avec séparateurs
-- [ ] Style : eyebrow-label
-- [ ] Responsive
+- [x] Composant breadcrumb avec séparateurs
+- [x] Style : eyebrow-label
+- [x] Responsive
 
 ---
 
-### 🏠 Phase 2 : Page d'Accueil Éditoriale (Priorité CRITIQUE) 🔴
+### 🏠 Phase 2 : Page d'Accueil Éditoriale (Priorité CRITIQUE) 🔴 ✅ TERMINÉ
 
 #### 2.1 - Hero Section Immersive
 
@@ -345,11 +345,11 @@ export default function HomePage() {
 ```
 
 **Actions** :
-- [ ] Créer hero section plein écran
-- [ ] Intégrer image éditoriale haute qualité
-- [ ] Typography : Playfair Display
-- [ ] CTA button avec animation
-- [ ] Responsive mobile
+- [x] Créer hero section plein écran
+- [x] Intégrer image éditoriale haute qualité
+- [x] Typography : Playfair Display
+- [x] CTA button avec animation
+- [x] Responsive mobile
 
 #### 2.2 - Section 3 Univers (Bento Grid)
 
@@ -456,33 +456,33 @@ export function UniverseCard({ title, subtitle, description, image, href, accent
 ```
 
 **Actions** :
-- [ ] Créer UniverseCard component
-- [ ] Implémenter 3 cards avec images
-- [ ] Hover states élégants
-- [ ] Responsive grid
+- [x] Créer UniverseCard component
+- [x] Implémenter 3 cards avec images
+- [x] Hover states élégants
+- [x] Responsive grid
 
 #### 2.3 - Section Nouveautés
 
 **Style** : Grille Swiss 3-4 colonnes
 
 **Actions** :
-- [ ] Utiliser `getNewProducts(6)`
-- [ ] Grid responsive avec ProductCard
-- [ ] Badge "Nouveau"
-- [ ] Link "Voir tout"
+- [x] Utiliser `getNewProducts(6)`
+- [x] Grid responsive avec ProductCard
+- [x] Badge "Nouveau"
+- [x] Link "Voir tout"
 
 #### 2.4 - Section "L'Inspiration" (Optionnel)
 
 **Style** : Galerie flat lays / lifestyle
 
 **Actions** :
-- [ ] Section avec 4 images inspirantes
-- [ ] Texte : "NOTRE INSPIRATION" + description
+- [x] Section avec 4 images inspirantes
+- [x] Texte : "NOTRE INSPIRATION" + description
 - [ ] Link journal (future)
 
 ---
 
-### 🛍️ Phase 3 : Pages Univers (Boutiques) (Priorité HAUTE) 🔴
+### 🛍️ Phase 3 : Pages Univers (Boutiques) (Priorité HAUTE) 🔴 ✅ TERMINÉ
 
 #### 3.1 - Page Sweet-Hair
 
@@ -565,11 +565,11 @@ export default function SweetHairPage() {
 ```
 
 **Actions** :
-- [ ] Créer page Sweet-Hair complète
-- [ ] Hero avec image éditoriale
-- [ ] Section bénéfices avec icônes
-- [ ] Grille produits 4 items
-- [ ] Highlight Kit Complet
+- [x] Créer page Sweet-Hair complète
+- [x] Hero avec image éditoriale
+- [x] Section bénéfices avec icônes
+- [x] Grille produits 4 items
+- [x] Highlight Kit Complet
 
 #### 3.2 - Page Fragrance
 
@@ -592,11 +592,11 @@ export default function SweetHairPage() {
 - Ambiance : Luxe, mystère
 
 **Actions** :
-- [ ] Créer page Fragrance
-- [ ] Hero dramatique/luxueux
-- [ ] Tabs filtres H/F/Mixte
-- [ ] Grid 8 parfums
-- [ ] Section storytelling
+- [x] Créer page Fragrance
+- [x] Hero dramatique/luxueux
+- [x] Tabs filtres H/F/Mixte
+- [x] Grid 8 parfums
+- [x] Section storytelling
 
 #### 3.3 - Page Crochet by THED
 
@@ -619,15 +619,15 @@ export default function SweetHairPage() {
 - Ambiance : Chaleur, authenticité
 
 **Actions** :
-- [ ] Créer page Crochet
-- [ ] Hero lifestyle avec modèles
-- [ ] Tabs navigation (Boutique/Sur-mesure/Galerie)
-- [ ] Grid 9 créations
-- [ ] Section process sur-mesure
+- [x] Créer page Crochet
+- [x] Hero lifestyle avec modèles
+- [x] Tabs navigation (Boutique/Sur-mesure/Galerie)
+- [x] Grid 9 créations
+- [x] Section process sur-mesure
 
 ---
 
-### 🔍 Phase 4 : Pages Détails Produits (Priorité HAUTE) 🔴
+### 🔍 Phase 4 : Pages Détails Produits (Priorité HAUTE) 🔴 ✅ TERMINÉ
 
 #### 4.1 - Template Détail Produit
 
@@ -810,17 +810,17 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 ```
 
 **Actions** :
-- [ ] Créer template détail produit
-- [ ] Layout 60/40 asymétrique
-- [ ] Gallery images avec miniatures
-- [ ] Section info complète
-- [ ] Boutons Panier + WhatsApp
-- [ ] Tabs détails
-- [ ] Produits similaires
+- [x] Créer template détail produit
+- [x] Layout 60/40 asymétrique
+- [x] Gallery images avec miniatures
+- [x] Section info complète
+- [x] Boutons Panier + WhatsApp
+- [x] Tabs détails
+- [x] Produits similaires
 
 ---
 
-### 🛒 Phase 5 : Panier & Checkout (Priorité MOYENNE) 🟡
+### 🛒 Phase 5 : Panier & Checkout (Priorité MOYENNE) 🟡 ✅ TERMINÉ
 
 #### 5.1 - Refonte Store Panier
 
@@ -832,9 +832,9 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 - Formatter message WhatsApp avec sections par volet
 
 **Actions** :
-- [ ] Adapter store Zustand
-- [ ] Grouper par volet
-- [ ] Formatter message WhatsApp
+- [x] Adapter store Zustand
+- [x] Grouper par volet
+- [x] Formatter message WhatsApp
 
 #### 5.2 - Cart Drawer Refonte
 
@@ -861,9 +861,9 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 ```
 
 **Actions** :
-- [ ] Drawer avec Shadcn Sheet
-- [ ] Grouper items par volet
-- [ ] Total et CTA WhatsApp
+- [x] Drawer avec animations slide-in
+- [x] Grouper items par volet
+- [x] Total et CTA WhatsApp
 
 #### 5.3 - Page Panier Complète
 
@@ -872,35 +872,65 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 **Layout** : Page complète avec récapitulatif
 
 **Actions** :
-- [ ] Page panier full
-- [ ] Table items
-- [ ] Quantité +/-
-- [ ] Total et CTA
+- [x] Page panier full
+- [x] Table items groupés par volet
+- [x] Quantité +/-
+- [x] Total et CTA WhatsApp
 
 ---
 
-### 🔍 Phase 6 : Recherche & Filtres (Priorité MOYENNE) 🟡
+### 🔍 Phase 6 : Recherche & Filtres (Priorité MOYENNE) 🟡 ✅ TERMINÉ
 
 #### 6.1 - Barre de Recherche Globale
 
-**Composant** : `components/shared/search-bar.tsx`
+**Composant** : `components/search/search-bar.tsx`
 
 **Style** : Modal overlay avec suggestions
 
 **Actions** :
-- [ ] Input recherche header
-- [ ] Modal overlay résultats
-- [ ] Recherche instant (debounce)
-- [ ] Grouper par volet
+- [x] Input recherche header
+- [x] Modal overlay résultats
+- [x] Recherche instant (debounce)
+- [x] Grouper par volet
+- [x] Suggestions autocomplete
+- [x] Fermeture avec Escape
+- [x] Focus automatique à l'ouverture
 
 #### 6.2 - Page Résultats Recherche
 
 **Fichier** : `app/recherche/page.tsx`
 
 **Actions** :
-- [ ] Page résultats
-- [ ] Filtres sidebar
-- [ ] Grid responsive
+- [x] Page résultats complète
+- [x] Filtres sidebar avancés
+- [x] Grid responsive
+- [x] Tri par prix, nom, nouveauté
+- [x] Message aucun résultat
+- [x] Skeleton loading states
+
+#### 6.3 - Système de Filtrage Avancé
+
+**Composant** : `components/search/search-filters.tsx`
+
+**Actions** :
+- [x] Filtre par univers (volet)
+- [x] Filtre par catégorie
+- [x] Filtre par fourchette de prix (range sliders)
+- [x] Filtre par badges (nouveau, promo, etc.)
+- [x] Filtre "en stock uniquement"
+- [x] Sections accordéon expansibles
+- [x] Bouton "Effacer les filtres"
+
+#### 6.4 - Utilitaires de Recherche
+
+**Fichier** : `lib/utils/search.ts`
+
+**Fonctionnalités** :
+- [x] `searchProducts()` - Recherche avec scoring de pertinence
+- [x] `filterProducts()` - Filtrage multi-critères
+- [x] `getPriceRange()` - Calcul plage de prix
+- [x] `getCategoriesByVolet()` - Catégories disponibles
+- [x] `getSearchSuggestions()` - Suggestions autocomplete
 
 ---
 
@@ -929,11 +959,11 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 #### 7.2 - Autres Composants
 
 **Actions** :
-- [ ] ProductBadge (déjà créé, tester)
-- [ ] PriceDisplay (déjà créé, tester)
-- [ ] AddToCart (adapter style)
-- [ ] WhatsAppButton (créer)
-- [ ] StockIndicator (créer)
+- [x] ProductBadge (déjà créé, utilisé)
+- [ ] PriceDisplay (non nécessaire, prix direct)
+- [x] AddToCart (refait avec feedback)
+- [ ] WhatsAppButton (intégré dans pages)
+- [ ] StockIndicator (à créer si besoin)
 
 ---
 

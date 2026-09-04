@@ -5,6 +5,7 @@ import { Search, User, ShoppingBag, Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { useCart } from '@/lib/store'
 import { CartDrawer } from '@/components/cart-drawer'
+import { SearchBar } from '@/components/search/search-bar'
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -95,22 +96,7 @@ export function SiteHeader() {
           </div>
         </div>
 
-        {/* Search Bar (Desktop) */}
-        {isSearchOpen && (
-          <div className="border-t border-warm-gray-200 bg-cream-white">
-            <div className="container mx-auto px-4 lg:px-20 py-4">
-              <div className="relative max-w-2xl mx-auto">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-warm-gray-400" />
-                <input
-                  type="search"
-                  placeholder="Rechercher un produit..."
-                  className="w-full pl-12 pr-4 py-3 bg-white border border-warm-gray-200 rounded-lg focus:outline-none focus:border-champagne-gold transition-colors"
-                  autoFocus
-                />
-              </div>
-            </div>
-          </div>
-        )}
+
 
         {/* Mobile Menu */}
         {isMenuOpen && (
@@ -137,6 +123,9 @@ export function SiteHeader() {
           </div>
         )}
       </header>
+
+      {/* Search Modal */}
+      <SearchBar isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
       {/* Cart Drawer */}
       <CartDrawer open={isCartOpen} onOpenChange={setIsCartOpen} />
