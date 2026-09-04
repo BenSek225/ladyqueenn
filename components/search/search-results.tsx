@@ -58,7 +58,7 @@ export function SearchResults({ results, onClose }: SearchResultsProps) {
                     key={product.id}
                     href={productPath}
                     onClick={onClose}
-                    className="group flex gap-4 bg-white rounded-lg p-4 hover:shadow-card transition-all duration-normal"
+                    className="group flex gap-4 bg-white rounded-lg p-4 hover:shadow-lg transition-all duration-normal"
                   >
                     {/* Image */}
                     <div className="relative w-20 h-20 flex-shrink-0 rounded overflow-hidden">

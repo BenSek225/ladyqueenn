@@ -3,6 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Inter, JetBrains_Mono } from 'next/font/google'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SiteFooter } from '@/components/layout/site-footer'
+import { ToastContainer } from '@/components/shared/toast'
+import { SmoothScrollProvider } from '@/components/providers/smooth-scroll-provider'
 import './globals.css'
 
 // Fonts configuration - Design System Lady Queenn
@@ -67,12 +69,15 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="antialiased font-sans bg-cream-white text-deep-black">
-        <SiteHeader />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <SiteFooter />
-         <Analytics />
+        <SmoothScrollProvider>
+          <SiteHeader />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <SiteFooter />
+          <ToastContainer />
+        </SmoothScrollProvider>
+        <Analytics />
       </body>
     </html>
   )

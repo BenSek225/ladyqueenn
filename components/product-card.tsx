@@ -1,93 +1,179 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Plus } from 'lucide-react'
+import { Plus, Check } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { useCart } from '@/lib/store'
 import { getUniverseName, getVoletPath } from '@/lib/data/all-products'
+import { badgeLabel } from '@/lib/utils'
+import { toast } from '@/components/shared/toast'
 
 interface ProductCardProps {
   product: Product
+  priority?: boolean
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, priority = false }: ProductCardProps) {
   const addItem = useCart((s) => s.addItem)
+  const [isAdding, setIsAdding] = useState(false)
+  const [justAdded, setJustAdded] = useState(false)
 
   // Définir le volet path selon le volet
   const voletPath = getVoletPath(product.volet)
   const productUrl = `/${voletPath}/${product.slug}`
 
-  // Couleur badge selon volet
-  const badgeClass = product.volet === 'sweet-hair' ? 'bg-sh-light text-sh-olive' :
-                     product.volet === 'fragrance' ? 'bg-fr-light text-fr-plum' :
-                     'bg-cr-light text-cr-earth'
+  // Couleurs selon volet pour l'eyebrow
+  const voletColors = {
+    'sweet-hair': 'text-sh-olive',
+    'fragrance': 'text-fr-plum',
+    'crochet-by-thed': 'text-cr-earth',
+  }
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  // Couleur badge selon le type
+  const getBadgeStyle = (badge: string) => {
+    switch (badge) {
+      case 'nouveau':
+        return 'bg-sh-light text-sh-olive border border-sh-olive/20'
+      case 'promo':
+        return 'bg-fr-light text-fr-plum border border-fr-plum/20'
+      case 'coup-de-coeur':
+        return 'bg-champagne-gold/20 text-gold-dark border border-champagne-gold'
+      case 'limité':
+        return 'bg-cr-light text-cr-earth border border-cr-earth/20'
+      case 'épuisé':
+        return 'bg-warm-200 text-warm-500 border border-warm-300'
+      default:
+        return 'bg-warm-100 text-warm-500 border border-warm-200'
+    }
+  }
+
+  const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
+    
+    if (isAdding || justAdded) return
+    
+    setIsAdding(true)
+    
+    // Animation courte pour feedback
+    await new Promise(resolve => setTimeout(resolve, 200))
+    
     addItem({
       id: product.id,
       name: product.name,
       price: product.price,
       image: product.image,
+      volet: product.volet,
     })
+    
+    // Toast de succès
+    toast.success('Ajouté au panier', `${product.name} a été ajouté à votre panier`)
+    
+    setIsAdding(false)
+    setJustAdded(true)
+    
+    // Reset après 2 secondes
+    setTimeout(() => setJustAdded(false), 2000)
   }
 
+  const isOutOfStock = product.stock === 0
+
   return (
-    <article className="group">
-      <Link href={productUrl}>
-        {/* Image Container */}
-        <div className="relative aspect-[4/5] overflow-hidden bg-warm-gray-100 rounded-soft mb-4">
+    <article className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-warm-200 hover:shadow-lg transition-all duration-normal">
+      <Link href={productUrl} className="block">
+        {/* Image Container - Ratio 4:5 */}
+        <div className="relative aspect-[4/5] overflow-hidden bg-warm-100">
           <Image 
             src={product.image} 
             alt={product.name} 
             fill 
-            className="object-cover transition duration-slower group-hover:scale-105" 
-            sizes="(max-width: 768px) 50vw, 25vw"
+            priority={priority}
+            className="object-cover transition-transform duration-slower group-hover:scale-105" 
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
           
-          {/* Badge */}
+          {/* Overlay gradient subtil au hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-deep-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-normal" />
+          
+          {/* Badge top-left */}
           {product.badge && (
-            <span className={`absolute left-3 top-3 px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider ${badgeClass}`}>
-              {product.badge}
-            </span>
+            <div className="absolute left-3 top-3">
+              <span className={`inline-block px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-[0.1em] ${getBadgeStyle(product.badge)}`}>
+                {badgeLabel(product.badge)}
+              </span>
+            </div>
           )}
 
-          {/* Bouton Add to Cart au hover */}
-          <button 
-            aria-label={`Ajouter ${product.name} au panier`}
-            onClick={handleAddToCart}
-            className="absolute bottom-3 right-3 flex h-11 w-11 items-center justify-center bg-deep-black text-cream-white rounded-full opacity-0 translate-y-2 transition-all duration-normal group-hover:translate-y-0 group-hover:opacity-100 hover:bg-champagne-gold hover:text-deep-black"
-          >
-            <Plus size={20} />
-          </button>
+          {/* Bouton Add to Cart bottom-right avec animation */}
+          {!isOutOfStock && (
+            <button 
+              aria-label={`Ajouter ${product.name} au panier`}
+              onClick={handleAddToCart}
+              disabled={isAdding || justAdded}
+              className={`absolute bottom-4 right-4 flex h-12 w-12 items-center justify-center rounded-full shadow-xl
+                opacity-0 translate-y-2 transition-all duration-300
+                group-hover:translate-y-0 group-hover:opacity-100
+                ${justAdded 
+                  ? 'bg-green-600 text-white' 
+                  : 'bg-deep-black text-cream-white hover:bg-champagne-gold hover:text-deep-black hover:scale-110'
+                }
+                ${isAdding ? 'cursor-wait' : 'cursor-pointer'}
+                disabled:cursor-not-allowed
+              `}
+            >
+              {isAdding ? (
+                <div className="w-5 h-5 border-2 border-cream-white border-t-transparent rounded-full animate-spin" />
+              ) : justAdded ? (
+                <Check size={20} className="animate-scale-in" />
+              ) : (
+                <Plus size={20} />
+              )}
+            </button>
+          )}
+          
+          {/* Badge épuisé */}
+          {isOutOfStock && (
+            <div className="absolute inset-0 bg-warm-100/80 flex items-center justify-center">
+              <span className="px-4 py-2 bg-warm-500 text-white text-sm font-semibold uppercase tracking-wider rounded-lg">
+                Épuisé
+              </span>
+            </div>
+          )}
         </div>
       </Link>
 
       {/* Info Produit */}
-      <div className="space-y-2">
-        {/* Catégorie / Univers */}
-        <p className="text-xs uppercase tracking-wider text-warm-500">
-          {product.category}
+      <div className="p-4 space-y-2">
+        {/* Eyebrow - Volet ou Catégorie */}
+        <p className={`eyebrow-label ${voletColors[product.volet]}`}>
+          {getUniverseName(product.volet)}
         </p>
 
-        {/* Nom */}
+        {/* Nom du produit */}
         <Link 
           href={productUrl} 
-          className="block font-display text-lg leading-tight text-deep-black hover:text-champagne-gold transition-colors"
+          className="block font-display text-lg lg:text-xl leading-tight text-deep-black group-hover:text-champagne-gold transition-colors duration-normal line-clamp-2 min-h-[3.5rem]"
         >
           {product.name}
         </Link>
 
+        {/* Description courte (optionnelle si on veut) */}
+        {product.description && (
+          <p className="text-sm text-warm-500 line-clamp-2 leading-relaxed">
+            {product.description}
+          </p>
+        )}
+
         {/* Prix */}
-        <div className="flex items-baseline gap-2">
-          <p className="font-mono text-base font-bold text-champagne-gold">
+        <div className="flex items-baseline gap-2 pt-1">
+          <p className="font-mono text-lg font-bold text-gold-dark">
             {product.price.toLocaleString('fr-FR')} FCFA
           </p>
           {product.oldPrice && (
-            <p className="text-sm text-warm-500 line-through">
-              {product.oldPrice.toLocaleString('fr-FR')} FCFA
+            <p className="text-sm text-warm-400 line-through font-mono">
+              {product.oldPrice.toLocaleString('fr-FR')}
             </p>
           )}
         </div>

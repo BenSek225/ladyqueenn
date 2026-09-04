@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Minus, Plus, Trash2, ArrowRight, ArrowLeft, ShoppingBag } from 'lucide-react'
 import { useCart } from '@/lib/store'
 import { getUniverseName } from '@/lib/data/all-products'
+import { EmptyState } from '@/components/shared/empty-state'
 
 export default function PanierPage() {
   const { items, updateQuantity, removeItem, getTotalPrice, formatCartMessage, clearCart } = useCart()
@@ -61,22 +62,19 @@ export default function PanierPage() {
         {/* Content */}
         {items.length === 0 ? (
           // Panier vide
-          <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="w-24 h-24 rounded-full bg-warm-gray-100 flex items-center justify-center mb-6">
-              <ShoppingBag className="w-12 h-12 text-warm-gray-400" />
-            </div>
-            <h2 className="font-display text-2xl mb-3">Votre panier est vide</h2>
-            <p className="text-warm-500 mb-8 max-w-md">
-              Découvrez nos collections et ajoutez des produits à votre panier
-            </p>
-            <Link 
-              href="/"
-              className="btn-primary inline-flex items-center gap-3"
-            >
-              Découvrir nos univers
-              <ArrowRight size={20} />
-            </Link>
-          </div>
+          <EmptyState
+            icon={ShoppingBag}
+            title="Votre panier est vide"
+            description="Découvrez nos collections de soins naturels, parfums de luxe et créations artisanales. Commencez votre shopping dès maintenant !"
+            action={{
+              label: 'Découvrir nos univers',
+              href: '/',
+            }}
+            secondaryAction={{
+              label: 'Voir les nouveautés',
+              href: '/#nouveautes',
+            }}
+          />
         ) : (
           // Panier avec items
           <div className="grid lg:grid-cols-[1fr_400px] gap-12">

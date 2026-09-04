@@ -934,11 +934,11 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 
 ---
 
-### 🎨 Phase 7 : Composants Shared (Priorité MOYENNE) 🟡
+### 🎨 Phase 7 : Composants Shared (Priorité MOYENNE) 🟡 ✅ TERMINÉ
 
 #### 7.1 - ProductCard Refonte
 
-**Fichier** : `components/shared/product-card.tsx` (REFAIRE)
+**Fichier** : `components/product-card.tsx` (REFAIT)
 
 **Design référence** : Cards produits visuels
 
@@ -951,55 +951,89 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 - CTA : "Ajouter au panier" au hover
 
 **Actions** :
-- [ ] Refaire ProductCard
-- [ ] Image 4:5 ratio
-- [ ] Hover élégant
-- [ ] Badge positionné
+- [x] Refaire ProductCard avec design éditorial
+- [x] Image 4:5 ratio avec overflow hidden
+- [x] Hover élégant (scale + shadow-lg + translate-y)
+- [x] Badge positionné top-left avec styles par type
+- [x] Eyebrow avec couleur par volet
+- [x] Overlay gradient au hover
+- [x] Loading states (spinner + check success)
+- [x] État épuisé avec overlay
+- [x] Toast notification à l'ajout
 
 #### 7.2 - Autres Composants
 
 **Actions** :
-- [x] ProductBadge (déjà créé, utilisé)
-- [ ] PriceDisplay (non nécessaire, prix direct)
-- [x] AddToCart (refait avec feedback)
-- [ ] WhatsAppButton (intégré dans pages)
-- [ ] StockIndicator (à créer si besoin)
+- [x] ProductBadge (intégré dans ProductCard, badgeLabel helper)
+- [x] ProductCardSkeleton + ProductCardSkeletonGrid
+- [x] PageLoadingState (Hero, Content, Detail)
+- [x] EmptyState réutilisable (icône, titre, description, actions)
+- [x] ToastContainer + ToastStore (4 types avec animations)
+- [x] Button réutilisable (4 variants, 3 sizes, loading, ripple)
+- [x] AddToCart (refait avec feedback, déjà dans ProductCard)
 
 ---
 
-### ✨ Phase 8 : Animations & Polish (Priorité BASSE) 🟢
+### ✨ Phase 8 : Animations & Polish (Priorité BASSE) 🟢 ✅ TERMINÉ
 
 #### 8.1 - Smooth Scroll
 
 **Librairie** : Lenis
 
-```bash
-npm install @studio-freight/lenis
-```
-
-**Implémentation** : `app/layout.tsx`
+**Implémentation** : `components/providers/smooth-scroll-provider.tsx`
 
 **Actions** :
-- [ ] Installer Lenis
-- [ ] Configurer smooth scroll
-- [ ] Tester navigation
+- [x] Installer Lenis (npm package)
+- [x] Configurer smooth scroll (duration 1.2s, easing naturel)
+- [x] Intégrer dans layout.tsx via provider
+- [x] Ajouter CSS Lenis dans globals.css
+- [x] Tester navigation (build réussi)
 
 #### 8.2 - Reveal Animations
 
-**Composant** : `components/shared/reveal-section.tsx` (déjà créé)
+**Composant** : `components/shared/reveal-section.tsx`
 
 **Actions** :
-- [ ] Wraper sections avec RevealSection
-- [ ] Tester scroll reveal
-- [ ] Ajuster thresholds
+- [x] Créer RevealSection avec Intersection Observer
+- [x] 5 animations disponibles (fade-up, fade-in, fade-left, fade-right, scale-up)
+- [x] Props configurables (delay, threshold, animation type)
+- [x] Unobserve après révélation pour performance
+- [x] Animations CSS avec cubic-bezier smooth
 
 #### 8.3 - Micro-interactions
 
 **Actions** :
-- [ ] Hover states tous boutons
-- [ ] Transitions douces
-- [ ] Loading states
-- [ ] Toast notifications
+- [x] Classes CSS btn-primary, btn-secondary, btn-ghost, btn-icon
+- [x] link-animated avec underline animé
+- [x] card-interactive avec hover translate + shadow
+- [x] input-focus, icon-hover-rotate, icon-hover-scale
+- [x] Ripple effect pour boutons
+- [x] Hover states sur tous les boutons (scale, translate-y, shadow)
+- [x] Active states avec scale(0.98)
+- [x] Focus states accessibles (ring-2)
+- [x] Disabled states (opacity-50)
+- [x] Transitions douces avec ease-out
+- [x] Loading states (spinner dans boutons)
+- [x] Toast notifications (4 types avec icônes et auto-dismiss)
+
+#### 8.4 - Page Transitions
+
+**Actions** :
+- [x] PageTransitionProvider avec usePathname
+- [x] Animation fadeIn + translateY au changement de route
+- [x] Transitions sur liens (opacity active state)
+
+#### 8.5 - Cart Drawer Animations
+
+**Actions** :
+- [x] Slide-in-right pour ouverture drawer
+- [x] Slide-in-left pour apparition items
+- [x] Animation sortie items avec translateX + opacity (300ms)
+- [x] Toast lors de la suppression
+- [x] Hover scale sur boutons +/-
+- [x] Hover red + scale sur trash icon
+- [x] Hover translate-y + shadow sur CTA WhatsApp
+- [x] Backdrop blur pour overlay
 
 ---
 

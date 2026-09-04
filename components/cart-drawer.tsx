@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Minus, Plus, Trash2, X, ShoppingBag, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { useCart } from '@/lib/store'
 import { getUniverseName } from '@/lib/data/all-products'
+import { toast } from '@/components/shared/toast'
 
 interface CartDrawerProps {
   open: boolean
@@ -13,6 +14,7 @@ interface CartDrawerProps {
 
 export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
   const { items, updateQuantity, removeItem, getTotalPrice, formatCartMessage } = useCart()
+  const [removingItemId, setRemovingItemId] = useState<string | null>(null)
 
   // Empêcher le scroll du body quand le drawer est ouvert
   useEffect(() => {
@@ -25,6 +27,18 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
       document.body.style.overflow = 'unset'
     }
   }, [open])
+
+  const handleRemoveItem = (itemId: string, itemName: string) => {
+    // Animation de sortie
+    setRemovingItemId(itemId)
+    
+    // Attendre la fin de l'animation avant de supprimer
+    setTimeout(() => {
+      removeItem(itemId)
+      setRemovingItemId(null)
+      toast.info('Retiré du panier', `${itemName} a été retiré`)
+    }, 300)
+  }
 
   // Grouper les items par volet
   const itemsByVolet = items.reduce((acc, item) => {
@@ -93,7 +107,14 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
                   {/* Items du volet */}
                   <div className="space-y-4">
                     {itemsByVolet[volet].map((item) => (
-                      <div key={item.id} className="flex gap-4 bg-white p-4 rounded-soft">
+                      <div 
+                        key={item.id} 
+                        className={`flex gap-4 bg-white p-4 rounded-soft transition-all duration-300
+                          ${removingItemId === item.id 
+                            ? 'opacity-0 -translate-x-full' 
+                            : 'opacity-100 translate-x-0 animate-slide-in-left'
+                          }`}
+                      >
                         {/* Image */}
                         <div className="relative w-20 h-24 rounded overflow-hidden bg-warm-gray-100 flex-shrink-0">
                           <Image
@@ -112,8 +133,8 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
                               {item.name}
                             </p>
                             <button
-                              onClick={() => removeItem(item.id)}
-                              className="text-warm-gray-400 hover:text-deep-black transition-colors"
+                              onClick={() => handleRemoveItem(item.id, item.name)}
+                              className="text-warm-gray-400 hover:text-red-600 hover:scale-110 transition-all"
                               aria-label={`Supprimer ${item.name}`}
                             >
                               <Trash2 size={16} />
@@ -123,19 +144,21 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
                           {/* Prix + Quantité */}
                           <div className="flex items-center justify-between mt-2">
                             {/* Contrôles quantité */}
-                            <div className="flex items-center border border-warm-gray-200 rounded">
+                            <div className="flex items-center border border-warm-gray-200 rounded overflow-hidden">
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="p-1.5 hover:bg-warm-gray-100 transition-colors"
+                                className="p-1.5 hover:bg-warm-gray-100 transition-all hover:scale-110 active:scale-95"
                                 aria-label="Diminuer la quantité"
                                 disabled={item.quantity <= 1}
                               >
                                 <Minus size={14} />
                               </button>
-                              <span className="px-3 text-sm font-medium">{item.quantity}</span>
+                              <span className="px-3 text-sm font-medium min-w-[2rem] text-center">
+                                {item.quantity}
+                              </span>
                               <button
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="p-1.5 hover:bg-warm-gray-100 transition-colors"
+                                className="p-1.5 hover:bg-warm-gray-100 transition-all hover:scale-110 active:scale-95"
                                 aria-label="Augmenter la quantité"
                               >
                                 <Plus size={14} />
@@ -173,10 +196,10 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
               href={`https://wa.me/2250710504007?text=${formatCartMessage()}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-3 bg-deep-black text-cream-white px-8 py-4 rounded-soft font-medium hover:bg-champagne-gold hover:text-deep-black transition-all duration-normal"
+              className="w-full flex items-center justify-center gap-3 bg-deep-black text-cream-white px-8 py-4 rounded-soft font-medium hover:bg-champagne-gold hover:text-deep-black hover:-translate-y-1 hover:shadow-xl active:translate-y-0 transition-all duration-300"
             >
               Commander via WhatsApp
-              <ArrowRight size={20} />
+              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
             </a>
 
             <p className="text-xs text-center text-warm-500 mt-4">
@@ -197,8 +220,23 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
           }
         }
 
+        @keyframes slide-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
         .animate-slide-in-right {
           animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .animate-slide-in-left {
+          animation: slide-in-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
       `}</style>
     </>

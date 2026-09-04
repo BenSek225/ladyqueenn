@@ -275,7 +275,7 @@ export default function CrochetPage() {
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
                 <div 
                   key={i} 
-                  className={`relative rounded-soft overflow-hidden bg-warm-gray-100 hover:shadow-elevated transition-all duration-normal ${
+                  className={`relative rounded-soft overflow-hidden bg-warm-gray-100 hover:shadow-xl transition-all duration-normal ${
                     i % 3 === 0 ? 'aspect-[4/5]' : 'aspect-square'
                   }`}
                 >

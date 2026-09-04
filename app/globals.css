@@ -5,6 +5,30 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Lady Queenn Custom Colors */
+  --color-deep-black: #1A1714;
+  --color-dark-gray: #2D2A27;
+  --color-cream-white: #F9F6F1;
+  --color-cream-light: #F7F3EC;
+  --color-champagne-gold: #C6A87C;
+  --color-soft-gold: #B89B6A;
+  --color-gold-dark: #9D8159;
+  --color-warm-100: #F5F1ED;
+  --color-warm-200: #E8E3DD;
+  --color-warm-300: #D1CBC3;
+  --color-warm-400: #AFA89F;
+  --color-warm-500: #8D877D;
+  --color-sh-sage: #8A9A7B;
+  --color-sh-olive: #6B7D5C;
+  --color-sh-light: #E8EDE5;
+  --color-fr-plum: #6B4E71;
+  --color-fr-rose: #B88E97;
+  --color-fr-light: #F2EDF0;
+  --color-cr-terracotta: #D4A59A;
+  --color-cr-earth: #9D8579;
+  --color-cr-light: #F0EBE8;
+  
+  /* Shadcn/UI System Colors */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -533,4 +557,297 @@
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--gold-dark);
+}
+
+
+/* Toast Animations */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-scale-in {
+  animation: scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* Lenis Smooth Scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+
+/* Scroll Reveal Animations */
+.reveal-section {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Fade Up */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade In */
+.reveal-fade-in {
+  opacity: 0;
+}
+
+.reveal-fade-in.is-visible {
+  opacity: 1;
+}
+
+/* Fade Left */
+.reveal-fade-left {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.reveal-fade-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade Right */
+.reveal-fade-right {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.reveal-fade-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale Up */
+.reveal-scale-up {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.reveal-scale-up.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+/* ===================================
+   Micro-interactions & Button States
+   =================================== */
+
+/* Bouton primaire - CTA principal */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-8 py-4 
+         bg-deep-black text-cream-white rounded-lg font-medium
+         transition-all duration-300 ease-out
+         hover:bg-champagne-gold hover:text-deep-black 
+         hover:-translate-y-1 hover:shadow-xl
+         active:translate-y-0 active:shadow-lg
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-gold focus-visible:ring-offset-2
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+}
+
+/* Bouton secondaire - Action alternative */
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-8 py-4
+         bg-transparent text-deep-black rounded-lg font-medium
+         border-2 border-deep-black
+         transition-all duration-300 ease-out
+         hover:bg-deep-black hover:text-cream-white
+         hover:-translate-y-1 hover:shadow-lg
+         active:translate-y-0
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-deep-black focus-visible:ring-offset-2
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+}
+
+/* Bouton ghost - Lien stylisé */
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2
+         bg-transparent text-deep-black font-medium
+         transition-all duration-300 ease-out
+         hover:text-champagne-gold hover:gap-3
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-gold focus-visible:ring-offset-2;
+}
+
+/* Bouton icon - Bouton rond avec icône */
+.btn-icon {
+  @apply inline-flex items-center justify-center
+         w-12 h-12 rounded-full bg-deep-black text-cream-white
+         transition-all duration-300 ease-out
+         hover:bg-champagne-gold hover:text-deep-black hover:scale-110 hover:shadow-lg
+         active:scale-100
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-gold focus-visible:ring-offset-2
+         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
+}
+
+/* Lien avec underline animé */
+.link-animated {
+  @apply relative inline-block text-deep-black transition-colors duration-300
+         after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-champagne-gold
+         after:transition-all after:duration-300 after:ease-out
+         hover:text-champagne-gold hover:after:w-full
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-gold focus-visible:ring-offset-2 focus-visible:rounded;
+}
+
+/* Card interactive */
+.card-interactive {
+  @apply transition-all duration-300 ease-out
+         hover:-translate-y-2 hover:shadow-xl
+         active:translate-y-0 active:shadow-lg;
+}
+
+/* Badge avec pulse subtil */
+.badge-pulse {
+  @apply animate-pulse;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Input focus style */
+.input-focus {
+  @apply transition-all duration-300
+         focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 focus:outline-none;
+}
+
+/* Icon hover rotation */
+.icon-hover-rotate {
+  @apply transition-transform duration-300
+         hover:rotate-12;
+}
+
+/* Icon hover scale */
+.icon-hover-scale {
+  @apply transition-transform duration-300
+         hover:scale-125;
+}
+
+/* Ripple effect (pour boutons) */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.btn-ripple {
+  @apply relative overflow-hidden;
+}
+
+.btn-ripple::after {
+  content: '';
+  @apply absolute top-1/2 left-1/2 w-4 h-4 bg-white rounded-full;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+.btn-ripple:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+/* Smooth transitions globales */
+a, button {
+  @apply transition-colors duration-300 ease-out;
+}
+
+/* Focus visible pour accessibilité */
+*:focus-visible {
+  @apply outline-none ring-2 ring-champagne-gold ring-offset-2 rounded;
+}
+
+/* Active state subtil */
+button:active:not(:disabled) {
+  @apply scale-[0.98];
+}
+
+/* Disabled state */
+button:disabled, a[aria-disabled="true"] {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+
+/* ===================================
+   Page Transitions
+   =================================== */
+
+.page-transition {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Transitions pour les liens */
+a {
+  @apply transition-opacity duration-200;
+}
+
+a:active {
+  @apply opacity-70;
 }

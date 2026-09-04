@@ -26,7 +26,7 @@ export function UniverseCard({ title, subtitle, description, image, href, accent
 
   return (
     <Link href={href} className="group">
-      <article className="bg-white rounded-soft overflow-hidden transition-all duration-slow hover:shadow-elevated hover:-translate-y-1">
+      <article className="bg-white rounded-soft overflow-hidden transition-all duration-slow hover:shadow-xl hover:-translate-y-1">
         {/* Image */}
         <div className="relative aspect-[16/10] overflow-hidden bg-warm-gray-100">
           <Image

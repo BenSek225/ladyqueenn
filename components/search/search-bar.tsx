@@ -88,7 +88,7 @@ export function SearchBar({ isOpen, onClose }: SearchBarProps) {
       
       {/* Modal */}
       <div className="fixed inset-x-0 top-0 z-[101] animate-slide-down">
-        <div className="bg-cream-white border-b border-warm-200 shadow-elevated">
+        <div className="bg-cream-white border-b border-warm-200 shadow-xl">
           <div className="container-luxury py-6">
             {/* Barre de recherche */}
             <form onSubmit={handleSubmit} className="relative">
@@ -114,7 +114,7 @@ export function SearchBar({ isOpen, onClose }: SearchBarProps) {
               
               {/* Suggestions rapides */}
               {suggestions.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-card border border-warm-200 overflow-hidden z-10">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-warm-200 overflow-hidden z-10">
                   {suggestions.map((suggestion, index) => (
                     <button
                       key={index}
