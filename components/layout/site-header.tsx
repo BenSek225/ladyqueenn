@@ -68,10 +68,10 @@ export function SiteHeader() {
               <Image
                 src="/images/logo-lady-queenn.png"
                 alt="Lady Queenn"
-                width={40}
-                height={40}
+                width={180}
+                height={56}
                 priority
-                className="w-10 h-10 lg:w-12 lg:h-12 object-contain"
+                className="w-36 h-auto lg:w-44 object-contain"
               />
             </Link>
 
