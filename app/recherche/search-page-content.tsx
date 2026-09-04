@@ -68,13 +68,13 @@ export function SearchPageContent() {
               Essayez avec d'autres mots-clés ou parcourez nos univers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/cheveux" className="btn-secondary">
+              <Link href="/sweet-hair" className="btn-secondary">
                 Découvrir Sweet-Hair
               </Link>
-              <Link href="/corps" className="btn-secondary">
+              <Link href="/fragrance" className="btn-secondary">
                 Découvrir Fragrance
               </Link>
-              <Link href="/maison" className="btn-secondary">
+              <Link href="/crochet-by-thed" className="btn-secondary">
                 Découvrir Crochet
               </Link>
             </div>

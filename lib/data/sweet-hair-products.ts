@@ -49,10 +49,9 @@ Idéale pour tous types de cheveux, elle pénètre rapidement sans effet gras. U
     longDescription: `Le shampooing Sweet-Hair nettoie en douceur sans agresser vos cheveux. Sa formule naturelle respecte l'équilibre du cuir chevelu tout en apportant nutrition et réparation.
 
 Enrichi en extraits de plantes africaines, il convient à tous types de cheveux, même les plus fragiles. Vos cheveux retrouvent force, souplesse et éclat naturel.`,
-    image: 'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/sweet-hair/huile-capillaire-60ml-main.png',
     images: [
-      'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/sweet-hair/huile-capillaire-60ml-main.png'126,
     badge: 'nouveau',
     stock: 38,
     benefits: [
@@ -84,10 +83,9 @@ Enrichi en extraits de plantes africaines, il convient à tous types de cheveux,
     longDescription: `La pommade Sweet-Hair est votre alliée coiffage quotidien. Elle nourrit, discipline et donne une tenue naturelle à vos cheveux tout en les protégeant des agressions extérieures.
 
 Sa texture onctueuse pénètre rapidement sans alourdir. Idéale pour structurer les coiffures, dompter les frisottis et apporter une brillance saine.`,
-    image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/sweet-hair/pommade-nourrissante-main.png',
     images: [
-      'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/sweet-hair/pommade-nourrissante-main.png'3293,
     stock: 52,
     benefits: [
       'Nourrit et hydrate en profondeur',
@@ -124,10 +122,9 @@ Sa texture onctueuse pénètre rapidement sans alourdir. Idéale pour structurer
 - 1 Pommade Nourrissante 150g
 
 **Économisez 1 000 FCFA** en optant pour le kit complet. Un investissement beauté qui change tout !`,
-    image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/sweet-hair/kit-complet-sweet-hair-main.png',
     images: [
-      'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/sweet-hair/kit-complet-sweet-hair-main.png'4687,
     badge: 'promo',
     stock: 25,
     isKit: true,

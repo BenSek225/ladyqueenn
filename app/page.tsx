@@ -22,7 +22,7 @@ export default function HomePage() {
         {/* Background Image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/placeholder.jpg"
+            src="/images/gallery/crochet-lifestyle.png"
             alt="Lady Queenn - Embrace Your Queenn Energy"
             fill
             priority
@@ -86,7 +86,7 @@ export default function HomePage() {
               subtitle="SOINS CAPILLAIRES NATURELS"
               description="Nourrir, hydrater et célébrer vos textures naturelles avec des soins végétaux d'exception."
               image="/placeholder.jpg"
-              href="/cheveux"
+              href="/sweet-hair"
               accent="sage"
             />
             <UniverseCard
@@ -94,7 +94,7 @@ export default function HomePage() {
               subtitle="PARFUMS DE LUXE"
               description="Des fragrances inspirées par l'héritage africain, créées pour sublimer votre signature olfactive."
               image="/placeholder.jpg"
-              href="/corps"
+              href="/fragrance"
               accent="plum"
             />
             <UniverseCard
@@ -102,7 +102,7 @@ export default function HomePage() {
               subtitle="CRÉATIONS ARTISANALES"
               description="Pièces intemporelles au crochet, confectionnées avec intention et enracinées dans la tradition."
               image="/placeholder.jpg"
-              href="/maison"
+              href="/crochet-by-thed"
               accent="terracotta"
             />
           </div>
@@ -164,7 +164,7 @@ export default function HomePage() {
               <div className="space-y-3 sm:space-y-4">
                 <div className="relative aspect-square rounded-soft overflow-hidden">
                   <Image
-                    src="/placeholder.jpg"
+                    src="/images/gallery/crochet-lifestyle.png"
                     alt="Inspiration Lady Queenn"
                     fill
                     className="object-cover"
@@ -172,7 +172,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative aspect-[4/5] rounded-soft overflow-hidden">
                   <Image
-                    src="/placeholder.jpg"
+                    src="/images/gallery/crochet-lifestyle.png"
                     alt="Artisanat Lady Queenn"
                     fill
                     className="object-cover"
@@ -182,7 +182,7 @@ export default function HomePage() {
               <div className="space-y-3 sm:space-y-4 pt-6 sm:pt-8">
                 <div className="relative aspect-[4/5] rounded-soft overflow-hidden">
                   <Image
-                    src="/placeholder.jpg"
+                    src="/images/gallery/crochet-lifestyle.png"
                     alt="Matières naturelles"
                     fill
                     className="object-cover"
@@ -190,7 +190,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative aspect-square rounded-soft overflow-hidden">
                   <Image
-                    src="/placeholder.jpg"
+                    src="/images/gallery/crochet-lifestyle.png"
                     alt="Savoir-faire"
                     fill
                     className="object-cover"

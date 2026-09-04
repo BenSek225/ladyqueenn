@@ -13,10 +13,9 @@ export const crochetProducts: CrochetProduct[] = [
     longDescription: `Robe bohème confectionnée entièrement au crochet avec un motif ajouré élégant. Légère et aérée, elle est idéale pour les journées ensoleillées.
 
 Portez-la en plage, en soirée ou au quotidien. Un mélange parfait de confort et d'élégance artisanale.`,
-    image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/robe-ete-boheme-main.png',
     images: [
-      'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/robe-ete-boheme-main.png'147,
     badge: 'nouveau',
     stock: 8,
     customizable: true,
@@ -37,10 +36,9 @@ Portez-la en plage, en soirée ou au quotidien. Un mélange parfait de confort e
     longDescription: `Top crop sophistiqué avec un magnifique travail de dentelle au crochet. Parfait pour sublimer une taille haute ou un jean.
 
 Pièce polyvalente qui s'adapte du look décontracté au style chic. Un essentiel de garde-robe.`,
-    image: 'https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/top-crop-dentelle-main.png',
     images: [
-      'https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/top-crop-dentelle-main.png'1186,
     badge: 'coup-de-coeur',
     stock: 15,
     customizable: true,
@@ -61,10 +59,9 @@ Pièce polyvalente qui s'adapte du look décontracté au style chic. Un essentie
     longDescription: `Poncho généreux qui enveloppe avec douceur. Un vêtement cocooning parfait pour les soirées fraîches ou la climatisation.
 
 Style bohème décontracté qui se porte sur tout. Confort et allure assurés.`,
-    image: 'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/poncho-oversized-main.png',
     images: [
-      'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/poncho-oversized-main.png'2179,
     stock: 10,
     customizable: true,
     sizes: ['Unique (Oversized)'],
@@ -86,10 +83,9 @@ Style bohème décontracté qui se porte sur tout. Confort et allure assurés.`,
     longDescription: `Gilet masculin au crochet avec une coupe moderne et décontractée. Parfait pour un style urbain original qui se démarque.
 
 Se porte sur un t-shirt ou une chemise. Une pièce unique qui attire les regards.`,
-    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/gilet-sans-manches-homme-main.png',
     images: [
-      'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/gilet-sans-manches-homme-main.png'3139,
     badge: 'nouveau',
     stock: 6,
     customizable: true,
@@ -110,10 +106,9 @@ Se porte sur un t-shirt ou une chemise. Une pièce unique qui attire les regards
     longDescription: `Bob au crochet dans l'air du temps. Léger et aéré, il protège du soleil tout en apportant une touche streetwear unique.
 
 Unisexe et ajustable. L'accessoire indispensable de l'été.`,
-    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/bob-bucket-hat-main.png',
     images: [
-      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/bob-bucket-hat-main.png'4090,
     stock: 20,
     customizable: true,
     sizes: ['S/M', 'L/XL'],
@@ -135,10 +130,9 @@ Unisexe et ajustable. L'accessoire indispensable de l'été.`,
     longDescription: `Ensemble précieux pour baptême ou cérémonie. Confectionné avec soin dans un fil ultra-doux adapté à la peau délicate des bébés.
 
 Comprend : bonnet, brassière et chaussons assortis. Un cadeau de naissance inoubliable.`,
-    image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/ensemble-bebe-bapteme-main.png',
     images: [
-      'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/ensemble-bebe-bapteme-main.png'5016,
     badge: 'coup-de-coeur',
     stock: 5,
     customizable: true,
@@ -159,10 +153,9 @@ Comprend : bonnet, brassière et chaussons assortis. Un cadeau de naissance inou
     longDescription: `Gilet ludique et pratique pour les enfants. La capuche ajoute une touche mignonne tout en protégeant du vent.
 
 Chaud sans être lourd, parfait pour les mi-saisons. Les enfants adorent !`,
-    image: 'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/gilet-enfant-capuche-main.png',
     images: [
-      'https://images.unsplash.com/photo-1503944583220-79d8926ad5e2?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/gilet-enfant-capuche-main.png'6031,
     stock: 12,
     customizable: true,
     sizes: ['2-4 ans', '4-6 ans', '6-8 ans', '8-10 ans'],
@@ -184,10 +177,9 @@ Chaud sans être lourd, parfait pour les mi-saisons. Les enfants adorent !`,
     longDescription: `Sac spacieux et résistant, parfait pour la plage, le marché ou les sorties. Confectionné avec un fil épais et robuste.
 
 Grande capacité et anses renforcées. Style bohème et pratique au quotidien.`,
-    image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/sac-cabas-plage-main.png',
     images: [
-      'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/sac-cabas-plage-main.png'7003,
     stock: 18,
     customizable: true,
     sizes: ['Grand (40x35cm)'],
@@ -207,10 +199,9 @@ Grande capacité et anses renforcées. Style bohème et pratique au quotidien.`,
     longDescription: `Châle sophistiqué avec un motif ajouré délicat. Se drape élégamment sur les épaules pour les soirées ou les occasions spéciales.
 
 Une pièce intemporelle qui traverse les saisons. Léger mais réchauffant.`,
-    image: 'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=900&q=80',
+    image: '/images/products/crochet-by-thed/chale-triangulaire-main.png',
     images: [
-      'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=900&q=80'
-    ],
+      '/images/products/crochet-by-thed/chale-triangulaire-main.png'7950,
     badge: 'limité',
     stock: 7,
     customizable: true,

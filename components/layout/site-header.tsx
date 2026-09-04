@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Search, User, ShoppingBag, Menu, X, Sparkles, Droplet, Home } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useCart } from '@/lib/store'
@@ -29,24 +30,24 @@ export function SiteHeader() {
 
   const navItems = [
     { 
-      label: 'CHEVEUX', 
-      href: '/cheveux', 
+      label: 'SWEET-HAIR', 
+      href: '/sweet-hair', 
       universe: 'sweet-hair',
       icon: Sparkles,
       color: 'sh-olive',
       description: 'Soins capillaires naturels'
     },
     { 
-      label: 'CORPS', 
-      href: '/corps', 
+      label: 'FRAGRANCE', 
+      href: '/fragrance', 
       universe: 'fragrance',
       icon: Droplet,
       color: 'fr-plum',
       description: 'Parfums artisanaux'
     },
     { 
-      label: 'MAISON', 
-      href: '/maison', 
+      label: 'CROCHET BY THED', 
+      href: '/crochet-by-thed', 
       universe: 'crochet',
       icon: Home,
       color: 'cr-earth',
@@ -64,10 +65,14 @@ export function SiteHeader() {
               href="/" 
               className="flex items-center gap-2 group transition-opacity hover:opacity-70 relative z-50"
             >
-              <span className="text-2xl" aria-label="Couronne Lady Queenn">👑</span>
-              <span className="font-display font-semibold text-lg lg:text-xl tracking-tight">
-                Lady Queenn
-              </span>
+              <Image
+                src="/images/logo-lady-queenn.png"
+                alt="Lady Queenn"
+                width={40}
+                height={40}
+                priority
+                className="w-10 h-10 lg:w-12 lg:h-12 object-contain"
+              />
             </Link>
 
             {/* Desktop Navigation */}

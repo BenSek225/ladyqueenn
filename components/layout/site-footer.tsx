@@ -33,7 +33,7 @@ export function SiteFooter() {
             <ul className="space-y-3">
               <li>
                 <Link 
-                  href="/cheveux" 
+                  href="/sweet-hair" 
                   className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
                 >
                   Sweet-Hair
@@ -41,7 +41,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link 
-                  href="/corps" 
+                  href="/fragrance" 
                   className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
                 >
                   Fragrance
@@ -49,7 +49,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link 
-                  href="/maison" 
+                  href="/crochet-by-thed" 
                   className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
                 >
                   Crochet by THED
