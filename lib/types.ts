@@ -61,18 +61,12 @@ export type AnyProduct = SweetHairProduct | FragranceProduct | CrochetProduct
 
 // Item dans le panier
 export interface CartItem {
-  id: string // ID unique du cart item
-  productId: string
+  id: string
   name: string
-  volet: Volet
   price: number
   quantity: number
   image: string
-  variant?: {
-    size?: string
-    color?: string
-    custom?: string // Notes personnalisation
-  }
+  volet?: Volet // Ajout du volet pour groupement
 }
 
 // Store Panier
