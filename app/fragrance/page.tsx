@@ -22,7 +22,7 @@ export default function FragrancePage() {
         {/* Background Image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/placeholder.jpg"
+            src="/images/gallery/fragrance-lifestyle.png"
             alt="Fragrance - Luxury Fragrances"
             fill
             priority
@@ -66,7 +66,7 @@ export default function FragrancePage() {
 
       {/* Breadcrumb */}
       <div className="container-luxury pt-6">
-        <Breadcrumb items={[{ label: 'CORPS', href: '/corps' }]} />
+        <Breadcrumb items={[{ label: 'FRAGRANCE', href: '/fragrance' }]} />
       </div>
 
       {/* Section Introduction */}
@@ -158,7 +158,7 @@ export default function FragrancePage() {
             {/* Image */}
             <div className="relative aspect-[4/5] rounded-soft overflow-hidden">
               <Image
-                src="/placeholder.jpg"
+src="/images/hero/fragrance.png"
                 alt="L'art du parfum Lady Queenn"
                 fill
                 className="object-cover"

@@ -18,13 +18,14 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
   const [selectedImage, setSelectedImage] = useState(0)
   const [activeTab, setActiveTab] = useState<'details' | 'ingredients' | 'usage'>('details')
   
-  const images = product.images || [product.image]
+  const images = product.images?.length ? product.images : [product.image]
+  const detailText = product.longDescription || product.description
   const similarProducts = getSimilarProducts(product.id, product.volet, 4)
 
   // Définir le volet URL et nom
   const voletPath = getVoletPath(product.volet)
-  const voletName = product.volet === 'sweet-hair' ? 'CHEVEUX' : 
-                    product.volet === 'fragrance' ? 'CORPS' : 'MAISON'
+  const voletName = product.volet === 'sweet-hair' ? 'SWEET-HAIR' : 
+                    product.volet === 'fragrance' ? 'FRAGRANCE' : 'CROCHET BY THED'
   const universeName = getUniverseName(product.volet)
 
   // Couleurs accent par volet
@@ -146,6 +147,14 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
               </div>
             )}
 
+            {/* Variantes disponibles */}
+            {('sizes' in product && product.sizes?.length) || ('colors' in product && product.colors?.length) ? (
+              <div className="space-y-4 border-y border-warm-gray-200 py-5">
+                {'sizes' in product && product.sizes?.length ? <div><p className="text-sm font-medium mb-2">Tailles</p><div className="flex flex-wrap gap-2">{product.sizes.map((size) => <span key={size} className="border border-warm-gray-200 px-3 py-1.5 text-sm rounded">{size}</span>)}</div></div> : null}
+                {'colors' in product && product.colors?.length ? <div><p className="text-sm font-medium mb-2">Couleurs</p><div className="flex flex-wrap gap-2">{product.colors.map((color) => <span key={color} className="border border-warm-gray-200 px-3 py-1.5 text-sm rounded">{color}</span>)}</div></div> : null}
+              </div>
+            ) : null}
+
             {/* Actions */}
             <div className="space-y-3 pt-4">
               <AddToCart product={product} className="w-full" />
@@ -175,7 +184,7 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
                 <Package className="w-5 h-5 text-champagne-gold" />
                 <span>Livraison à Abidjan</span>
               </div>
-              {product.badge === 'Nouveau' && (
+              {product.badge === 'nouveau' && (
                 <div className="flex items-center gap-3 text-sm text-dark-gray">
                   <Sparkles className="w-5 h-5 text-champagne-gold" />
                   <span>Nouveauté de la collection</span>
@@ -228,8 +237,8 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
             {activeTab === 'details' && (
               <div className="space-y-6">
                 <h3 className="font-display text-2xl">À propos de ce produit</h3>
-                <p className="text-warm-500 leading-relaxed">
-                  {product.description}
+                <p className="text-warm-500 leading-relaxed whitespace-pre-line">
+                  {detailText}
                 </p>
                 <div className="space-y-3">
                   <p className="text-sm"><strong>Catégorie :</strong> {product.category}</p>
@@ -248,7 +257,11 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
                   Nos produits sont formulés avec des ingrédients soigneusement sélectionnés 
                   pour leur qualité et leur efficacité.
                 </p>
-                {product.volet === 'sweet-hair' && (
+                {'ingredients' in product && product.ingredients?.length ? (
+                  <ul className="grid sm:grid-cols-2 gap-3 text-sm text-warm-500">
+                    {product.ingredients.map((ingredient) => <li key={ingredient}>✓ {ingredient}</li>)}
+                  </ul>
+                ) : product.volet === 'sweet-hair' && (
                   <ul className="space-y-2 text-sm text-warm-500">
                     <li>✓ Huiles végétales biologiques</li>
                     <li>✓ Beurre de karité naturel</li>
@@ -276,7 +289,9 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
             {activeTab === 'usage' && (
               <div className="space-y-6">
                 <h3 className="font-display text-2xl">Mode d'emploi</h3>
-                {product.volet === 'sweet-hair' && (
+                {'usage' in product && product.usage ? (
+                  <p className="text-sm text-warm-500 leading-relaxed whitespace-pre-line">{product.usage}</p>
+                ) : product.volet === 'sweet-hair' && (
                   <div className="space-y-4">
                     <div>
                       <h4 className="font-medium mb-2">Application</h4>

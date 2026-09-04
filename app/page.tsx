@@ -22,7 +22,7 @@ export default function HomePage() {
         {/* Background Image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/images/gallery/crochet-lifestyle.png"
+            src="/images/hero/home.png"
             alt="Lady Queenn - Embrace Your Queenn Energy"
             fill
             priority
@@ -85,7 +85,7 @@ export default function HomePage() {
               title="Sweet-Hair"
               subtitle="SOINS CAPILLAIRES NATURELS"
               description="Nourrir, hydrater et célébrer vos textures naturelles avec des soins végétaux d'exception."
-              image="/placeholder.jpg"
+              image="/images/hero/sweet-hair.png"
               href="/sweet-hair"
               accent="sage"
             />
@@ -93,7 +93,7 @@ export default function HomePage() {
               title="Fragrance"
               subtitle="PARFUMS DE LUXE"
               description="Des fragrances inspirées par l'héritage africain, créées pour sublimer votre signature olfactive."
-              image="/placeholder.jpg"
+              image="/images/hero/fragrance.png"
               href="/fragrance"
               accent="plum"
             />
@@ -101,7 +101,7 @@ export default function HomePage() {
               title="Crochet by THED"
               subtitle="CRÉATIONS ARTISANALES"
               description="Pièces intemporelles au crochet, confectionnées avec intention et enracinées dans la tradition."
-              image="/placeholder.jpg"
+              image="/images/hero/crochet-by-thed.png"
               href="/crochet-by-thed"
               accent="terracotta"
             />
@@ -164,7 +164,7 @@ export default function HomePage() {
               <div className="space-y-3 sm:space-y-4">
                 <div className="relative aspect-square rounded-soft overflow-hidden">
                   <Image
-                    src="/images/gallery/crochet-lifestyle.png"
+                    src="/images/gallery/sweet-hair-lifestyle.png"
                     alt="Inspiration Lady Queenn"
                     fill
                     className="object-cover"

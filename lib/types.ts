@@ -19,6 +19,11 @@ export interface Product {
   badge?: Badge
   stock: number
   details?: string
+  gender?: 'homme' | 'femme' | 'mixte'
+  ingredients?: string[]
+  usage?: string
+  sizes?: string[]
+  colors?: string[]
 }
 
 // Sweet-Hair - Produits capillaires

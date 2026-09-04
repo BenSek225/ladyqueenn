@@ -18,7 +18,7 @@ export default function CrochetPage() {
         {/* Background Image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/placeholder.jpg"
+            src="/images/hero/crochet-by-thed.png"
             alt="Crochet by THED - Handmade Creations"
             fill
             priority
@@ -59,7 +59,7 @@ export default function CrochetPage() {
 
       {/* Breadcrumb */}
       <div className="container-luxury pt-6">
-        <Breadcrumb items={[{ label: 'MAISON', href: '/maison' }]} />
+        <Breadcrumb items={[{ label: 'CROCHET BY THED', href: '/crochet-by-thed' }]} />
       </div>
 
       {/* Section Introduction */}
@@ -103,7 +103,7 @@ export default function CrochetPage() {
             {/* Image */}
             <div className="relative aspect-[4/5] rounded-soft overflow-hidden">
               <Image
-                src="/placeholder.jpg"
+src="/images/gallery/crochet-lifestyle.png"
                 alt="Artisanat crochet THED"
                 fill
                 className="object-cover"
@@ -280,7 +280,7 @@ export default function CrochetPage() {
                   }`}
                 >
                   <Image
-                    src="/placeholder.jpg"
+src="/images/hero/crochet-by-thed.png"
                     alt={`Création crochet ${i}`}
                     fill
                     className="object-cover"

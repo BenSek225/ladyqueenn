@@ -13,11 +13,13 @@ export const sweetHairProducts: SweetHairProduct[] = [
     longDescription: `Notre huile capillaire Sweet-Hair est formulée à base d'ingrédients 100% naturels pour nourrir vos cheveux en profondeur. Elle favorise la pousse, apporte brillance et volume tout en réparant le cuir chevelu.
 
 Idéale pour tous types de cheveux, elle pénètre rapidement sans effet gras. Utilisée régulièrement, elle transforme visiblement la santé de vos cheveux en quelques semaines.`,
-    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=900&q=80',
-      'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80'
-    ],
+    image: '/images/products/sweet-hair/huile-capillaire-60ml-main.png',
+  images: [
+    '/images/products/sweet-hair/huile-capillaire-60ml-main.png',
+    '/images/products/sweet-hair/huile-capillaire-60ml-detail.png',
+    '/images/products/sweet-hair/huile-capillaire-60ml-lifestyle.png',
+    '/images/products/sweet-hair/huile-capillaire-60ml-variant.png'
+  ],
     badge: 'coup-de-coeur',
     stock: 45,
     benefits: [
@@ -49,10 +51,13 @@ Idéale pour tous types de cheveux, elle pénètre rapidement sans effet gras. U
     longDescription: `Le shampooing Sweet-Hair nettoie en douceur sans agresser vos cheveux. Sa formule naturelle respecte l'équilibre du cuir chevelu tout en apportant nutrition et réparation.
 
 Enrichi en extraits de plantes africaines, il convient à tous types de cheveux, même les plus fragiles. Vos cheveux retrouvent force, souplesse et éclat naturel.`,
-    image: '/images/products/sweet-hair/huile-capillaire-60ml-main.png',
+    image: '/images/products/sweet-hair/shampooing-reparateur-250ml-main.png',
     images: [
-      '/images/products/sweet-hair/huile-capillaire-60ml-main.png'126,
-    badge: 'nouveau',
+      '/images/products/sweet-hair/huile-capillaire-60ml-main.png',
+      '/images/products/sweet-hair/huile-capillaire-60ml-detail.png',
+      '/images/products/sweet-hair/huile-capillaire-60ml-lifestyle.png',
+      '/images/products/sweet-hair/huile-capillaire-60ml-variant.png'
+    ],
     stock: 38,
     benefits: [
       'Nettoie en douceur sans sulfates agressifs',
@@ -85,47 +90,11 @@ Enrichi en extraits de plantes africaines, il convient à tous types de cheveux,
 Sa texture onctueuse pénètre rapidement sans alourdir. Idéale pour structurer les coiffures, dompter les frisottis et apporter une brillance saine.`,
     image: '/images/products/sweet-hair/pommade-nourrissante-main.png',
     images: [
-      '/images/products/sweet-hair/pommade-nourrissante-main.png'3293,
-    stock: 52,
-    benefits: [
-      'Nourrit et hydrate en profondeur',
-      'Tenue coiffage naturelle',
-      'Dompte les frisottis',
-      'Protection contre la chaleur',
-      'Texture non collante'
+      '/images/products/sweet-hair/pommade-nourrissante-main.png',
+      '/images/products/sweet-hair/pommade-nourrissante-detail.png',
+      '/images/products/sweet-hair/pommade-nourrissante-lifestyle.png',
+      '/images/products/sweet-hair/pommade-nourrissante-variant.png'
     ],
-    ingredients: [
-      'Beurre de karité pur',
-      'Cire d\'abeille naturelle',
-      'Huile d\'argan',
-      'Huile de jojoba',
-      'Vitamine E'
-    ],
-    usage: 'Prélever une petite quantité. Chauffer entre les mains. Appliquer sur cheveux secs ou humides. Coiffer selon votre style.',
-    details: 'Contenance : 150g | Texture crémeuse | Tenue souple'
-  },
-  {
-    id: 'sh-004',
-    slug: 'kit-complet-sweet-hair',
-    name: 'Kit Complet Sweet-Hair',
-    volet: 'sweet-hair',
-    category: 'kit',
-    price: 5000,
-    oldPrice: 6000,
-    volume: 'Pack 3 produits',
-    description: 'Le rituel capillaire complet : Huile + Shampooing + Pommade',
-    longDescription: `Adoptez la routine complète Sweet-Hair et transformez vos cheveux ! Ce kit réunit nos trois produits phares pour une prise en charge globale de votre chevelure.
-
-**Ce que vous recevez :**
-- 1 Huile Capillaire 60ml
-- 1 Shampooing Réparateur 250ml
-- 1 Pommade Nourrissante 150g
-
-**Économisez 1 000 FCFA** en optant pour le kit complet. Un investissement beauté qui change tout !`,
-    image: '/images/products/sweet-hair/kit-complet-sweet-hair-main.png',
-    images: [
-      '/images/products/sweet-hair/kit-complet-sweet-hair-main.png'4687,
-    badge: 'promo',
     stock: 25,
     isKit: true,
     kitItems: ['sh-001', 'sh-002', 'sh-003'],

@@ -6,13 +6,14 @@ import { ProductDetailLayout } from '@/components/product/product-detail-layout'
 export async function generateStaticParams() {
   const paths = getAllProductPaths()
   return paths
-    .filter(p => p.volet === 'maison')
+    .filter(p => p.volet === 'crochet-by-thed')
     .map(p => ({ slug: p.slug }))
 }
 
 // Métadonnées dynamiques
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const product = getProductBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const product = getProductBySlug(slug)
   
   if (!product || product.volet !== 'crochet-by-thed') {
     return {
@@ -26,8 +27,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function CrochetProductPage({ params }: { params: { slug: string } }) {
-  const product = getProductBySlug(params.slug)
+export default async function CrochetProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const product = getProductBySlug(slug)
   
   // Si produit inexistant ou pas du bon volet, 404
   if (!product || product.volet !== 'crochet-by-thed') {

@@ -15,8 +15,11 @@ export const fragranceProducts: FragranceProduct[] = [
 Idéale pour l'homme moderne et élégant qui ne passe pas inaperçu. Tenue exceptionnelle de 8-10 heures.`,
     image: '/images/products/fragrance/andolacy-homme-intense-main.png',
     images: [
-      '/images/products/fragrance/andolacy-homme-intense-main.png'126,
-    badge: 'nouveau',
+      '/images/products/fragrance/andolacy-homme-intense-main.png',
+      '/images/products/fragrance/andolacy-homme-intense-detail.png',
+      '/images/products/fragrance/andolacy-homme-intense-lifestyle.png',
+      '/images/products/fragrance/andolacy-homme-intense-variant.png'
+    ],
     stock: 12,
     intensity: 'intense',
     notes: {
@@ -39,8 +42,11 @@ Idéale pour l'homme moderne et élégant qui ne passe pas inaperçu. Tenue exce
 Parfaite pour la femme élégante et confiante, de jour comme de soir. Une signature olfactive inoubliable.`,
     image: '/images/products/fragrance/elegance-femme-main.png',
     images: [
-      '/images/products/fragrance/elegance-femme-main.png'1181,
-    badge: 'coup-de-coeur',
+      '/images/products/fragrance/elegance-femme-main.png',
+      '/images/products/fragrance/elegance-femme-detail.png',
+      '/images/products/fragrance/elegance-femme-lifestyle.png',
+      '/images/products/fragrance/elegance-femme-variant.png'
+    ],
     stock: 18,
     intensity: 'moyenne',
     notes: {
@@ -64,9 +70,11 @@ Parfaite pour la femme élégante et confiante, de jour comme de soir. Une signa
 Notes riches et envoûtantes pour une personnalité affirmée. Le luxe à l'état pur.`,
     image: '/images/products/fragrance/andolacy-luxe-mixte-main.png',
     images: [
-      '/images/products/fragrance/andolacy-luxe-mixte-main.png'2199,
-    badge: 'promo',
-    oldPrice: 48000,
+      '/images/products/fragrance/andolacy-luxe-mixte-main.png',
+      '/images/products/fragrance/andolacy-luxe-mixte-detail.png',
+      '/images/products/fragrance/andolacy-luxe-mixte-lifestyle.png',
+      '/images/products/fragrance/andolacy-luxe-mixte-variant.png'
+    ],
     stock: 8,
     intensity: 'intense',
     notes: {
@@ -89,31 +97,11 @@ Notes riches et envoûtantes pour une personnalité affirmée. Le luxe à l'éta
 Parfait pour le sport, le bureau ou les sorties décontractées. Une fraîcheur qui dure toute la journée.`,
     image: '/images/products/fragrance/fraicheur-citrus-homme-main.png',
     images: [
-      '/images/products/fragrance/fraicheur-citrus-homme-main.png'3276,
-    stock: 25,
-    intensity: 'légère',
-    notes: {
-      top: ['Citron vert', 'Pamplemousse', 'Menthe'],
-      heart: ['Lavande', 'Basilic', 'Gingembre'],
-      base: ['Cèdre', 'Vétiver', 'Musc']
-    },
-    details: 'Contenance : 100ml | Concentration : Eau de Toilette | Importé'
-  },
-  {
-    id: 'fr-005',
-    slug: 'rose-imperiale-femme',
-    name: 'Rose Impériale Femme',
-    volet: 'fragrance',
-    category: 'femme',
-    price: 45000,
-    description: 'Parfum de luxe à la rose précieuse',
-    longDescription: `Rose Impériale célèbre la reine des fleurs dans toute sa splendeur. Une rose somptueuse sublimée par des notes poudrées et boisées.
-
-Pour la femme qui aime le raffinement absolu. Un véritable bijou olfactif qui traverse les époques.`,
-    image: '/images/products/fragrance/rose-imperiale-femme-main.png',
-    images: [
-      '/images/products/fragrance/rose-imperiale-femme-main.png'4285,
-    badge: 'limité',
+      '/images/products/fragrance/fraicheur-citrus-homme-main.png',
+      '/images/products/fragrance/fraicheur-citrus-homme-detail.png',
+      '/images/products/fragrance/fraicheur-citrus-homme-lifestyle.png',
+      '/images/products/fragrance/fraicheur-citrus-homme-variant.png'
+    ],
     stock: 6,
     intensity: 'intense',
     notes: {
@@ -136,7 +124,11 @@ Pour la femme qui aime le raffinement absolu. Un véritable bijou olfactif qui t
 Idéal pour l'été et les climats chauds. Un parfum qui vous transporte instantanément en bord de mer.`,
     image: '/images/products/fragrance/ocean-breeze-mixte-main.png',
     images: [
-      '/images/products/fragrance/ocean-breeze-mixte-main.png'5302,
+      '/images/products/fragrance/ocean-breeze-mixte-main.png',
+      '/images/products/fragrance/ocean-breeze-mixte-detail.png',
+      '/images/products/fragrance/ocean-breeze-mixte-lifestyle.png',
+      '/images/products/fragrance/ocean-breeze-mixte-variant.png'
+    ],
     stock: 20,
     intensity: 'légère',
     notes: {
@@ -159,7 +151,11 @@ Idéal pour l'été et les climats chauds. Un parfum qui vous transporte instant
 Pour l'homme charismatique qui aime se démarquer. Un parfum de caractère pour les grandes occasions.`,
     image: '/images/products/fragrance/nuit-orientale-homme-main.png',
     images: [
-      '/images/products/fragrance/nuit-orientale-homme-main.png'6301,
+      '/images/products/fragrance/nuit-orientale-homme-main.png',
+      '/images/products/fragrance/nuit-orientale-homme-detail.png',
+      '/images/products/fragrance/nuit-orientale-homme-lifestyle.png',
+      '/images/products/fragrance/nuit-orientale-homme-variant.png'
+    ],
     stock: 10,
     intensity: 'intense',
     notes: {
@@ -182,7 +178,11 @@ Pour l'homme charismatique qui aime se démarquer. Un parfum de caractère pour 
 Fraîche et féminine, elle convient parfaitement pour le bureau et les activités de jour. Une élégance discrète et raffinée.`,
     image: '/images/products/fragrance/belle-de-jour-femme-main.png',
     images: [
-      '/images/products/fragrance/belle-de-jour-femme-main.png'7277,
+      '/images/products/fragrance/belle-de-jour-femme-main.png',
+      '/images/products/fragrance/belle-de-jour-femme-detail.png',
+      '/images/products/fragrance/belle-de-jour-femme-lifestyle.png',
+      '/images/products/fragrance/belle-de-jour-femme-variant.png'
+    ],
     stock: 30,
     intensity: 'légère',
     notes: {

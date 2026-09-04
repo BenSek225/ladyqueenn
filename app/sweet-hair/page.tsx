@@ -18,7 +18,7 @@ export default function SweetHairPage() {
         {/* Background Image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/placeholder.jpg"
+            src="/images/hero/sweet-hair.png"
             alt="Sweet-Hair Natural Hair Care"
             fill
             priority
@@ -59,7 +59,7 @@ export default function SweetHairPage() {
 
       {/* Breadcrumb */}
       <div className="container-luxury pt-6">
-        <Breadcrumb items={[{ label: 'CHEVEUX', href: '/cheveux' }]} />
+        <Breadcrumb items={[{ label: 'CHEVEUX', href: '/sweet-hair' }]} />
       </div>
 
       {/* Section Bénéfices */}

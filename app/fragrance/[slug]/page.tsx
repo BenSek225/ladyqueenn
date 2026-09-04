@@ -6,13 +6,14 @@ import { ProductDetailLayout } from '@/components/product/product-detail-layout'
 export async function generateStaticParams() {
   const paths = getAllProductPaths()
   return paths
-    .filter(p => p.volet === 'corps')
+    .filter(p => p.volet === 'fragrance')
     .map(p => ({ slug: p.slug }))
 }
 
 // Métadonnées dynamiques
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const product = getProductBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const product = getProductBySlug(slug)
   
   if (!product || product.volet !== 'fragrance') {
     return {
@@ -26,8 +27,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default function FragranceProductPage({ params }: { params: { slug: string } }) {
-  const product = getProductBySlug(params.slug)
+export default async function FragranceProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const product = getProductBySlug(slug)
   
   // Si produit inexistant ou pas du bon volet, 404
   if (!product || product.volet !== 'fragrance') {

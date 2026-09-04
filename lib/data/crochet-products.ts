@@ -15,8 +15,11 @@ export const crochetProducts: CrochetProduct[] = [
 Portez-la en plage, en soirée ou au quotidien. Un mélange parfait de confort et d'élégance artisanale.`,
     image: '/images/products/crochet-by-thed/robe-ete-boheme-main.png',
     images: [
-      '/images/products/crochet-by-thed/robe-ete-boheme-main.png'147,
-    badge: 'nouveau',
+      '/images/products/crochet-by-thed/robe-ete-boheme-main.png',
+      '/images/products/crochet-by-thed/robe-ete-boheme-detail.png',
+      '/images/products/crochet-by-thed/robe-ete-boheme-lifestyle.png',
+      '/images/products/crochet-by-thed/robe-ete-boheme-variant.png'
+    ],
     stock: 8,
     customizable: true,
     sizes: ['S', 'M', 'L', 'XL'],
@@ -38,8 +41,11 @@ Portez-la en plage, en soirée ou au quotidien. Un mélange parfait de confort e
 Pièce polyvalente qui s'adapte du look décontracté au style chic. Un essentiel de garde-robe.`,
     image: '/images/products/crochet-by-thed/top-crop-dentelle-main.png',
     images: [
-      '/images/products/crochet-by-thed/top-crop-dentelle-main.png'1186,
-    badge: 'coup-de-coeur',
+      '/images/products/crochet-by-thed/top-crop-dentelle-main.png',
+      '/images/products/crochet-by-thed/top-crop-dentelle-detail.png',
+      '/images/products/crochet-by-thed/top-crop-dentelle-lifestyle.png',
+      '/images/products/crochet-by-thed/top-crop-dentelle-variant.png'
+    ],
     stock: 15,
     customizable: true,
     sizes: ['XS', 'S', 'M', 'L'],
@@ -61,32 +67,11 @@ Pièce polyvalente qui s'adapte du look décontracté au style chic. Un essentie
 Style bohème décontracté qui se porte sur tout. Confort et allure assurés.`,
     image: '/images/products/crochet-by-thed/poncho-oversized-main.png',
     images: [
-      '/images/products/crochet-by-thed/poncho-oversized-main.png'2179,
-    stock: 10,
-    customizable: true,
-    sizes: ['Unique (Oversized)'],
-    colors: ['Camel', 'Gris chiné', 'Bordeaux', 'Écru'],
-    deliveryTime: '2-3 semaines',
-    material: 'Laine mélangée et coton',
-    details: 'Taille unique | Longueur : 70cm | Fait main'
-  },
-
-  // HOMME - Prêt-à-porter
-  {
-    id: 'cr-004',
-    slug: 'gilet-sans-manches-homme',
-    name: 'Gilet Sans Manches Homme',
-    volet: 'crochet-by-thed',
-    category: 'homme',
-    price: 25000,
-    description: 'Gilet décontracté au crochet pour homme',
-    longDescription: `Gilet masculin au crochet avec une coupe moderne et décontractée. Parfait pour un style urbain original qui se démarque.
-
-Se porte sur un t-shirt ou une chemise. Une pièce unique qui attire les regards.`,
-    image: '/images/products/crochet-by-thed/gilet-sans-manches-homme-main.png',
-    images: [
-      '/images/products/crochet-by-thed/gilet-sans-manches-homme-main.png'3139,
-    badge: 'nouveau',
+      '/images/products/crochet-by-thed/poncho-oversized-main.png',
+      '/images/products/crochet-by-thed/poncho-oversized-detail.png',
+      '/images/products/crochet-by-thed/poncho-oversized-lifestyle.png',
+      '/images/products/crochet-by-thed/poncho-oversized-variant.png'
+    ],
     stock: 6,
     customizable: true,
     sizes: ['M', 'L', 'XL', 'XXL'],
@@ -108,32 +93,11 @@ Se porte sur un t-shirt ou une chemise. Une pièce unique qui attire les regards
 Unisexe et ajustable. L'accessoire indispensable de l'été.`,
     image: '/images/products/crochet-by-thed/bob-bucket-hat-main.png',
     images: [
-      '/images/products/crochet-by-thed/bob-bucket-hat-main.png'4090,
-    stock: 20,
-    customizable: true,
-    sizes: ['S/M', 'L/XL'],
-    colors: ['Blanc', 'Noir', 'Beige', 'Multicolore'],
-    deliveryTime: '1 semaine',
-    material: 'Fil de coton résistant',
-    details: 'Tour de tête : 56-60cm | Lavable | Fait main'
-  },
-
-  // ENFANT - Prêt-à-porter
-  {
-    id: 'cr-006',
-    slug: 'ensemble-bebe-bapteme',
-    name: 'Ensemble Bébé Baptême',
-    volet: 'crochet-by-thed',
-    category: 'enfant',
-    price: 30000,
-    description: 'Tenue de cérémonie au crochet pour bébé',
-    longDescription: `Ensemble précieux pour baptême ou cérémonie. Confectionné avec soin dans un fil ultra-doux adapté à la peau délicate des bébés.
-
-Comprend : bonnet, brassière et chaussons assortis. Un cadeau de naissance inoubliable.`,
-    image: '/images/products/crochet-by-thed/ensemble-bebe-bapteme-main.png',
-    images: [
-      '/images/products/crochet-by-thed/ensemble-bebe-bapteme-main.png'5016,
-    badge: 'coup-de-coeur',
+      '/images/products/crochet-by-thed/bob-bucket-hat-main.png',
+      '/images/products/crochet-by-thed/bob-bucket-hat-detail.png',
+      '/images/products/crochet-by-thed/bob-bucket-hat-lifestyle.png',
+      '/images/products/crochet-by-thed/bob-bucket-hat-variant.png'
+    ],
     stock: 5,
     customizable: true,
     sizes: ['0-3 mois', '3-6 mois', '6-12 mois'],
@@ -155,54 +119,11 @@ Comprend : bonnet, brassière et chaussons assortis. Un cadeau de naissance inou
 Chaud sans être lourd, parfait pour les mi-saisons. Les enfants adorent !`,
     image: '/images/products/crochet-by-thed/gilet-enfant-capuche-main.png',
     images: [
-      '/images/products/crochet-by-thed/gilet-enfant-capuche-main.png'6031,
-    stock: 12,
-    customizable: true,
-    sizes: ['2-4 ans', '4-6 ans', '6-8 ans', '8-10 ans'],
-    colors: ['Jaune moutarde', 'Vert forêt', 'Rouge', 'Gris'],
-    deliveryTime: '2 semaines',
-    material: 'Laine acrylique douce',
-    details: 'Avec boutons | Capuche doublée | Fait main'
-  },
-
-  // ACCESSOIRES
-  {
-    id: 'cr-008',
-    slug: 'sac-cabas-plage',
-    name: 'Sac Cabas de Plage',
-    volet: 'crochet-by-thed',
-    category: 'accessoire',
-    price: 15000,
-    description: 'Grand sac cabas au crochet pour la plage',
-    longDescription: `Sac spacieux et résistant, parfait pour la plage, le marché ou les sorties. Confectionné avec un fil épais et robuste.
-
-Grande capacité et anses renforcées. Style bohème et pratique au quotidien.`,
-    image: '/images/products/crochet-by-thed/sac-cabas-plage-main.png',
-    images: [
-      '/images/products/crochet-by-thed/sac-cabas-plage-main.png'7003,
-    stock: 18,
-    customizable: true,
-    sizes: ['Grand (40x35cm)'],
-    colors: ['Naturel', 'Rayé multicolore', 'Terracotta', 'Marine'],
-    deliveryTime: '1-2 semaines',
-    material: 'Corde de coton tressée',
-    details: 'Grande capacité | Anses longues | Résistant'
-  },
-  {
-    id: 'cr-009',
-    slug: 'chale-triangulaire',
-    name: 'Châle Triangulaire',
-    volet: 'crochet-by-thed',
-    category: 'accessoire',
-    price: 22000,
-    description: 'Châle élégant au crochet en forme de triangle',
-    longDescription: `Châle sophistiqué avec un motif ajouré délicat. Se drape élégamment sur les épaules pour les soirées ou les occasions spéciales.
-
-Une pièce intemporelle qui traverse les saisons. Léger mais réchauffant.`,
-    image: '/images/products/crochet-by-thed/chale-triangulaire-main.png',
-    images: [
-      '/images/products/crochet-by-thed/chale-triangulaire-main.png'7950,
-    badge: 'limité',
+      '/images/products/crochet-by-thed/gilet-enfant-capuche-main.png',
+      '/images/products/crochet-by-thed/gilet-enfant-capuche-detail.png',
+      '/images/products/crochet-by-thed/gilet-enfant-capuche-lifestyle.png',
+      '/images/products/crochet-by-thed/gilet-enfant-capuche-variant.png'
+    ],
     stock: 7,
     customizable: true,
     sizes: ['Unique (180cm envergure)'],
