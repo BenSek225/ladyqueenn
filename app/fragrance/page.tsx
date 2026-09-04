@@ -22,7 +22,7 @@ export default function FragrancePage() {
         {/* Background Image */}
         <div className="absolute inset-0 -z-10">
           <Image
-            src="/images/gallery/fragrance-lifestyle.png"
+            src="/images/hero/fragrance.png"
             alt="Fragrance - Luxury Fragrances"
             fill
             priority
@@ -183,7 +183,7 @@ src="/images/hero/fragrance.png"
               
               <p className="text-base text-warm-300 leading-relaxed mb-8">
                 Disponibilité variable selon les arrivages. 
-                Contactez-nous pour connaître nos références du moment : 
+                Contactez-nous pour connaître nos r��férences du moment : 
                 Andolacy, Tom Ford, Creed, et bien d'autres marques de prestige.
               </p>
 

@@ -1,203 +1,88 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react'
+import { siteConfig } from '@/lib/data/navigation'
+
+const univers = [
+  { label: 'Sweet-Hair', href: '/sweet-hair', accent: 'text-sh-olive' },
+  { label: 'Fragrance', href: '/fragrance', accent: 'text-fr-rose' },
+  { label: 'Crochet by THED', href: '/crochet-by-thed', accent: 'text-cr-earth' },
+]
+
+const informations = [
+  { label: 'À propos', href: '/a-propos' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'FAQ', href: '/faq' },
+]
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear()
 
   return (
     <footer className="bg-deep-black text-cream-white">
-      <div className="container mx-auto px-4 lg:px-20 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
-          {/* Brand Column */}
-          <div className="lg:col-span-4">
-            <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
-              <span className="text-2xl" aria-label="Couronne Lady Queenn">👑</span>
-              <span className="font-display font-semibold text-xl tracking-tight">
-                Lady Queenn
-              </span>
+      <div className="container mx-auto px-4 py-16 lg:px-20 lg:py-24">
+        <div className="grid gap-14 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1.2fr] lg:gap-10">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-3">
+              <Image src="/images/logo-lady-queenn.png" alt="Lady Queenn" width={48} height={48} className="h-12 w-12 object-contain" />
+              <span className="font-display text-xl tracking-tight">Lady Queenn</span>
             </Link>
-            <p className="text-sm text-warm-gray-300 leading-relaxed max-w-xs mb-6">
-              La maison du raffinement ivoirien. 
-              Soins naturels, parfums d'exception, créations artisanales.
+            <p className="mt-7 max-w-sm text-base leading-relaxed text-warm-gray-300">
+              La maison du raffinement ivoirien. Des rituels de beauté, des fragrances singulières et des pièces façonnées avec intention.
             </p>
-            <p className="text-xs font-mono text-warm-gray-400 uppercase tracking-wider">
-              Beauty. Roots. Ritual.
-            </p>
+            <a
+              href={`https://wa.me/${siteConfig.whatsapp.replace(/[^0-9]/g, '')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex min-h-11 items-center gap-2 border border-champagne-gold px-5 text-xs font-semibold uppercase tracking-[0.16em] text-champagne-gold transition-colors hover:bg-champagne-gold hover:text-deep-black"
+            >
+              Écrire sur WhatsApp <ArrowUpRight size={15} />
+            </a>
           </div>
 
-          {/* Univers Column */}
-          <div className="lg:col-span-2">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] mb-4">
-              Nos Univers
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link 
-                  href="/sweet-hair" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Sweet-Hair
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/fragrance" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Fragrance
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/crochet-by-thed" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Crochet by THED
-                </Link>
-              </li>
+          <div>
+            <p className="eyebrow-label text-warm-gray-400">Explorer</p>
+            <ul className="mt-5 space-y-4">
+              {univers.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={`text-base text-warm-gray-200 transition-colors hover:text-champagne-gold ${item.accent}`}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Aide Column */}
-          <div className="lg:col-span-2">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] mb-4">
-              Aide
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link 
-                  href="/livraison" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Livraison
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/retours" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Retours
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/faq" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/contact" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
+          <div>
+            <p className="eyebrow-label text-warm-gray-400">La maison</p>
+            <ul className="mt-5 space-y-4">
+              {informations.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-base text-warm-gray-200 transition-colors hover:text-champagne-gold">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* À Propos Column */}
-          <div className="lg:col-span-2">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] mb-4">
-              À Propos
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <Link 
-                  href="/notre-histoire" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Notre Histoire
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/engagements" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Nos Engagements
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/cgv" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  CGV
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/mentions-legales" 
-                  className="text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors"
-                >
-                  Mentions Légales
-                </Link>
-              </li>
+          <div>
+            <p className="eyebrow-label text-warm-gray-400">Nous trouver</p>
+            <ul className="mt-5 space-y-4 text-sm leading-relaxed text-warm-gray-300">
+              <li className="flex items-start gap-3"><MapPin size={17} className="mt-0.5 shrink-0 text-champagne-gold" /><span>{siteConfig.address}</span></li>
+              <li className="flex items-center gap-3"><Phone size={17} className="shrink-0 text-champagne-gold" /><a href={`tel:${siteConfig.whatsapp}`} className="hover:text-champagne-gold">{siteConfig.whatsapp}</a></li>
+              <li className="flex items-center gap-3"><Mail size={17} className="shrink-0 text-champagne-gold" /><a href={`mailto:${siteConfig.email}`} className="hover:text-champagne-gold">{siteConfig.email}</a></li>
             </ul>
-          </div>
-
-          {/* Contact Column */}
-          <div className="lg:col-span-2">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.15em] mb-4">
-              Contact
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2 text-sm text-warm-gray-300">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>Abidjan, Côte d'Ivoire</span>
-              </li>
-              <li className="flex items-center gap-2 text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors">
-                <Phone className="w-4 h-4 flex-shrink-0" />
-                <a href="tel:+2250700000000">+225 07 00 00 00 00</a>
-              </li>
-              <li className="flex items-center gap-2 text-sm text-warm-gray-300 hover:text-champagne-gold transition-colors">
-                <Mail className="w-4 h-4 flex-shrink-0" />
-                <a href="mailto:contact@ladyqueenn.com">contact@ladyqueenn.com</a>
-              </li>
-            </ul>
-
-            {/* Social Links */}
-            <div className="flex gap-4 mt-6">
-              <a
-                href="https://instagram.com/ladyqueenn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full border border-warm-gray-400 hover:border-champagne-gold hover:bg-champagne-gold/10 transition-all"
-                aria-label="Instagram Lady Queenn"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </a>
-              <a
-                href="https://facebook.com/ladyqueenn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full border border-warm-gray-400 hover:border-champagne-gold hover:bg-champagne-gold/10 transition-all"
-                aria-label="Facebook Lady Queenn"
-              >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
+            <div className="mt-7 flex gap-3">
+              <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram Lady Queenn" className="flex h-10 w-10 items-center justify-center border border-warm-gray-400/40 text-warm-gray-200 transition-colors hover:border-champagne-gold hover:text-champagne-gold"><span className="text-sm font-semibold">ig</span></a>
+              <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook Lady Queenn" className="flex h-10 w-10 items-center justify-center border border-warm-gray-400/40 text-warm-gray-200 transition-colors hover:border-champagne-gold hover:text-champagne-gold"><span className="font-semibold">f</span></a>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-warm-gray-400/20">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-warm-gray-400">
-              © {currentYear} Lady Queenn. Tous droits réservés.
-            </p>
-            <p className="text-xs font-mono text-warm-gray-400 uppercase tracking-wider">
-              Crafted with ✨ in Abidjan
-            </p>
-          </div>
+        <div className="mt-16 flex flex-col gap-4 border-t border-warm-gray-400/20 pt-6 text-xs text-warm-gray-400 md:flex-row md:items-center md:justify-between">
+          <p>© {currentYear} Lady Queenn. Tous droits réservés.</p>
+          <p className="font-mono uppercase tracking-[0.14em]">Beauty. Roots. Ritual.</p>
         </div>
       </div>
     </footer>

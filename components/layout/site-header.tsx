@@ -199,19 +199,19 @@ export function SiteHeader() {
                     <User className="w-5 h-5" />
                     <span>Mon Compte</span>
                   </Link>
-                  <Link
-                    href="/panier"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-deep-black hover:text-champagne-gold transition-colors rounded-lg hover:bg-warm-100 min-h-[52px]"
+                  <button
+                    type="button"
+                    onClick={() => { setIsMenuOpen(false); setIsCartOpen(true) }}
+                    className="flex w-full items-center gap-3 px-4 py-3 text-base font-medium text-deep-black hover:text-champagne-gold transition-colors rounded-lg hover:bg-warm-100 min-h-[52px]"
                   >
                     <ShoppingBag className="w-5 h-5" />
-                    <span>Mon Panier</span>
+                    <span>Ouvrir le panier</span>
                     {cartItemsCount > 0 && (
                       <span className="ml-auto bg-champagne-gold text-deep-black text-xs font-mono font-semibold px-2 py-1 rounded-full">
                         {cartItemsCount}
                       </span>
                     )}
-                  </Link>
+                  </button>
                 </div>
               </nav>
 

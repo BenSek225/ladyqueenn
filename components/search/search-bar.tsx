@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { Search, X } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 import { searchProducts, getSearchSuggestions } from '@/lib/utils/search'
 import { SearchResults } from './search-results'
 
@@ -16,7 +15,6 @@ export function SearchBar({ isOpen, onClose }: SearchBarProps) {
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [showResults, setShowResults] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
-  const router = useRouter()
   
   // Focus input quand le modal s'ouvre
   useEffect(() => {
@@ -64,9 +62,8 @@ export function SearchBar({ isOpen, onClose }: SearchBarProps) {
   const handleSearch = (searchQuery: string) => {
     if (searchQuery.trim().length < 2) return
     
-    router.push(`/recherche?q=${encodeURIComponent(searchQuery)}`)
-    onClose()
-    setQuery('')
+    setQuery(searchQuery)
+    setShowResults(true)
   }
   
   const handleSubmit = (e: React.FormEvent) => {

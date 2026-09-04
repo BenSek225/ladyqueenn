@@ -1,7 +1,7 @@
 'use client'
 
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
 export interface CartItem {
   id: string
@@ -9,6 +9,7 @@ export interface CartItem {
   price: number
   quantity: number
   image: string
+  volet: string
 }
 
 interface CartStore {
@@ -67,7 +68,7 @@ export const useCart = create<CartStore>()(
     }),
     {
       name: 'cart-storage',
-      storage: typeof window !== 'undefined' ? sessionStorage : undefined,
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 )

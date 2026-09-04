@@ -101,17 +101,10 @@ export function SearchResults({ results, onClose }: SearchResultsProps) {
         )
       })}
       
-      {/* Lien vers page recherche complète */}
       {results.length > 12 && (
-        <div className="text-center pt-6 border-t border-warm-200">
-          <Link
-            href={`/recherche?q=${encodeURIComponent('')}`}
-            onClick={onClose}
-            className="btn-secondary"
-          >
-            Voir tous les résultats ({results.length})
-          </Link>
-        </div>
+        <p className="border-t border-warm-200 pt-6 text-center text-sm text-warm-500">
+          Affinez votre recherche pour voir les résultats les plus pertinents.
+        </p>
       )}
     </div>
   )
