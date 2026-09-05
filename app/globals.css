@@ -424,17 +424,80 @@
     color: #9D8159;
   }
   
-  /* Reveal Animation au Scroll */
-  .reveal-on-scroll {
-    opacity: 0;
-    transform: translateY(1.25rem);
-    transition: all 500ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .reveal-on-scroll.revealed {
+  /* ===================================
+   Animations Avancées & Micro-interactions
+   =================================== */
+
+/* Reveal animations avec différents délais */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: revealFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal-fade-left {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: revealFadeLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal-fade-right {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: revealFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes revealFadeUp {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes revealFadeLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes revealFadeRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation staggered pour listes */
+.stagger-animation {
+  animation-delay: var(--stagger-delay, 0ms);
+}
+
+/* Hover flottant pour cards */
+.float-on-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.float-on-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(26, 23, 20, 0.15);
+}
+
+/* Pulse subtil pour éléments importants */
+.pulse-soft {
+  animation: pulseSoft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
 }
 
 @layer utilities {
@@ -853,7 +916,7 @@ a:active {
 }
 
 /* ============================================
-   Mobile Optimizations - Typography & Touch
+   Mobile Optimizations - Typography & Touch & Animations
    ============================================ */
 
 @layer base {
@@ -927,10 +990,54 @@ a:active {
   }
 }
 
+/* Mobile-specific animations */
+@media (max-width: 640px) {
+  /* Animations plus rapides sur mobile */
+  .reveal-fade-up, .reveal-fade-left, .reveal-fade-right {
+    animation-duration: 0.6s;
+  }
+  
+  /* Hover states réduits sur mobile (touch) */
+  .float-on-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(26, 23, 20, 0.1);
+  }
+  
+  /* Smooth scrolling plus rapide sur mobile */
+  html.lenis {
+    scroll-behavior: auto;
+  }
+  
+  /* Réduire les animations trop fortes sur mobile */
+  .scale-on-hover {
+    transition: transform 0.2s ease-out;
+  }
+  
+  .scale-on-hover:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Touch feedback amélioré */
+@media (hover: none) and (pointer: coarse) {
+  /* Pour les appareils tactiles uniquement */
+  button:active,
+  a[role="button"]:active,
+  [role="tab"]:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease-out;
+  }
+  
+  /* États hover désactivés sur tactile */
+  .hover-only {
+    display: none;
+  }
+}
+
 /* Container responsive avec padding optimal */
 @layer utilities {
   .container-luxury {
-    max-width: 1440px;
+    max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1rem;
@@ -944,10 +1051,24 @@ a:active {
     }
   }
   
+  @media (min-width: 768px) {
+    .container-luxury {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+  
   @media (min-width: 1024px) {
     .container-luxury {
       padding-left: 5rem;
       padding-right: 5rem;
+    }
+  }
+  
+  @media (min-width: 1536px) {
+    .container-luxury {
+      padding-left: 8rem;
+      padding-right: 8rem;
     }
   }
 }
@@ -960,5 +1081,220 @@ a:active {
   
   html.lenis body {
     overflow: auto;
+  }
+}
+/* ===== MICRO-INTERACTIONS PREMIUM ===== */
+
+/* Loading Shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+/* Loading States */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Micro-interactions avancées */
+.scale-on-hover {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-on-hover:hover {
+  transform: scale(1.02);
+}
+
+.scale-on-hover:active {
+  transform: scale(0.98);
+  transition-duration: 0.1s;
+}
+
+/* Animation delays pour stagger */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Bouncy hover effects */
+.bouncy-hover {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.bouncy-hover:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* Glow effects */
+.glow-on-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 30px rgba(218, 165, 32, 0.3);
+}
+
+/* Smooth underline animation */
+.underline-animate {
+  position: relative;
+}
+
+.underline-animate::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.underline-animate:hover::after {
+  width: 100%;
+}
+/* ===== CRITICAL CSS OPTIMIZATIONS ===== */
+
+/* Critical path CSS for LCP */
+.hero-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
+}
+
+.product-grid {
+  content-visibility: auto;
+  contain-intrinsic-size: 400px;
+}
+
+/* Optimized for rendering performance */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduce layout shifts */
+.aspect-ratio-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+
+.aspect-4-5 {
+  padding-bottom: 125%; /* 5/4 * 100% */
+}
+
+.aspect-16-9 {
+  padding-bottom: 56.25%; /* 9/16 * 100% */
+}
+
+/* Performance optimizations */
+img, video {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Optimize animations for performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+
+/* Focus visible amélioré pour navigation clavier */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid #C6A87C;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(198, 168, 124, 0.2);
+}
+
+/* Skip link pour navigation clavier */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #1A1714;
+  color: #F9F6F1;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 100;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Amélioration des touch targets */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  a,
+  input,
+  [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-warm-500 {
+    color: #000;
+  }
+  
+  .border-warm-200 {
+    border-color: #000;
+  }
+}
+
+/* Reduced motion respecté */
+@media (prefers-reduced-motion: reduce) {
+  .animate-bounce,
+  .animate-ping,
+  .animate-pulse,
+  .animate-spin {
+    animation: none;
+  }
+  
+  .transition-all,
+  .transition-colors,
+  .transition-transform,
+  .transition-opacity {
+    transition: none;
   }
 }

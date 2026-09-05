@@ -1,0 +1,15 @@
+# Lady Queenn - Robots.txt
+# https://ladyqueenn.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ladyqueenn.vercel.app/sitemap.xml
+
+# Disallow admin/test pages (si applicable)
+Disallow: /api/
+Disallow: /_next/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

@@ -42,7 +42,7 @@ export default function CrochetPage() {
             FAIT À LA MAIN, PORTÉ AVEC INTENTION
           </p>
 
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] mb-6 text-deep-black animate-slide-up [animation-delay:150ms]">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl leading-[0.95] mb-6 text-deep-black animate-slide-up [animation-delay:150ms]">
             Crochet
             <br />
             <span className="italic font-normal text-cr-earth">by THED</span>

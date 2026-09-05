@@ -39,7 +39,7 @@ export default function FragrancePage() {
             PARFUMS DE LUXE
           </p>
 
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] mb-6 animate-slide-up [animation-delay:150ms]">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl leading-[0.95] mb-6 animate-slide-up [animation-delay:150ms]">
             Lady Queenn
             <br />
             <span className="italic font-normal text-champagne-gold">Fragrance</span>
@@ -93,7 +93,7 @@ export default function FragrancePage() {
       <section id="products" className="py-20 lg:pt-[119px] lg:pb-32 bg-fr-light/30">
         <div className="container-luxury">
           {/* Filtres - Tabs élégants */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 sm:mb-12">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 lg:mb-12">
             <button
               onClick={() => setFilter('all')}
               className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
@@ -137,12 +137,12 @@ export default function FragrancePage() {
           </div>
 
           {/* Compteur */}
-          <p className="text-center text-sm text-warm-500 mb-8">
+          <p className="text-center text-sm text-warm-500 mb-6 sm:mb-8">
             {filteredProducts.length} {filteredProducts.length > 1 ? 'parfums' : 'parfum'} {filter !== 'all' && `- ${filter}`}
           </p>
 
           {/* Grille Produits */}
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 lg:gap-8">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

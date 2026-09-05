@@ -36,7 +36,7 @@ export default function SweetHairPage() {
             SOIN NATUREL & LUXUEUX
           </p>
 
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] mb-6 text-deep-black animate-slide-up [animation-delay:150ms]">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl leading-[0.95] mb-6 text-deep-black animate-slide-up [animation-delay:150ms]">
             Lady Queenn
             <br />
             <span className="italic font-normal text-sh-olive">Sweet-Hair</span>
@@ -74,9 +74,9 @@ export default function SweetHairPage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {/* Bénéfice 1 */}
-            <div className="text-center group">
+            <div className="text-center group p-4 sm:p-0">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">
                 <Leaf className="w-8 h-8 text-sh-olive" />
               </div>
@@ -87,7 +87,7 @@ export default function SweetHairPage() {
             </div>
 
             {/* Bénéfice 2 */}
-            <div className="text-center group">
+            <div className="text-center group p-4 sm:p-0">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">
                 <Sparkles className="w-8 h-8 text-sh-olive" />
               </div>
@@ -98,7 +98,7 @@ export default function SweetHairPage() {
             </div>
 
             {/* Bénéfice 3 */}
-            <div className="text-center group">
+            <div className="text-center group p-4 sm:p-0">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">
                 <Droplet className="w-8 h-8 text-sh-olive" />
               </div>
@@ -109,7 +109,7 @@ export default function SweetHairPage() {
             </div>
 
             {/* Bénéfice 4 */}
-            <div className="text-center group">
+            <div className="text-center group p-4 sm:p-0">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">
                 <Heart className="w-8 h-8 text-sh-olive" />
               </div>
@@ -135,7 +135,7 @@ export default function SweetHairPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 lg:gap-8">
             {sweetHairProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -181,9 +181,11 @@ export default function SweetHairPage() {
                 href="https://wa.me/2250710504007?text=Bonjour%2C%20je%20souhaite%20commander%20le%20Kit%20Sweet-Hair%20complet"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-transparent border-2 border-cream-white text-cream-white px-8 py-4 rounded-soft font-medium hover:bg-cream-white hover:text-sh-olive transition-all duration-normal inline-flex items-center justify-center gap-3"
+                className="bg-transparent border-2 border-cream-white text-cream-white px-8 py-4 rounded-lg font-medium hover:bg-cream-white hover:text-sh-olive transition-all duration-300 inline-flex items-center justify-center gap-3 bouncy-hover group"
+                aria-label="Commander le Kit Sweet-Hair via WhatsApp (ouvre dans un nouvel onglet)"
               >
-                Commander via WhatsApp
+                <span>Commander via WhatsApp</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
           </div>

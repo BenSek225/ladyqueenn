@@ -4,9 +4,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Search, ShoppingBag, Menu, X, Sparkles, Droplet, Home } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { useCart } from '@/lib/store'
-import { CartDrawer } from '@/components/cart-drawer'
 import { SearchBar } from '@/components/search/search-bar'
+
+// Dynamic import pour optimiser le bundle
+const CartDrawer = dynamic(() => import('@/components/cart-drawer').then(mod => ({ default: mod.CartDrawer })), {
+  ssr: false,
+  loading: () => null
+})
 
 export function SiteHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -58,8 +64,8 @@ export function SiteHeader() {
   return (
     <>
       <header className="sticky top-0 z-40 w-full bg-cream-white/95 backdrop-blur-sm border-b border-warm-200">
-        <div className="container mx-auto px-3 sm:px-4 lg:px-12 xl:px-20">
-          <div className="flex h-16 lg:h-20 items-center justify-between gap-2">
+        <div className="container mx-auto px-3 sm:px-4 lg:px-12 xl:px-20 2xl:px-32">
+          <div className="flex h-16 lg:h-20 xl:h-24 items-center justify-between gap-2">
             {/* Logo */}
             <Link 
               href="/" 
@@ -71,12 +77,12 @@ export function SiteHeader() {
                 width={180}
                 height={56}
                 priority
-                className="w-28 sm:w-36 lg:w-44 h-auto object-contain"
+                className="w-32 sm:w-36 lg:w-44 h-auto object-contain"
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-12" aria-label="Navigation principale">
+            <nav className="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-12 2xl:gap-16" aria-label="Navigation principale">
               {navItems.map((item) => (
                 <Link
                   key={item.href}

@@ -81,7 +81,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
   const isOutOfStock = product.stock === 0
 
   return (
-    <article className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-warm-200 hover:shadow-lg transition-all duration-normal">
+    <article className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-warm-200 hover:shadow-lg transition-all duration-300 float-on-hover">
       <Link href={productUrl} className="block">
         {/* Image Container - Ratio 4:5 */}
         <div className="relative aspect-[4/5] overflow-hidden bg-warm-100">
@@ -90,17 +90,17 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
             alt={product.name} 
             fill 
             priority={priority}
-            className="object-cover transition-transform duration-slower group-hover:scale-105" 
+            className="object-cover transition-transform duration-700 group-hover:scale-110" 
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
           
           {/* Overlay gradient subtil au hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-deep-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-normal" />
+          <div className="absolute inset-0 bg-gradient-to-t from-deep-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500" />
           
           {/* Badge top-left */}
           {product.badge && (
             <div className="absolute left-3 top-3">
-              <span className={`inline-block px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-[0.1em] ${getBadgeStyle(product.badge)}`}>
+              <span className={`inline-block px-3 py-1.5 rounded-md text-xs font-semibold uppercase tracking-[0.1em] ${getBadgeStyle(product.badge)} pulse-soft`}>
                 {badgeLabel(product.badge)}
               </span>
             </div>
@@ -113,14 +113,14 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
               onClick={handleAddToCart}
               disabled={isAdding || justAdded}
               className={`absolute bottom-4 right-4 flex items-center justify-center rounded-full shadow-xl min-w-[48px] min-h-[48px]
-                opacity-0 translate-y-2 transition-all duration-300
-                group-hover:translate-y-0 group-hover:opacity-100
+                opacity-0 translate-y-4 scale-90 transition-all duration-400
+                group-hover:translate-y-0 group-hover:opacity-100 group-hover:scale-100
                 ${justAdded 
-                  ? 'bg-green-600 text-white' 
+                  ? 'bg-green-600 text-white scale-110 animate-pulse' 
                   : 'bg-deep-black text-cream-white hover:bg-champagne-gold hover:text-deep-black hover:scale-110'
                 }
-                ${isAdding ? 'cursor-wait' : 'cursor-pointer'}
-                disabled:cursor-not-allowed
+                ${isAdding ? 'cursor-wait animate-pulse' : 'cursor-pointer hover-only'}
+                disabled:cursor-not-allowed scale-on-hover
               `}
             >
               {isAdding ? (
@@ -135,7 +135,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           
           {/* Badge épuisé */}
           {isOutOfStock && (
-            <div className="absolute inset-0 bg-warm-100/80 flex items-center justify-center">
+            <div className="absolute inset-0 bg-warm-100/80 flex items-center justify-center backdrop-blur-sm">
               <span className="px-4 py-2 bg-warm-500 text-white text-sm font-semibold uppercase tracking-wider rounded-lg">
                 Épuisé
               </span>

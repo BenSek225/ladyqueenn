@@ -1,40 +1,109 @@
 'use client'
 
-import { FormEvent, useMemo, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ArrowRight, MapPin, MessageCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, MessageCircle } from 'lucide-react'
 import { useCart } from '@/lib/store'
-
-const deliveryZones = {
-  'Abidjan — Cocody, Plateau, Marcory': 1000,
-  'Abidjan — Yopougon, Abobo, Anyama': 1500,
-  'Grand Abidjan — Bingerville, Bassam': 2000,
-  'Intérieur du pays': 3000,
-} as const
-
-type DeliveryZone = keyof typeof deliveryZones
+import { useDelivery } from '@/lib/hooks/use-delivery'
+import { validateCheckoutForm } from '@/lib/utils/validation'
+import { generateOrderMessage, generateWhatsAppLink } from '@/lib/utils/whatsapp'
+import { ABIDJAN_ZONES, DELIVERY_CITIES } from '@/lib/data/delivery-zones'
+import type { CheckoutFormData } from '@/lib/utils/validation'
 
 export default function CommandePage() {
   const items = useCart((state) => state.items)
   const subtotal = useCart((state) => state.getTotalPrice())
-  const [zone, setZone] = useState<DeliveryZone>('Abidjan — Cocody, Plateau, Marcory')
+  const delivery = useDelivery()
+  
+  const [formData, setFormData] = useState<CheckoutFormData>({
+    name: '',
+    phone: '',
+    city: '',
+    commune: '',
+    quarter: '',
+    address: '',
+  })
+  
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const delivery = deliveryZones[zone]
-  const total = subtotal + delivery
+  
+  const total = subtotal + delivery.fee
 
-  const itemSummary = useMemo(() => items.map((item) => `- ${item.name} x${item.quantity} : ${(item.price * item.quantity).toLocaleString('fr-FR')} FCFA`).join('\n'), [items])
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const form = new FormData(event.currentTarget)
-    const name = String(form.get('name') || '')
-    const phone = String(form.get('phone') || '')
-    const address = String(form.get('address') || '')
-    const message = `Bonjour Lady Queenn ! Je souhaite confirmer ma commande.\n\nClient : ${name}\nTéléphone : ${phone}\nAdresse : ${address}\nZone : ${zone}\n\n${itemSummary}\n\nSous-total : ${subtotal.toLocaleString('fr-FR')} FCFA\nLivraison : ${delivery.toLocaleString('fr-FR')} FCFA\nTOTAL : ${total.toLocaleString('fr-FR')} FCFA`
-    setSubmitted(true)
-    window.open(`https://wa.me/2250710504007?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer')
+  // Gestion des changements
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }))
+    }
   }
 
+  const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const city = e.target.value
+    setFormData((prev) => ({ ...prev, city, commune: '' }))
+    delivery.setCity(city)
+    delivery.setCommune('')
+    if (errors.city) {
+      setErrors((prev) => ({ ...prev, city: '' }))
+    }
+  }
+
+  const handleCommuneChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const commune = e.target.value
+    setFormData((prev) => ({ ...prev, commune }))
+    delivery.setCommune(commune)
+    if (errors.commune) {
+      setErrors((prev) => ({ ...prev, commune: '' }))
+    }
+  }
+
+  // Soumission
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    
+    // Validation
+    const validation = validateCheckoutForm(formData)
+    if (!validation.valid) {
+      const newErrors: Record<string, string> = {}
+      Object.entries(validation.errors).forEach(([key, result]) => {
+        if (!result.valid && result.error) {
+          newErrors[key] = result.error
+        }
+      })
+      setErrors(newErrors)
+      return
+    }
+    
+    // Vérifier panier
+    if (items.length === 0) {
+      setErrors({ general: 'Votre panier est vide.' })
+      return
+    }
+    
+    // Vérifier commune Abidjan
+    if (delivery.isAbidjan && !formData.commune) {
+      setErrors({ commune: 'Veuillez sélectionner votre commune' })
+      return
+    }
+    
+    setIsSubmitting(true)
+    
+    try {
+      const message = generateOrderMessage(items, delivery.fee, formData)
+      const whatsappUrl = generateWhatsAppLink(message)
+      
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+      setSubmitted(true)
+    } catch (error) {
+      console.error('Erreur:', error)
+      setErrors({ general: 'Une erreur est survenue. Veuillez réessayer.' })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  // Panier vide
   if (items.length === 0) {
     return (
       <main className="min-h-[70vh] bg-cream-light px-4 py-20">
@@ -42,7 +111,9 @@ export default function CommandePage() {
           <p className="eyebrow-label text-champagne-gold mb-4">Votre commande</p>
           <h1 className="font-display text-4xl mb-4">Votre panier est vide</h1>
           <p className="text-warm-500 mb-8">Ajoutez un produit avant de passer commande.</p>
-          <Link href="/" className="btn-primary inline-flex items-center gap-2">Découvrir la sélection <ArrowRight size={18} /></Link>
+          <Link href="/" className="inline-flex items-center gap-2 bg-deep-black text-cream-white px-6 py-3 rounded-lg font-medium hover:bg-champagne-gold hover:text-deep-black transition-all duration-300">
+            Découvrir la sélection <ArrowRight size={18} />
+          </Link>
         </div>
       </main>
     )
@@ -55,73 +126,173 @@ export default function CommandePage() {
           href="/" 
           className="inline-flex items-center gap-2 text-sm text-warm-500 hover:text-deep-black transition-colors duration-300 mb-8 sm:mb-10 py-2"
         >
-          <ArrowLeft size={16} /> 
-          Continuer mes achats
+          <ArrowLeft size={16} /> Continuer mes achats
         </Link>
+        
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
+          {/* Formulaire */}
           <section>
             <p className="eyebrow-label text-champagne-gold mb-4">Finaliser votre sélection</p>
             <h1 className="font-display text-4xl md:text-5xl mb-4">Passer la commande</h1>
-            <p className="text-warm-500 leading-relaxed mb-8">Renseignez vos coordonnées. Nous confirmerons ensuite votre commande et sa livraison sur WhatsApp.</p>
-            <form onSubmit={handleSubmit} className="space-y-5 bg-cream-white p-5 sm:p-6 lg:p-8 rounded-lg border border-warm-200">
-              <label className="block">
-                <span className="text-sm font-medium text-deep-black mb-2 block">Nom complet</span>
-                <input 
-                  required 
-                  name="name" 
-                  className="mt-1 w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
-                  placeholder="Votre nom" 
-                />
-              </label>
+            <p className="text-warm-500 leading-relaxed mb-8">
+              Renseignez vos coordonnées. Nous confirmerons ensuite votre commande et sa livraison sur WhatsApp.
+            </p>
+            
+            <form onSubmit={handleSubmit} className="space-y-6 bg-cream-white p-5 sm:p-6 lg:p-8 rounded-lg border border-warm-200">
+              {/* Informations client */}
+              <div className="space-y-5">
+                <h2 className="font-display text-2xl">Vos informations</h2>
+                
+                <label className="block">
+                  <span className="text-sm font-medium text-deep-black mb-2 block">Nom complet *</span>
+                  <input 
+                    required 
+                    name="name" 
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
+                    placeholder="Votre nom" 
+                  />
+                  {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
+                </label>
+                
+                <label className="block">
+                  <span className="text-sm font-medium text-deep-black mb-2 block">Téléphone *</span>
+                  <input 
+                    required 
+                    name="phone" 
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
+                    placeholder="07 10 50 40 07" 
+                  />
+                  {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+                </label>
+              </div>
               
-              <label className="block">
-                <span className="text-sm font-medium text-deep-black mb-2 block">Téléphone</span>
-                <input 
-                  required 
-                  name="phone" 
-                  type="tel" 
-                  className="mt-1 w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
-                  placeholder="07 00 00 00 00" 
-                />
-              </label>
-              
-              <label className="block">
-                <span className="text-sm font-medium text-deep-black mb-2 block">Adresse de livraison</span>
-                <textarea 
-                  required 
-                  name="address" 
-                  rows={3} 
-                  className="mt-1 w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
-                  placeholder="Quartier, rue, repère" 
-                />
-              </label>
-              
-              <label className="block">
-                <span className="text-sm font-medium text-deep-black mb-2 block">Zone de livraison</span>
-                <div className="mt-1 flex items-center gap-2">
-                  <MapPin size={18} className="text-champagne-gold" />
+              {/* Livraison */}
+              <div className="space-y-5">
+                <h2 className="font-display text-2xl">Livraison</h2>
+                
+                {/* Ville */}
+                <label className="block">
+                  <span className="text-sm font-medium text-deep-black mb-2 block">Ville *</span>
                   <select 
-                    value={zone} 
-                    onChange={(event) => setZone(event.target.value as DeliveryZone)} 
-                    className="flex-1 rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300"
+                    value={formData.city}
+                    onChange={handleCityChange}
+                    required
+                    className="w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300"
                   >
-                    {Object.entries(deliveryZones).map(([label, price]) => (
-                      <option key={label} value={label}>
-                        {label} — {price.toLocaleString('fr-FR')} FCFA
+                    <option value="">Sélectionner une ville</option>
+                    {DELIVERY_CITIES.map((city) => (
+                      <option key={city.name} value={city.name}>
+                        {city.name}
                       </option>
                     ))}
                   </select>
+                  {errors.city && <p className="mt-1 text-sm text-red-600">{errors.city}</p>}
+                </label>
+                
+                {/* Commune (Abidjan uniquement) */}
+                {delivery.isAbidjan && (
+                  <label className="block">
+                    <span className="text-sm font-medium text-deep-black mb-2 block">Commune *</span>
+                    <select 
+                      value={formData.commune}
+                      onChange={handleCommuneChange}
+                      required
+                      className="w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300"
+                    >
+                      <option value="">Sélectionner une commune</option>
+                      {ABIDJAN_ZONES.flatMap((zone) =>
+                        zone.communes.map((commune) => (
+                          <option key={commune} value={commune}>
+                            {commune} ({zone.price.toLocaleString('fr-FR')} FCFA)
+                          </option>
+                        ))
+                      )}
+                    </select>
+                    <p className="mt-1 text-xs text-warm-500">Le tarif de livraison sera calculé automatiquement</p>
+                    {errors.commune && <p className="mt-1 text-sm text-red-600">{errors.commune}</p>}
+                  </label>
+                )}
+                
+                {/* Frais de livraison */}
+                {delivery.fee > 0 && (
+                  <div className="rounded-lg border border-champagne-gold/30 bg-champagne-gold/5 p-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium">Frais de livraison</span>
+                      <span className="text-lg font-bold text-champagne-gold">
+                        {delivery.fee.toLocaleString('fr-FR')} FCFA
+                      </span>
+                    </div>
+                    <p className="mt-1 text-xs text-warm-500">
+                      {delivery.isAbidjan && formData.commune
+                        ? `Zone : ${formData.commune}, Abidjan`
+                        : `Livraison vers ${formData.city || 'votre ville'}`}
+                    </p>
+                  </div>
+                )}
+                
+                <label className="block">
+                  <span className="text-sm font-medium text-deep-black mb-2 block">Quartier *</span>
+                  <input 
+                    required 
+                    name="quarter"
+                    value={formData.quarter}
+                    onChange={handleChange}
+                    className="w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
+                    placeholder="Angré, Cocody" 
+                  />
+                  {errors.quarter && <p className="mt-1 text-sm text-red-600">{errors.quarter}</p>}
+                </label>
+                
+                <label className="block">
+                  <span className="text-sm font-medium text-deep-black mb-2 block">Adresse / précisions</span>
+                  <textarea 
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    rows={3}
+                    className="w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
+                    placeholder="Près de la pharmacie centrale..." 
+                  />
+                  <p className="mt-1 text-xs text-warm-500">Détails pour faciliter la livraison</p>
+                </label>
+              </div>
+              
+              {/* Erreur générale */}
+              {errors.general && (
+                <div className="rounded-lg border border-red-600 bg-red-50 p-4">
+                  <p className="text-sm text-red-600">{errors.general}</p>
                 </div>
-              </label>
+              )}
+              
+              {/* Bouton */}
               <button 
                 type="submit" 
-                className="w-full flex items-center justify-center gap-2 sm:gap-3 bg-deep-black text-cream-white px-6 py-3 sm:py-4 rounded-lg font-medium hover:bg-champagne-gold hover:text-deep-black hover:-translate-y-1 transition-all duration-300 min-h-[56px]"
+                disabled={isSubmitting || items.length === 0}
+                className="w-full flex items-center justify-center gap-2 sm:gap-3 bg-deep-black text-cream-white px-6 py-3 sm:py-4 rounded-lg font-medium hover:bg-champagne-gold hover:text-deep-black hover:-translate-y-1 transition-all duration-300 min-h-[56px] bouncy-hover glow-on-hover group disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <MessageCircle size={19} /> 
-                {submitted ? 'Commande envoyée ✓' : 'Confirmer via WhatsApp'}
+                {isSubmitting ? (
+                  'Préparation...'
+                ) : (
+                  <>
+                    <MessageCircle size={19} className="transition-transform group-hover:scale-110" />
+                    {submitted ? 'Commande envoyée ✓' : 'Confirmer et commander sur WhatsApp'}
+                    {!submitted && <ArrowRight size={16} />}
+                  </>
+                )}
               </button>
+              
+              <p className="text-center text-xs text-warm-500">
+                En continuant, vous serez redirigé vers WhatsApp pour finaliser votre commande.
+              </p>
             </form>
           </section>
+          
+          {/* Récapitulatif */}
           <aside className="lg:sticky lg:top-28 bg-cream-white border border-warm-200 rounded-lg p-5 sm:p-6 lg:p-8">
             <p className="eyebrow-label text-warm-500 mb-5">Récapitulatif</p>
             
@@ -146,7 +317,7 @@ export default function CommandePage() {
               </div>
               <div className="flex justify-between">
                 <span className="text-warm-500">Livraison</span>
-                <span className="font-mono">{delivery.toLocaleString('fr-FR')} FCFA</span>
+                <span className="font-mono">{delivery.fee.toLocaleString('fr-FR')} FCFA</span>
               </div>
             </div>
             
