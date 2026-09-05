@@ -1084,33 +1084,98 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 
 ---
 
-### 🖼️ Phase 10 : Images & Assets (Priorité CRITIQUE) 🔴
+### 🖼️ Phase 10 : Images & Assets (Priorité CRITIQUE) 🔴 ✅ TERMINÉ
 
-#### 10.1 - Remplacer Placeholders
+#### 10.1 - Remplacer Placeholders ✅
 
-**Actuellement** : Images Unsplash placeholder
+**Actuellement** : ~~Images Unsplash placeholder~~ → **Images réelles intégrées**
 
-**À faire** :
-- [ ] Photos produits Sweet-Hair (huile, shampooing, pommade, kit)
-- [ ] Photos parfums Fragrance (8 flacons)
-- [ ] Photos créations Crochet (9 pièces + lifestyle)
-- [ ] Photos hero (accueil, 3 univers)
-- [ ] Photos lifestyle/inspiration
+**Fait** :
+- [x] Logo Lady Queenn PNG (883 KB) intégré dans header
+- [x] 4 images hero (home, sweet-hair, fragrance, crochet-by-thed) - avg 1.6 MB
+- [x] 3 images gallery lifestyle (sweet-hair, fragrance, crochet) - avg 1.9 MB
+- [x] Photos produits Sweet-Hair : 4 produits × 4 images = 16 images
+- [x] Photos produits Fragrance : 8 produits × 4 images = 32 images
+- [x] Photos produits Crochet by THED : 9 produits × 4 images = 36 images
+- [x] **Total : 116 images PNG ajoutées** (84 produits + 8 hero/gallery + logo)
 
-**Specs photos** :
-- Format : JPEG optimisé ou WebP
-- Résolution : 1920px max width
-- Qualité : 85%
-- Ratio produits : 4:5 (portrait)
-- Ratio hero : 16:9 ou 21:9
+**Structure images créée** :
+```
+public/images/
+├── logo-lady-queenn.png
+├── hero/
+│   ├── home.png
+│   ├── sweet-hair.png
+│   ├── fragrance.png
+│   └── crochet-by-thed.png
+├── gallery/
+│   ├── sweet-hair-lifestyle.png
+│   ├── fragrance-lifestyle.png
+│   └── crochet-lifestyle.png
+└── products/
+    ├── sweet-hair/
+    │   ├── huile-capillaire-60ml-[main|detail|lifestyle|variant].png
+    │   ├── shampooing-reparateur-250ml-[main|detail|lifestyle|variant].png
+    │   ├── pommade-nourrissante-[main|detail|lifestyle|variant].png
+    │   └── kit-complet-sweet-hair-[main|detail|lifestyle|variant].png
+    ├── fragrance/
+    │   ├── andolacy-homme-intense-[main|detail|lifestyle|variant].png
+    │   ├── elegance-femme-[main|detail|lifestyle|variant].png
+    │   ├── andolacy-luxe-mixte-[main|detail|lifestyle|variant].png
+    │   ├── fraicheur-citrus-homme-[main|detail|lifestyle|variant].png
+    │   ├── rose-imperiale-femme-[main|detail|lifestyle|variant].png (AJOUTÉ)
+    │   ├── ocean-breeze-mixte-[main|detail|lifestyle|variant].png
+    │   ├── nuit-orientale-homme-[main|detail|lifestyle|variant].png
+    │   └── belle-de-jour-femme-[main|detail|lifestyle|variant].png
+    └── crochet-by-thed/
+        ├── robe-ete-boheme-[main|detail|lifestyle|variant].png
+        ├── top-crop-dentelle-[main|detail|lifestyle|variant].png
+        ├── poncho-oversized-[main|detail|lifestyle|variant].png
+        ├── bob-bucket-hat-[main|detail|lifestyle|variant].png
+        ├── gilet-enfant-capuche-[main|detail|lifestyle|variant].png
+        ├── gilet-sans-manches-homme-[main|detail|lifestyle|variant].png
+        ├── chale-triangulaire-[main|detail|lifestyle|variant].png
+        ├── ensemble-bebe-bapteme-[main|detail|lifestyle|variant].png
+        └── sac-cabas-plage-[main|detail|lifestyle|variant].png
+```
 
-#### 10.2 - Logo & Icônes
+**Specs photos appliquées** :
+- Format : PNG (sera optimisé par Next.js en WebP/AVIF)
+- Ratio produits : 4:5 (portrait) pour ProductCard
+- Ratio hero : 16:9 pour images hero
+- Next.js Image avec `fill`, `sizes` responsive, `quality={90}`
 
-**À créer** :
-- [ ] Logo Lady Queenn avec couronne (SVG)
-- [ ] Favicon
-- [ ] Open Graph image
-- [ ] Icônes USPs (naturel, artisanal, etc.)
+#### 10.2 - Logo & Optimisations Next.js ✅
+
+**Créé/Intégré** :
+- [x] Logo Lady Queenn PNG (180×56px) dans header avec `priority`
+- [x] All-products.ts mis à jour avec toutes les références images
+- [x] Next.js Image optimisé avec `sizes` responsive :
+  - Hero images : `sizes="100vw"`
+  - Gallery images : `sizes="(max-width: 768px) 50vw, 25vw"`
+  - Logo : `priority`, `width={180}`, `height={56}`
+- [x] Routes renommées pour cohérence :
+  - `/cheveux` → `/sweet-hair`
+  - `/corps` → `/fragrance`
+  - `/maison` → `/crochet-by-thed`
+
+**Bugs corrigés** :
+- [x] sh-002 (shampooing) avait les images de l'huile → corrigé
+- [x] sh-004 (kit) avait 4× même image → corrigé avec variants
+- [x] fr-004 (Fraîcheur Citrus) avait notes de Rose → corrigé
+- [x] fr-005 (Rose Impériale) manquait → ajouté avec 4 images
+
+**Architecture simplifiée** :
+- [x] Pages /panier et /recherche supprimées (workflow : drawer → /commande)
+- [x] Page /commande créée (formulaire livraison WhatsApp)
+- [x] CartDrawer avec bouton "Passer commande" vers /commande
+- [x] Store simplifié, formatCartMessage optimisé
+- [x] Header avec logo PNG, navigation cohérente
+
+**Build & Tests** :
+- [x] Build réussi : 24 pages statiques générées
+- [x] Routes testées : /sweet-hair (4), /fragrance (8), /crochet-by-thed (9)
+- [x] Toutes images référencées et fonctionnelles
 
 ---
 

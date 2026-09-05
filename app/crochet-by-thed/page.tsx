@@ -29,6 +29,7 @@ export default function CrochetPage() {
             fill
             priority
             quality={90}
+            sizes="100vw"
             className="object-cover"
           />
           {/* Overlay terracotta chaud */}

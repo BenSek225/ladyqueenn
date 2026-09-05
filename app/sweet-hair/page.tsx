@@ -23,6 +23,7 @@ export default function SweetHairPage() {
             fill
             priority
             quality={90}
+            sizes="100vw"
             className="object-cover"
           />
           {/* Overlay vert sauge subtil */}

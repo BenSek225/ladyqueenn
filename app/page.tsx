@@ -27,6 +27,7 @@ export default function HomePage() {
             fill
             priority
             quality={90}
+            sizes="100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-deep-black/40 via-transparent to-cream-white/80" />
@@ -167,6 +168,7 @@ export default function HomePage() {
                     src="/images/gallery/sweet-hair-lifestyle.png"
                     alt="Inspiration Lady Queenn"
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover"
                   />
                 </div>
@@ -175,6 +177,7 @@ export default function HomePage() {
                     src="/images/gallery/crochet-lifestyle.png"
                     alt="Artisanat Lady Queenn"
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover"
                   />
                 </div>
@@ -185,6 +188,7 @@ export default function HomePage() {
                     src="/images/gallery/crochet-lifestyle.png"
                     alt="Matières naturelles"
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover"
                   />
                 </div>
@@ -193,6 +197,7 @@ export default function HomePage() {
                     src="/images/gallery/crochet-lifestyle.png"
                     alt="Savoir-faire"
                     fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="object-cover"
                   />
                 </div>

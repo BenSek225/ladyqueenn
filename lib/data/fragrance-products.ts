@@ -103,6 +103,33 @@ Parfait pour le sport, le bureau ou les sorties décontractées. Une fraîcheur 
       '/images/products/fragrance/fraicheur-citrus-homme-variant.png'
     ],
     stock: 6,
+    intensity: 'légère',
+    notes: {
+      top: ['Citron', 'Pamplemousse', 'Bergamote'],
+      heart: ['Menthe', 'Gingembre', 'Basilic'],
+      base: ['Vétiver', 'Cèdre', 'Musc']
+    },
+    details: 'Contenance : 100ml | Concentration : Eau de Toilette | Importé'
+  },
+  {
+    id: 'fr-005',
+    slug: 'rose-imperiale-femme',
+    name: 'Rose Impériale Femme',
+    volet: 'fragrance',
+    category: 'femme',
+    price: 45000,
+    description: 'Parfum de luxe aux notes de rose prestigieuse',
+    longDescription: `Rose Impériale est l'incarnation de l'élégance absolue. Une composition somptueuse centrée sur la rose de Mai la plus raffinée, sublimée par des notes précieuses.
+
+Un parfum d'exception pour les occasions spéciales. La quintessence du luxe et de la féminité.`,
+    image: '/images/products/fragrance/rose-imperiale-femme-main.png',
+    images: [
+      '/images/products/fragrance/rose-imperiale-femme-main.png',
+      '/images/products/fragrance/rose-imperiale-femme-detail.png',
+      '/images/products/fragrance/rose-imperiale-femme-lifestyle.png',
+      '/images/products/fragrance/rose-imperiale-femme-variant.png'
+    ],
+    stock: 5,
     intensity: 'intense',
     notes: {
       top: ['Rose de Mai', 'Litchi', 'Bergamote'],
