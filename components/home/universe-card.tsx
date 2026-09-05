@@ -26,34 +26,35 @@ export function UniverseCard({ title, subtitle, description, image, href, accent
 
   return (
     <Link href={href} className="group">
-      <article className="bg-white rounded-soft overflow-hidden transition-all duration-slow hover:shadow-xl hover:-translate-y-1">
+      <article className="bg-white rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
         {/* Image */}
-        <div className="relative aspect-[16/10] overflow-hidden bg-warm-100">
+        <div className="relative aspect-[4/5] overflow-hidden bg-warm-100">
           <Image
             src={image}
             alt={title}
             fill
-            className="object-cover transition-transform duration-slower group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
           {/* Overlay au hover */}
-          <div className="absolute inset-0 bg-deep-black/0 group-hover:bg-deep-black/10 transition-colors duration-normal" />
+          <div className="absolute inset-0 bg-deep-black/0 group-hover:bg-deep-black/5 transition-all duration-300" />
         </div>
 
         {/* Content */}
-        <div className="p-4 sm:p-6 lg:p-8">
-          <p className="eyebrow-label mb-2 sm:mb-3 text-xs sm:text-sm">{subtitle}</p>
+        <div className="p-6 sm:p-8">
+          <p className="eyebrow-label mb-2 sm:mb-3">{subtitle}</p>
           
-          <h2 className={`font-display text-xl sm:text-2xl lg:text-3xl mb-3 sm:mb-4 text-deep-black transition-colors ${accentColors[accent]}`}>
+          <h3 className={`font-display text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 text-deep-black transition-colors duration-300 ${accentColors[accent]}`}>
             {title}
-          </h2>
+          </h3>
           
-          <p className="text-sm sm:text-base text-warm-500 leading-relaxed mb-4 sm:mb-6">
+          <p className="text-sm sm:text-base text-warm-500 leading-relaxed mb-6">
             {description}
           </p>
           
-          <div className={`inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-deep-black transition-all border-b-2 border-transparent pb-1 ${accentColors[accent]} ${accentBorders[accent]} min-h-[44px]`}>
+          <div className={`inline-flex items-center gap-2 text-sm font-medium text-deep-black transition-all duration-300 border-b-2 border-transparent pb-1 ${accentColors[accent]} ${accentBorders[accent]}`}>
             Découvrir
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-2" />
           </div>
         </div>
       </article>

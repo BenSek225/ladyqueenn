@@ -30,30 +30,29 @@ export default function FragrancePage() {
             className="object-cover opacity-60"
           />
           {/* Overlay prune/rose dramatique */}
-          <div className="absolute inset-0 bg-gradient-to-b from-fr-plum/70 via-fr-plum/40 to-deep-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-fr-plum/50 via-fr-plum/30 to-deep-black/90" />
         </div>
 
         {/* Content */}
-        <div className="container-luxury text-center px-6 py-20 text-cream-white">
+        <div className="container-luxury text-center py-12 sm:py-16 lg:py-20 text-cream-white">
           <p className="eyebrow-label text-fr-rose mb-6 animate-fade-in">
             PARFUMS DE LUXE
           </p>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-6 animate-slide-up" style={{ animationDelay: '150ms' }}>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] mb-6 animate-slide-up [animation-delay:150ms]">
             Lady Queenn
             <br />
             <span className="italic font-normal text-champagne-gold">Fragrance</span>
           </h1>
 
-          <p className="text-base md:text-lg text-cream-light max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up" style={{ animationDelay: '300ms' }}>
+          <p className="text-sm sm:text-base md:text-lg text-cream-light max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed animate-slide-up [animation-delay:300ms]">
             Des fragrances inspirées par l'héritage africain, créées pour sublimer 
             votre signature olfactive et raconter votre histoire.
           </p>
 
           <Link 
             href="#products" 
-            className="bg-champagne-gold text-deep-black px-8 py-4 rounded-soft font-medium hover:bg-soft-gold transition-all duration-normal inline-flex items-center gap-3 animate-scale-in" 
-            style={{ animationDelay: '450ms' }}
+            className="bg-champagne-gold text-deep-black px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-soft-gold hover:-translate-y-1 transition-all duration-300 inline-flex items-center gap-2 sm:gap-3 animate-scale-in [animation-delay:450ms]"
           >
             Découvrir nos parfums
             <ArrowRight size={20} />
@@ -94,43 +93,43 @@ export default function FragrancePage() {
       <section id="products" className="py-20 lg:pt-[119px] lg:pb-32 bg-fr-light/30">
         <div className="container-luxury">
           {/* Filtres - Tabs élégants */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 sm:mb-12">
             <button
               onClick={() => setFilter('all')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
                 filter === 'all'
-                  ? 'bg-fr-plum text-cream-white'
-                  : 'bg-white text-fr-plum hover:bg-fr-plum/10 border border-fr-plum/20'
+                  ? 'bg-fr-plum text-cream-white scale-105'
+                  : 'bg-white text-fr-plum hover:bg-fr-plum/10 border border-fr-plum/20 hover:scale-105'
               }`}
             >
               Tous
             </button>
             <button
               onClick={() => setFilter('homme')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
                 filter === 'homme'
-                  ? 'bg-fr-plum text-cream-white'
-                  : 'bg-white text-fr-plum hover:bg-fr-plum/10 border border-fr-plum/20'
+                  ? 'bg-fr-plum text-cream-white scale-105'
+                  : 'bg-white text-fr-plum hover:bg-fr-plum/10 border border-fr-plum/20 hover:scale-105'
               }`}
             >
               Homme
             </button>
             <button
               onClick={() => setFilter('femme')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
                 filter === 'femme'
-                  ? 'bg-fr-plum text-cream-white'
-                  : 'bg-white text-fr-plum hover:bg-fr-plum/10 border border-fr-plum/20'
+                  ? 'bg-fr-plum text-cream-white scale-105'
+                  : 'bg-white text-fr-plum hover:bg-fr-plum/10 border border-fr-plum/20 hover:scale-105'
               }`}
             >
               Femme
             </button>
             <button
               onClick={() => setFilter('mixte')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
                 filter === 'mixte'
-                  ? 'bg-fr-plum text-cream-white'
-                  : 'bg-white text-fr-plum hover:bg-fr-plum/10 border border-fr-plum/20'
+                  ? 'bg-fr-plum text-cream-white scale-105'
+                  : 'bg-white text-fr-plum hover:bg-fr-plum/10 border border-fr-plum/20 hover:scale-105'
               }`}
             >
               Mixte

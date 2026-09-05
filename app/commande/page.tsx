@@ -49,27 +49,114 @@ export default function CommandePage() {
   }
 
   return (
-    <main className="bg-cream-light py-12 lg:py-20">
+    <main className="bg-cream-light py-8 sm:py-12 lg:py-20">
       <div className="container-luxury max-w-6xl">
-        <Link href="/" className="inline-flex items-center gap-2 text-sm text-warm-500 hover:text-deep-black mb-10"><ArrowLeft size={16} /> Continuer mes achats</Link>
+        <Link 
+          href="/" 
+          className="inline-flex items-center gap-2 text-sm text-warm-500 hover:text-deep-black transition-colors duration-300 mb-8 sm:mb-10 py-2"
+        >
+          <ArrowLeft size={16} /> 
+          Continuer mes achats
+        </Link>
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-16 items-start">
           <section>
             <p className="eyebrow-label text-champagne-gold mb-4">Finaliser votre sélection</p>
             <h1 className="font-display text-4xl md:text-5xl mb-4">Passer la commande</h1>
             <p className="text-warm-500 leading-relaxed mb-8">Renseignez vos coordonnées. Nous confirmerons ensuite votre commande et sa livraison sur WhatsApp.</p>
-            <form onSubmit={handleSubmit} className="space-y-5 bg-cream-white p-6 sm:p-8 rounded-soft border border-warm-200">
-              <label className="block"><span className="text-sm font-medium">Nom complet</span><input required name="name" className="mt-2 w-full rounded-soft border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold" placeholder="Votre nom" /></label>
-              <label className="block"><span className="text-sm font-medium">Téléphone</span><input required name="phone" type="tel" className="mt-2 w-full rounded-soft border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold" placeholder="07 00 00 00 00" /></label>
-              <label className="block"><span className="text-sm font-medium">Adresse de livraison</span><textarea required name="address" rows={3} className="mt-2 w-full rounded-soft border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold" placeholder="Quartier, rue, repère" /></label>
-              <label className="block"><span className="text-sm font-medium">Zone de livraison</span><span className="mt-2 flex items-center gap-2"><MapPin size={18} className="text-champagne-gold" /><select value={zone} onChange={(event) => setZone(event.target.value as DeliveryZone)} className="w-full rounded-soft border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold">{Object.entries(deliveryZones).map(([label, price]) => <option key={label} value={label}>{label} — {price.toLocaleString('fr-FR')} FCFA</option>)}</select></span></label>
-              <button type="submit" className="w-full flex items-center justify-center gap-3 bg-deep-black text-cream-white px-6 py-4 rounded-soft font-medium hover:bg-champagne-gold hover:text-deep-black transition-all min-h-[56px]"><MessageCircle size={19} /> {submitted ? 'Commande envoyée' : 'Confirmer via WhatsApp'}</button>
+            <form onSubmit={handleSubmit} className="space-y-5 bg-cream-white p-5 sm:p-6 lg:p-8 rounded-lg border border-warm-200">
+              <label className="block">
+                <span className="text-sm font-medium text-deep-black mb-2 block">Nom complet</span>
+                <input 
+                  required 
+                  name="name" 
+                  className="mt-1 w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
+                  placeholder="Votre nom" 
+                />
+              </label>
+              
+              <label className="block">
+                <span className="text-sm font-medium text-deep-black mb-2 block">Téléphone</span>
+                <input 
+                  required 
+                  name="phone" 
+                  type="tel" 
+                  className="mt-1 w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
+                  placeholder="07 00 00 00 00" 
+                />
+              </label>
+              
+              <label className="block">
+                <span className="text-sm font-medium text-deep-black mb-2 block">Adresse de livraison</span>
+                <textarea 
+                  required 
+                  name="address" 
+                  rows={3} 
+                  className="mt-1 w-full rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300" 
+                  placeholder="Quartier, rue, repère" 
+                />
+              </label>
+              
+              <label className="block">
+                <span className="text-sm font-medium text-deep-black mb-2 block">Zone de livraison</span>
+                <div className="mt-1 flex items-center gap-2">
+                  <MapPin size={18} className="text-champagne-gold" />
+                  <select 
+                    value={zone} 
+                    onChange={(event) => setZone(event.target.value as DeliveryZone)} 
+                    className="flex-1 rounded-lg border border-warm-200 bg-white px-4 py-3 outline-none focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 transition-all duration-300"
+                  >
+                    {Object.entries(deliveryZones).map(([label, price]) => (
+                      <option key={label} value={label}>
+                        {label} — {price.toLocaleString('fr-FR')} FCFA
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </label>
+              <button 
+                type="submit" 
+                className="w-full flex items-center justify-center gap-2 sm:gap-3 bg-deep-black text-cream-white px-6 py-3 sm:py-4 rounded-lg font-medium hover:bg-champagne-gold hover:text-deep-black hover:-translate-y-1 transition-all duration-300 min-h-[56px]"
+              >
+                <MessageCircle size={19} /> 
+                {submitted ? 'Commande envoyée ✓' : 'Confirmer via WhatsApp'}
+              </button>
             </form>
           </section>
-          <aside className="lg:sticky lg:top-28 bg-cream-white border border-warm-200 rounded-soft p-6 sm:p-8">
-            <p className="eyebrow-label text-warm-500 mb-4">Récapitulatif</p>
-            <div className="space-y-4 pb-6 border-b border-warm-200">{items.map((item) => <div key={item.id} className="flex justify-between gap-4 text-sm"><span>{item.name} <span className="text-warm-400">× {item.quantity}</span></span><span className="font-mono whitespace-nowrap">{(item.price * item.quantity).toLocaleString('fr-FR')} F</span></div>)}</div>
-            <div className="space-y-3 py-6 text-sm"><div className="flex justify-between"><span className="text-warm-500">Sous-total</span><span>{subtotal.toLocaleString('fr-FR')} FCFA</span></div><div className="flex justify-between"><span className="text-warm-500">Livraison</span><span>{delivery.toLocaleString('fr-FR')} FCFA</span></div></div>
-            <div className="flex justify-between items-baseline border-t border-warm-200 pt-5"><span className="font-medium">Total</span><strong className="font-display text-2xl">{total.toLocaleString('fr-FR')} <small className="font-sans text-sm">FCFA</small></strong></div>
+          <aside className="lg:sticky lg:top-28 bg-cream-white border border-warm-200 rounded-lg p-5 sm:p-6 lg:p-8">
+            <p className="eyebrow-label text-warm-500 mb-5">Récapitulatif</p>
+            
+            <div className="space-y-3 pb-6 border-b border-warm-200">
+              {items.map((item) => (
+                <div key={item.id} className="flex justify-between gap-4 text-sm">
+                  <span className="flex-1">
+                    {item.name} 
+                    <span className="text-warm-400 ml-1">× {item.quantity}</span>
+                  </span>
+                  <span className="font-mono font-semibold whitespace-nowrap text-champagne-gold">
+                    {(item.price * item.quantity).toLocaleString('fr-FR')} F
+                  </span>
+                </div>
+              ))}
+            </div>
+            
+            <div className="space-y-3 py-6 text-sm border-b border-warm-200">
+              <div className="flex justify-between">
+                <span className="text-warm-500">Sous-total</span>
+                <span className="font-mono">{subtotal.toLocaleString('fr-FR')} FCFA</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-warm-500">Livraison</span>
+                <span className="font-mono">{delivery.toLocaleString('fr-FR')} FCFA</span>
+              </div>
+            </div>
+            
+            <div className="flex justify-between items-baseline pt-5">
+              <span className="font-medium text-deep-black">Total</span>
+              <strong className="font-display text-2xl sm:text-3xl text-deep-black">
+                {total.toLocaleString('fr-FR')} 
+                <small className="font-sans text-sm text-warm-500 ml-1">FCFA</small>
+              </strong>
+            </div>
           </aside>
         </div>
       </div>

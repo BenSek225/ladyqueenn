@@ -27,30 +27,29 @@ export default function SweetHairPage() {
             className="object-cover"
           />
           {/* Overlay vert sauge subtil */}
-          <div className="absolute inset-0 bg-gradient-to-b from-sh-light/60 via-sh-light/40 to-cream-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-sh-light/50 via-sh-light/30 to-cream-white/90" />
         </div>
 
         {/* Content */}
-        <div className="container-luxury text-center px-6 py-20">
+        <div className="container-luxury text-center py-12 sm:py-16 lg:py-20">
           <p className="eyebrow-label text-sh-olive mb-6 animate-fade-in">
             SOIN NATUREL & LUXUEUX
           </p>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-6 text-deep-black animate-slide-up" style={{ animationDelay: '150ms' }}>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] mb-6 text-deep-black animate-slide-up [animation-delay:150ms]">
             Lady Queenn
             <br />
             <span className="italic font-normal text-sh-olive">Sweet-Hair</span>
           </h1>
 
-          <p className="text-base md:text-lg text-dark-gray max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up" style={{ animationDelay: '300ms' }}>
+          <p className="text-sm sm:text-base md:text-lg text-dark-gray max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed animate-slide-up [animation-delay:300ms]">
             Des soins biologiques, formulés avec des ingrédients naturels d'Ivoire 
             pour des cheveux nourris, forts et resplendissants.
           </p>
 
           <Link 
             href="#products" 
-            className="btn-primary bg-sh-olive hover:bg-sh-sage border-sh-olive inline-flex items-center gap-3 animate-scale-in" 
-            style={{ animationDelay: '450ms' }}
+            className="btn-primary bg-sh-olive hover:bg-sh-sage border-sh-olive inline-flex items-center gap-2 sm:gap-3 animate-scale-in [animation-delay:450ms]"
           >
             Découvrir nos rituels
             <ArrowRight size={20} />
@@ -75,7 +74,7 @@ export default function SweetHairPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {/* Bénéfice 1 */}
             <div className="text-center group">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">

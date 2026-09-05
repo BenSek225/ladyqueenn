@@ -57,12 +57,12 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
       </div>
 
       {/* Layout Principal 60/40 */}
-      <section className="container-luxury py-12">
+      <section className="container-luxury py-8 sm:py-12">
         <div className="grid lg:grid-cols-[58%_42%] gap-12 lg:gap-16">
           {/* Colonne Images (60%) */}
           <div className="space-y-4">
             {/* Image principale */}
-            <div className="relative aspect-[4/5] rounded-soft overflow-hidden bg-warm-gray-100">
+            <div className="relative aspect-[4/5] rounded-lg overflow-hidden bg-warm-100 group">
               <Image
                 src={images[selectedImage]}
                 alt={product.name}
@@ -88,10 +88,10 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
                   <button
                     key={i}
                     onClick={() => setSelectedImage(i)}
-                    className={`relative aspect-square w-20 rounded overflow-hidden border-2 transition-all duration-normal ${
+                    className={`relative aspect-square w-20 rounded-lg overflow-hidden border-2 transition-all duration-300 hover:scale-105 ${
                       i === selectedImage 
-                        ? `border-champagne-gold shadow-gold-soft` 
-                        : 'border-warm-gray-200 hover:border-warm-gray-300'
+                        ? `border-champagne-gold shadow-gold-soft scale-105` 
+                        : 'border-warm-200 hover:border-warm-300'
                     }`}
                   >
                     <Image 
@@ -163,7 +163,7 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
                 href={`https://wa.me/2250710504007?text=Bonjour%2C%20je%20souhaite%20commander%20${encodeURIComponent(product.name)}%20à%20${product.price}%20FCFA`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-transparent border-2 border-deep-black text-deep-black rounded-soft font-medium hover:bg-deep-black hover:text-cream-white transition-all duration-normal"
+                className="w-full flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-deep-black text-deep-black rounded-lg font-medium hover:bg-deep-black hover:text-cream-white hover:-translate-y-1 transition-all duration-300"
               >
                 Commander via WhatsApp
                 <ArrowRight size={20} />
@@ -199,33 +199,33 @@ export function ProductDetailLayout({ product }: ProductDetailLayoutProps) {
       <section className="border-y border-warm-gray-200 bg-cream-light">
         <div className="container-luxury py-16">
           {/* Tabs Navigation */}
-          <div className="flex justify-center gap-3 mb-12 flex-wrap">
+          <div className="flex justify-center gap-2 sm:gap-3 mb-10 sm:mb-12 flex-wrap">
             <button
               onClick={() => setActiveTab('details')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
                 activeTab === 'details'
-                  ? 'bg-deep-black text-cream-white'
-                  : 'bg-white text-deep-black hover:bg-warm-gray-100'
+                  ? 'bg-deep-black text-cream-white scale-105'
+                  : 'bg-white text-deep-black hover:bg-warm-gray-100 hover:scale-105'
               }`}
             >
               Détails
             </button>
             <button
               onClick={() => setActiveTab('ingredients')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
                 activeTab === 'ingredients'
-                  ? 'bg-deep-black text-cream-white'
-                  : 'bg-white text-deep-black hover:bg-warm-gray-100'
+                  ? 'bg-deep-black text-cream-white scale-105'
+                  : 'bg-white text-deep-black hover:bg-warm-gray-100 hover:scale-105'
               }`}
             >
               Composition
             </button>
             <button
               onClick={() => setActiveTab('usage')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-wider transition-all duration-300 ${
                 activeTab === 'usage'
-                  ? 'bg-deep-black text-cream-white'
-                  : 'bg-white text-deep-black hover:bg-warm-gray-100'
+                  ? 'bg-deep-black text-cream-white scale-105'
+                  : 'bg-white text-deep-black hover:bg-warm-gray-100 hover:scale-105'
               }`}
             >
               Utilisation

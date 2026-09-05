@@ -33,30 +33,29 @@ export default function CrochetPage() {
             className="object-cover"
           />
           {/* Overlay terracotta chaud */}
-          <div className="absolute inset-0 bg-gradient-to-b from-cr-light/70 via-cr-terracotta/30 to-cream-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-cr-light/60 via-cr-terracotta/20 to-cream-white/90" />
         </div>
 
         {/* Content */}
-        <div className="container-luxury text-center px-6 py-20">
+        <div className="container-luxury text-center py-12 sm:py-16 lg:py-20">
           <p className="eyebrow-label text-cr-earth mb-6 animate-fade-in">
             FAIT À LA MAIN, PORTÉ AVEC INTENTION
           </p>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-6 text-deep-black animate-slide-up" style={{ animationDelay: '150ms' }}>
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] mb-6 text-deep-black animate-slide-up [animation-delay:150ms]">
             Crochet
             <br />
             <span className="italic font-normal text-cr-earth">by THED</span>
           </h1>
 
-          <p className="text-base md:text-lg text-dark-gray max-w-2xl mx-auto mb-10 leading-relaxed animate-slide-up" style={{ animationDelay: '300ms' }}>
+          <p className="text-sm sm:text-base md:text-lg text-dark-gray max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed animate-slide-up [animation-delay:300ms]">
             Pièces intemporelles au crochet, confectionnées avec intention 
             et enracinées dans la tradition artisanale ivoirienne.
           </p>
 
           <Link 
             href="#products" 
-            className="btn-primary bg-cr-earth hover:bg-cr-terracotta border-cr-earth inline-flex items-center gap-3 animate-scale-in" 
-            style={{ animationDelay: '450ms' }}
+            className="btn-primary bg-cr-earth hover:bg-cr-terracotta border-cr-earth inline-flex items-center gap-2 sm:gap-3 animate-scale-in [animation-delay:450ms]"
           >
             Découvrir nos créations
             <ArrowRight size={20} />
@@ -89,7 +88,7 @@ export default function CrochetPage() {
                 et accompagner vos moments précieux.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 sm:mb-16">
                 <div className="flex items-start gap-3">
                   <Heart className="w-5 h-5 text-cr-earth mt-1 flex-shrink-0" />
                   <div>
@@ -126,30 +125,30 @@ src="/images/gallery/crochet-lifestyle.png"
           <div className="flex justify-center gap-2 sm:gap-3">
             <button
               onClick={() => handleTabChange('boutique')}
-              className={`flex-1 sm:flex-none px-2 sm:px-6 py-2 sm:py-3 rounded-soft text-[10px] sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-normal ${
+              className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-300 ${
                 activeTab === 'boutique'
-                  ? 'bg-cr-earth text-cream-white'
-                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20'
+                  ? 'bg-cr-earth text-cream-white scale-105'
+                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20 hover:scale-105'
               }`}
             >
               Prêt-à-porter
             </button>
             <button
               onClick={() => handleTabChange('sur-mesure')}
-              className={`flex-1 sm:flex-none px-2 sm:px-6 py-2 sm:py-3 rounded-soft text-[10px] sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-normal ${
+              className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-300 ${
                 activeTab === 'sur-mesure'
-                  ? 'bg-cr-earth text-cream-white'
-                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20'
+                  ? 'bg-cr-earth text-cream-white scale-105'
+                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20 hover:scale-105'
               }`}
             >
               Sur-mesure
             </button>
             <button
               onClick={() => handleTabChange('galerie')}
-              className={`flex-1 sm:flex-none px-2 sm:px-6 py-2 sm:py-3 rounded-soft text-[10px] sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-normal ${
+              className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-300 ${
                 activeTab === 'galerie'
-                  ? 'bg-cr-earth text-cream-white'
-                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20'
+                  ? 'bg-cr-earth text-cream-white scale-105'
+                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20 hover:scale-105'
               }`}
             >
               Galerie
@@ -254,7 +253,7 @@ src="/images/gallery/crochet-lifestyle.png"
                 href="https://wa.me/2250710504007?text=Bonjour%2C%20je%20souhaite%20commander%20une%20pièce%20crochet%20sur-mesure"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-cream-white text-cr-earth px-8 py-4 rounded-soft font-medium hover:bg-champagne-gold hover:text-deep-black transition-all duration-normal inline-flex items-center gap-3"
+                className="bg-cream-white text-cr-earth px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-champagne-gold hover:text-deep-black hover:-translate-y-1 transition-all duration-300 inline-flex items-center gap-2 sm:gap-3"
               >
                 Commander sur-mesure
                 <ArrowRight size={20} />
