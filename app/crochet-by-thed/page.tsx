@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { ArrowRight, Heart, Scissors, Sparkles, MessageCircle } from 'lucide-react'
 import { Breadcrumb } from '@/components/layout/breadcrumb'
 import { ProductCard } from '@/components/product-card'
@@ -10,6 +10,12 @@ import { crochetProducts } from '@/lib/data/crochet-products'
 
 export default function CrochetPage() {
   const [activeTab, setActiveTab] = useState<'boutique' | 'sur-mesure' | 'galerie'>('boutique')
+  const tabsSectionRef = useRef<HTMLElement>(null)
+
+  const handleTabChange = (tab: 'boutique' | 'sur-mesure' | 'galerie') => {
+    setActiveTab(tab)
+    requestAnimationFrame(() => tabsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+  }
 
   return (
     <main className="volet-crochet">
@@ -114,12 +120,12 @@ src="/images/gallery/crochet-lifestyle.png"
       </section>
 
       {/* Tabs Navigation */}
-      <section className="py-8 bg-cr-light/30 sticky top-20 z-30 border-b border-cr-terracotta/20">
-        <div className="container-luxury">
-          <div className="flex justify-center gap-3 flex-wrap">
+      <section ref={tabsSectionRef} className="py-3 sm:py-5 lg:py-6 bg-cr-light/95 backdrop-blur-sm sticky top-16 lg:top-20 z-30 border-b border-cr-terracotta/20">
+        <div className="container-luxury px-3 sm:px-6">
+          <div className="flex justify-center gap-2 sm:gap-3">
             <button
-              onClick={() => setActiveTab('boutique')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              onClick={() => handleTabChange('boutique')}
+              className={`flex-1 sm:flex-none px-2 sm:px-6 py-2 sm:py-3 rounded-soft text-[10px] sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-normal ${
                 activeTab === 'boutique'
                   ? 'bg-cr-earth text-cream-white'
                   : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20'
@@ -128,8 +134,8 @@ src="/images/gallery/crochet-lifestyle.png"
               Prêt-à-porter
             </button>
             <button
-              onClick={() => setActiveTab('sur-mesure')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              onClick={() => handleTabChange('sur-mesure')}
+              className={`flex-1 sm:flex-none px-2 sm:px-6 py-2 sm:py-3 rounded-soft text-[10px] sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-normal ${
                 activeTab === 'sur-mesure'
                   ? 'bg-cr-earth text-cream-white'
                   : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20'
@@ -138,8 +144,8 @@ src="/images/gallery/crochet-lifestyle.png"
               Sur-mesure
             </button>
             <button
-              onClick={() => setActiveTab('galerie')}
-              className={`px-6 py-3 rounded-soft text-sm font-medium uppercase tracking-wider transition-all duration-normal ${
+              onClick={() => handleTabChange('galerie')}
+              className={`flex-1 sm:flex-none px-2 sm:px-6 py-2 sm:py-3 rounded-soft text-[10px] sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-normal ${
                 activeTab === 'galerie'
                   ? 'bg-cr-earth text-cream-white'
                   : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20'

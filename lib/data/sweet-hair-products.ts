@@ -96,8 +96,6 @@ Sa texture onctueuse pénètre rapidement sans alourdir. Idéale pour structurer
       '/images/products/sweet-hair/pommade-nourrissante-variant.png'
     ],
     stock: 25,
-    isKit: true,
-    kitItems: ['sh-001', 'sh-002', 'sh-003'],
     benefits: [
       'Routine capillaire complète',
       'Économie de 1 000 FCFA',
@@ -111,7 +109,34 @@ Sa texture onctueuse pénètre rapidement sans alourdir. Idéale pour structurer
 2. Laver avec le shampooing. Laisser agir 2-3 min.
 3. Sécher et appliquer une noisette de pommade pour coiffer.
 4. **Quotidien** : Utiliser la pommade pour entretenir votre coiffure.`,
-    details: 'Pack économique | -17% | Emballage cadeau offert'
+    details: 'Contenance : 150g | 100% naturel | Tenue souple'
+  },
+  {
+    id: 'sh-kit-001',
+    slug: 'kit-complet-sweet-hair',
+    name: 'Kit Complet Sweet-Hair',
+    volet: 'sweet-hair',
+    category: 'kit',
+    price: 5000,
+    oldPrice: 6000,
+    volume: 'Pack 3 soins',
+    description: 'La routine complète Sweet-Hair pour nourrir, laver et coiffer.',
+    longDescription: 'Réunissez les essentiels Sweet-Hair dans un coffret pensé pour une routine simple et complète. Un prix privilégié de 5 000 FCFA au lieu de 6 000 FCFA.',
+    image: '/images/products/sweet-hair/kit-complet-sweet-hair-main.png',
+    images: [
+      '/images/products/sweet-hair/kit-complet-sweet-hair-main.png',
+      '/images/products/sweet-hair/kit-complet-sweet-hair-main.png',
+      '/images/products/sweet-hair/kit-complet-sweet-hair-main.png',
+      '/images/products/sweet-hair/kit-complet-sweet-hair-main.png'
+    ],
+    badge: 'promo',
+    stock: 20,
+    isKit: true,
+    kitItems: ['sh-001', 'sh-002', 'sh-003'],
+    benefits: ['Routine complète en 3 gestes', 'Économie de 1 000 FCFA', 'Convient à tous types de cheveux'],
+    ingredients: ['Huile capillaire', 'Shampooing réparateur', 'Pommade nourrissante'],
+    usage: 'Utiliser l’huile avant le lavage, nettoyer avec le shampooing puis coiffer avec la pommade.',
+    details: 'Pack de 3 soins | Prix promotionnel | Économie de 1 000 FCFA'
   }
 ]
 

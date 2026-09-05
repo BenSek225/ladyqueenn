@@ -3,27 +3,11 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-export interface CartItem {
-  id: string
-  name: string
-  price: number
-  quantity: number
-  image: string
-  volet: string
-}
+import type { CartItem, CartStore } from '@/lib/types'
 
-interface CartStore {
-  items: CartItem[]
-  addItem: (item: Omit<CartItem, 'quantity'>) => void
-  removeItem: (id: string) => void
-  updateQuantity: (id: string, quantity: number) => void
-  clearCart: () => void
-  getTotalPrice: () => number
-  getCartCount: () => number
-  formatCartMessage: () => string
-}
+interface CartStoreState extends CartStore {}
 
-export const useCart = create<CartStore>()(
+export const useCart = create<CartStoreState>()(
   persist(
     (set, get) => ({
       items: [],

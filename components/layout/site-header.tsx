@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { Search, User, ShoppingBag, Menu, X, Sparkles, Droplet, Home } from 'lucide-react'
+import { Search, ShoppingBag, Menu, X, Sparkles, Droplet, Home } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useCart } from '@/lib/store'
 import { CartDrawer } from '@/components/cart-drawer'
@@ -58,8 +58,8 @@ export function SiteHeader() {
   return (
     <>
       <header className="sticky top-0 z-40 w-full bg-cream-white/95 backdrop-blur-sm border-b border-warm-200">
-        <div className="container mx-auto px-4 lg:px-20">
-          <div className="flex h-16 lg:h-20 items-center justify-between">
+        <div className="container mx-auto px-3 sm:px-4 lg:px-12 xl:px-20">
+          <div className="flex h-16 lg:h-20 items-center justify-between gap-2">
             {/* Logo */}
             <Link 
               href="/" 
@@ -71,12 +71,12 @@ export function SiteHeader() {
                 width={180}
                 height={56}
                 priority
-                className="w-36 h-auto lg:w-44 object-contain"
+                className="w-28 sm:w-36 lg:w-44 h-auto object-contain"
               />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8 lg:gap-12" aria-label="Navigation principale">
+            <nav className="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-12" aria-label="Navigation principale">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -89,24 +89,15 @@ export function SiteHeader() {
             </nav>
 
             {/* Actions */}
-            <div className="flex items-center gap-3 lg:gap-6 relative z-50">
+            <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 relative z-50">
               {/* Search Button */}
               <button
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="p-1.5 sm:p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
                 aria-label="Rechercher"
               >
                 <Search className="w-5 h-5" />
               </button>
-
-              {/* User Button */}
-              <Link
-                href="/compte"
-                className="hidden md:flex p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[44px] min-h-[44px] items-center justify-center"
-                aria-label="Mon compte"
-              >
-                <User className="w-5 h-5" />
-              </Link>
 
               {/* Cart Button */}
               <button
@@ -153,7 +144,7 @@ export function SiteHeader() {
                 <h2 className="font-display text-xl font-semibold">Menu</h2>
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  className="p-1.5 sm:p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
                   aria-label="Fermer le menu"
                 >
                   <X className="w-6 h-6" />
@@ -191,14 +182,6 @@ export function SiteHeader() {
 
                 {/* Secondary Links */}
                 <div className="mt-8 pt-8 border-t border-warm-200 space-y-2">
-                  <Link
-                    href="/compte"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-base font-medium text-deep-black hover:text-champagne-gold transition-colors rounded-lg hover:bg-warm-100 min-h-[52px]"
-                  >
-                    <User className="w-5 h-5" />
-                    <span>Mon Compte</span>
-                  </Link>
                   <button
                     type="button"
                     onClick={() => { setIsMenuOpen(false); setIsCartOpen(true) }}

@@ -71,13 +71,13 @@ export interface CartItem {
   price: number
   quantity: number
   image: string
-  volet?: Volet // Ajout du volet pour groupement
+  volet: Volet // Ajout du volet pour groupement
 }
 
 // Store Panier
 export interface CartStore {
   items: CartItem[]
-  addItem: (item: Omit<CartItem, 'id' | 'quantity'>) => void
+  addItem: (item: Omit<CartItem, 'quantity'>) => void
   removeItem: (id: string) => void
   updateQuantity: (id: string, quantity: number) => void
   clearCart: () => void

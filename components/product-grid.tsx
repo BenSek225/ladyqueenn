@@ -15,12 +15,12 @@ const allProducts: Product[] = [
 ]
 
 // Extraire les univers uniques
-const universes = ['Tout', ...Array.from(new Set(allProducts.map((p) => p.universe)))]
+const universes = ['Tout', ...Array.from(new Set(allProducts.map((p) => p.volet)))]
 
 export function ProductGrid() {
   const [universe, setUniverse] = useState('Tout')
 
-  const shown = universe === 'Tout' ? allProducts : allProducts.filter((p) => p.universe === universe)
+  const shown = universe === 'Tout' ? allProducts : allProducts.filter((p) => p.volet === universe)
 
   return (
     <section id="boutique" className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">

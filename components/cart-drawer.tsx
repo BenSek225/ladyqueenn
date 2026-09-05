@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Minus, Plus, Trash2, X, ShoppingBag, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useCart } from '@/lib/store'
 import { getUniverseName } from '@/lib/data/all-products'
 import { toast } from '@/components/shared/toast'
@@ -21,10 +22,10 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
     if (open) {
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
     }
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = ''
     }
   }, [open])
 
@@ -191,19 +192,28 @@ export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
               </span>
             </div>
 
-            {/* CTA WhatsApp */}
-            <a
-              href={`https://wa.me/2250710504007?text=${formatCartMessage()}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-3 bg-deep-black text-cream-white px-6 sm:px-8 py-4 rounded-soft font-medium hover:bg-champagne-gold hover:text-deep-black hover:-translate-y-1 hover:shadow-xl active:translate-y-0 transition-all duration-300 min-h-[56px] text-sm sm:text-base"
-            >
-              Commander via WhatsApp
-              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-            </a>
+            <div className="grid gap-3">
+              <Link
+                href="/commande"
+                onClick={() => onOpenChange(false)}
+                className="w-full flex items-center justify-center gap-3 bg-champagne-gold text-deep-black px-6 sm:px-8 py-4 rounded-soft font-medium hover:bg-gold-dark hover:text-cream-white hover:-translate-y-1 transition-all duration-300 min-h-[56px] text-sm sm:text-base"
+              >
+                Passer la commande
+                <ArrowRight size={20} />
+              </Link>
+              <a
+                href={`https://wa.me/2250710504007?text=${formatCartMessage()}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-3 bg-deep-black text-cream-white px-6 sm:px-8 py-4 rounded-soft font-medium hover:bg-warm-700 hover:-translate-y-1 transition-all duration-300 min-h-[56px] text-sm sm:text-base"
+              >
+                Commander via WhatsApp
+                <ArrowRight size={20} />
+              </a>
+            </div>
 
             <p className="text-xs text-center text-warm-500 mt-3 sm:mt-4 px-2">
-              Vous serez redirigé vers WhatsApp pour finaliser votre commande
+              Choisissez la livraison avec le formulaire ou envoyez directement votre sélection sur WhatsApp.
             </p>
           </div>
         )}
