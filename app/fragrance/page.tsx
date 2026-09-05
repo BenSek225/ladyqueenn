@@ -70,7 +70,7 @@ export default function FragrancePage() {
       </div>
 
       {/* Section Introduction */}
-      <section className="py-16 lg:py-20 bg-cream-white">
+      <section className="py-16 lg:pt-20 lg:pb-[72px] bg-cream-white">
         <div className="container-luxury text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 text-fr-plum mb-6">
             <Sparkles className="w-5 h-5" />
@@ -91,7 +91,7 @@ export default function FragrancePage() {
       </section>
 
       {/* Section Filtres & Produits */}
-      <section id="products" className="py-20 lg:py-32 bg-fr-light/30">
+      <section id="products" className="py-20 lg:pt-[119px] lg:pb-32 bg-fr-light/30">
         <div className="container-luxury">
           {/* Filtres - Tabs élégants */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
