@@ -137,7 +137,7 @@ export const siteConfig = {
   tagline: 'La maison du raffinement ivoirien',
   description: 'Plateforme e-commerce multi-volets : soins capillaires Sweet-Hair, parfums Fragrance, et créations Crochet by THED.',
   whatsapp: '+2250710504007',
-  email: 'contact@ladyqueenn.ci',
+  email: 'estherdakoury9@gmail.com',
   address: 'Abidjan, Côte d\'Ivoire',
   social: {
     facebook: 'https://facebook.com/ladyqueenn',

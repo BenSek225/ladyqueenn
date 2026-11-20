@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from 'next'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { ToastContainer } from '@/components/shared/toast'
+import { WhatsAppFloat } from '@/components/layout/whatsapp-float'
 import { SmoothScrollProvider } from '@/components/providers/smooth-scroll-provider'
 import { OrganizationSchema, WebsiteSchema } from '@/components/seo/structured-data'
 import './globals.css'
@@ -100,6 +101,7 @@ export default function RootLayout({
             </main>
             <SiteFooter />
             <ToastContainer />
+            <WhatsAppFloat />
         </SmoothScrollProvider>
         <Analytics />
       </body>

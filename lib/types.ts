@@ -77,13 +77,12 @@ export interface CartItem {
 // Store Panier
 export interface CartStore {
   items: CartItem[]
-  addItem: (item: Omit<CartItem, 'quantity'>) => void
+  addItem: (item: Omit<CartItem, 'quantity'>, quantity?: number) => void
   removeItem: (id: string) => void
   updateQuantity: (id: string, quantity: number) => void
   clearCart: () => void
   getTotalPrice: () => number
   getCartCount: () => number
-  formatCartMessage: () => string
 }
 
 // Navigation

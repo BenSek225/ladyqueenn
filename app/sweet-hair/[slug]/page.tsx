@@ -1,40 +1,7 @@
-import { notFound } from 'next/navigation'
-import { getProductBySlug, getAllProductPaths } from '@/lib/data/all-products'
-import { ProductDetailLayout } from '@/components/product/product-detail-layout'
+import { productPage } from '@/lib/product-page'
 
-// Génération statique des pages pour tous les produits Sweet-Hair
-export async function generateStaticParams() {
-  const paths = getAllProductPaths()
-  return paths
-    .filter(p => p.volet === 'sweet-hair')
-    .map(p => ({ slug: p.slug }))
-}
+const page = productPage('sweet-hair')
 
-// Métadonnées dynamiques
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const product = getProductBySlug(slug)
-  
-  if (!product || product.volet !== 'sweet-hair') {
-    return {
-      title: 'Produit non trouvé | Lady Queen',
-    }
-  }
-
-  return {
-    title: `${product.name} — Sweet-Hair | Lady Queen`,
-    description: product.description,
-  }
-}
-
-export default async function SweetHairProductPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const product = getProductBySlug(slug)
-  
-  // Si produit inexistant ou pas du bon volet, 404
-  if (!product || product.volet !== 'sweet-hair') {
-    notFound()
-  }
-
-  return <ProductDetailLayout product={product} />
-}
+export const generateStaticParams = page.generateStaticParams
+export const generateMetadata = page.generateMetadata
+export default page.Page

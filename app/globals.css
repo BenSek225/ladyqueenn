@@ -440,6 +440,35 @@ html.lenis body {
     color: var(--brand-deep);
   }
 
+  /* Champs de formulaire */
+  .field {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0 1rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-warm-200);
+    background: var(--color-warm-50);
+    font-size: 1rem;
+    color: var(--color-deep-black);
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+  }
+  .field::placeholder {
+    color: var(--color-warm-400);
+  }
+  .field:focus {
+    outline: none;
+    background: #fff;
+    border-color: var(--color-champagne-gold);
+    box-shadow: 0 0 0 4px rgb(198 168 124 / 0.18);
+  }
+  select.field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%237c766c' stroke-width='1.5'%3E%3Cpath d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
   /* Texture grain discrète pour les fonds */
   .grain {
     position: relative;

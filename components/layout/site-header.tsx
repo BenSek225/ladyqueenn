@@ -12,6 +12,7 @@ import { siteConfig } from '@/lib/data/navigation'
 import { cn } from '@/lib/utils'
 import { LadyQueenLogo } from '@/components/brand/logo'
 import { SearchBar } from '@/components/search/search-bar'
+import { CurrencySwitcher } from '@/components/layout/currency-switcher'
 
 const CartDrawer = dynamic(() => import('@/components/cart-drawer').then((m) => ({ default: m.CartDrawer })), {
   ssr: false,
@@ -63,7 +64,7 @@ export function SiteHeader() {
       {/* Bandeau maison */}
       <div className="bg-deep-black text-cream-white/80">
         <div className="container-luxury flex h-9 items-center justify-center gap-6 text-[0.6875rem] uppercase tracking-[0.2em]">
-          <span className="hidden sm:inline">Livraison à Abidjan & partout en Côte d’Ivoire</span>
+          <span className="hidden sm:inline">Livraison en Côte d’Ivoire & à l’international</span>
           <span className="hidden h-3 w-px bg-cream-white/25 sm:inline-block" />
           <span>Commande simple via WhatsApp</span>
         </div>
@@ -134,6 +135,7 @@ export function SiteHeader() {
 
             {/* Droite : actions */}
             <div className="flex items-center justify-end gap-1">
+              <CurrencySwitcher className="hidden sm:block" />
               <button
                 onClick={() => setSearchOpen(true)}
                 className="flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-warm-100"
@@ -226,7 +228,7 @@ export function SiteHeader() {
               <a href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">
                 WhatsApp
               </a>
-              <span>Beauty. Roots. Ritual.</span>
+              <CurrencySwitcher tone="dark" />
             </motion.div>
           </motion.div>
         )}

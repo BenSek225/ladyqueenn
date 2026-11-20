@@ -6,7 +6,7 @@ import { LadyQueenLogo } from '@/components/brand/logo'
 
 export function SiteFooter() {
   const year = new Date().getFullYear()
-  const wa = `https://wa.me/${siteConfig.whatsapp.replace(/\D/g, '')}`
+  const wa = `https://wa.me/${siteConfig.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent('Bonjour Lady Queen 👑, j’ai une question.')}`
 
   return (
     <footer className="relative overflow-hidden bg-deep-black text-cream-white">
@@ -57,7 +57,12 @@ export function SiteFooter() {
               </li>
               <li>
                 <a href={wa} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-champagne-gold">
-                  Conseil personnalisé
+                  Nous contacter sur WhatsApp
+                </a>
+              </li>
+              <li>
+                <a href={wa} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-champagne-gold">
+                  Livraison internationale
                 </a>
               </li>
               <li>

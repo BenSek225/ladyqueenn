@@ -11,17 +11,17 @@ export const useCart = create<CartStoreState>()(
   persist(
     (set, get) => ({
       items: [],
-      addItem: (item) =>
+      addItem: (item, quantity = 1) =>
         set((state) => {
           const existing = state.items.find((i) => i.id === item.id)
           if (existing) {
             return {
               items: state.items.map((i) =>
-                i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+                i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i
               ),
             }
           }
-          return { items: [...state.items, { ...item, quantity: 1 }] }
+          return { items: [...state.items, { ...item, quantity }] }
         }),
       removeItem: (id) =>
         set((state) => ({
@@ -43,16 +43,10 @@ export const useCart = create<CartStoreState>()(
       getCartCount: () => {
         return get().items.reduce((acc, item) => acc + item.quantity, 0)
       },
-      formatCartMessage: () => {
-        const items = get().items
-        const total = get().getTotalPrice()
-        const lines = items.map((item) => `- ${item.name} x${item.quantity} : ${(item.price * item.quantity).toLocaleString('fr-FR')} FCFA`)
-        return `Bonjour ! Je souhaite commander :%0A%0A${lines.join('%0A')}%0A%0ATOTAL : ${total.toLocaleString('fr-FR')} FCFA`
-      },
     }),
     {
-      name: 'cart-storage',
-      storage: createJSONStorage(() => sessionStorage),
+      name: 'lady-queen-cart',
+      storage: createJSONStorage(() => localStorage),
     }
   )
 )

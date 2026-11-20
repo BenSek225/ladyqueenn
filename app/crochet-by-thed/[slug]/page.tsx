@@ -1,40 +1,7 @@
-import { notFound } from 'next/navigation'
-import { getProductBySlug, getAllProductPaths } from '@/lib/data/all-products'
-import { ProductDetailLayout } from '@/components/product/product-detail-layout'
+import { productPage } from '@/lib/product-page'
 
-// Génération statique des pages pour tous les produits Crochet
-export async function generateStaticParams() {
-  const paths = getAllProductPaths()
-  return paths
-    .filter(p => p.volet === 'crochet-by-thed')
-    .map(p => ({ slug: p.slug }))
-}
+const page = productPage('crochet-by-thed')
 
-// Métadonnées dynamiques
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const product = getProductBySlug(slug)
-  
-  if (!product || product.volet !== 'crochet-by-thed') {
-    return {
-      title: 'Produit non trouvé | Lady Queen',
-    }
-  }
-
-  return {
-    title: `${product.name} — Crochet by THED | Lady Queen`,
-    description: product.description,
-  }
-}
-
-export default async function CrochetProductPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const product = getProductBySlug(slug)
-  
-  // Si produit inexistant ou pas du bon volet, 404
-  if (!product || product.volet !== 'crochet-by-thed') {
-    notFound()
-  }
-
-  return <ProductDetailLayout product={product} />
-}
+export const generateStaticParams = page.generateStaticParams
+export const generateMetadata = page.generateMetadata
+export default page.Page

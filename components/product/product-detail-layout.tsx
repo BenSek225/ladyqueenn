@@ -1,17 +1,21 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AnimatePresence, motion } from 'motion/react'
-import { ArrowLeft, ArrowUpRight, Leaf, Package, ShieldCheck, Scissors } from 'lucide-react'
+import { AnimatePresence, motion, useInView } from 'motion/react'
+import { ArrowLeft, Check, Leaf, MessageCircle, Minus, Package, Plus, ShieldCheck, Scissors, ShoppingBag, Zap } from 'lucide-react'
 import { Breadcrumb } from '@/components/layout/breadcrumb'
 import { ProductCard } from '@/components/product-card'
-import { AddToCart } from '@/components/add-to-cart'
+import { PriceHint } from '@/components/shared/price'
+import { toast } from '@/components/shared/toast'
+import { useCart } from '@/lib/store'
 import { Reveal, RevealGroup, RevealItem } from '@/components/motion/reveal'
 import type { CrochetProduct, FragranceProduct, Product, SweetHairProduct } from '@/lib/types'
 import { getSimilarProducts, getUniverseName, getVoletPath } from '@/lib/data/all-products'
-import { badgeLabel, cn, whatsappUrl } from '@/lib/utils'
+import { badgeLabel, cn } from '@/lib/utils'
+import { whatsappLink } from '@/lib/order'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -39,6 +43,14 @@ export function ProductDetailLayout({ product }: { product: Product }) {
   const [tab, setTab] = useState<'details' | 'composition' | 'usage'>('details')
   const [size, setSize] = useState<string | null>(null)
   const [color, setColor] = useState<string | null>(null)
+  const [quantity, setQuantity] = useState(1)
+  const [added, setAdded] = useState(false)
+  const [pageUrl, setPageUrl] = useState('')
+  useEffect(() => setPageUrl(window.location.href.split('?')[0]), [])
+  const addItem = useCart((s) => s.addItem)
+  const router = useRouter()
+  const actionsRef = useRef<HTMLDivElement>(null)
+  const actionsVisible = useInView(actionsRef, { margin: '0px 0px -40px 0px' })
 
   const path = `/${getVoletPath(product.volet)}`
   const brandName = getUniverseName(product.volet)
@@ -48,7 +60,35 @@ export function ProductDetailLayout({ product }: { product: Product }) {
   const sweet = product.volet === 'sweet-hair' ? (product as SweetHairProduct) : null
 
   const options = [size && `taille ${size}`, color && `couleur ${color}`].filter(Boolean).join(', ')
-  const waMessage = `Bonjour Lady Queen, je souhaite commander : ${product.name}${options ? ` (${options})` : ''} — ${product.price.toLocaleString('fr-FR')} FCFA.`
+  const waMessage = `Bonjour Lady Queen 👑, je souhaite commander :\n• ${product.name}${options ? ` (${options})` : ''} × ${quantity} — ${(product.price * quantity).toLocaleString('fr-FR')} FCFA${pageUrl ? `\n${pageUrl}` : ''}`
+  const soldOut = product.stock === 0
+  const discount = product.oldPrice ? Math.round((1 - product.price / product.oldPrice) * 100) : 0
+
+  function addToCart() {
+    const label = [size, color].filter(Boolean).join(', ')
+    addItem(
+      {
+        id: label ? `${product.id}::${label}` : product.id,
+        name: label ? `${product.name} (${label})` : product.name,
+        price: product.price,
+        image: product.image,
+        volet: product.volet,
+      },
+      quantity,
+    )
+  }
+
+  function handleAdd() {
+    addToCart()
+    toast.success('Ajouté au panier', `${product.name} × ${quantity}`)
+    setAdded(true)
+    setTimeout(() => setAdded(false), 1800)
+  }
+
+  function handleBuyNow() {
+    addToCart()
+    router.push('/commande')
+  }
 
   const tabs = [
     { key: 'details' as const, label: 'Détails' },
@@ -94,7 +134,14 @@ export function ProductDetailLayout({ product }: { product: Product }) {
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={images[selected]}
-                  className="absolute inset-0"
+                  className="absolute inset-0 touch-pan-y"
+                  drag={images.length > 1 ? 'x' : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.25}
+                  onDragEnd={(_, info) => {
+                    if (info.offset.x < -50) setSelected((i) => (i + 1) % images.length)
+                    if (info.offset.x > 50) setSelected((i) => (i - 1 + images.length) % images.length)
+                  }}
                   initial={{ opacity: 0, scale: 1.04 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
@@ -106,10 +153,17 @@ export function ProductDetailLayout({ product }: { product: Product }) {
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
+                    className="pointer-events-none object-cover"
                   />
                 </motion.div>
               </AnimatePresence>
+              {images.length > 1 && (
+                <div className="absolute inset-x-0 bottom-4 flex justify-center gap-1.5 sm:hidden">
+                  {images.map((img, i) => (
+                    <span key={img} className={cn('h-1.5 rounded-full bg-cream-white transition-all duration-500', i === selected ? 'w-6' : 'w-1.5 opacity-60')} />
+                  ))}
+                </div>
+              )}
               {product.badge && (
                 <span className="absolute left-4 top-4 rounded-full bg-cream-white/90 px-3 py-1 text-[0.625rem] font-semibold uppercase tracking-[0.16em] backdrop-blur">
                   {badgeLabel(product.badge)}
@@ -126,12 +180,18 @@ export function ProductDetailLayout({ product }: { product: Product }) {
                 {fragrance?.brand ? ` · ${fragrance.brand}` : ''}
               </p>
               <h1 className="mt-4 font-brand text-4xl leading-[1.05] tracking-tight sm:text-5xl">{product.name}</h1>
-              <p className="price mt-5 flex items-baseline gap-3">
-                <span className="text-2xl text-gold-dark">{product.price.toLocaleString('fr-FR')} FCFA</span>
+              <div className="price mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <span className="text-3xl text-gold-dark">{product.price.toLocaleString('fr-FR')} FCFA</span>
                 {product.oldPrice && (
                   <span className="text-base text-warm-400 line-through">{product.oldPrice.toLocaleString('fr-FR')} FCFA</span>
                 )}
-              </p>
+                {discount > 0 && (
+                  <span className="rounded-full bg-deep-black px-2.5 py-1 font-sans text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-champagne-gold">
+                    −{discount} %
+                  </span>
+                )}
+                <PriceHint amount={product.price} className="w-full text-sm text-warm-500" />
+              </div>
               <p className="mt-6 max-w-lg text-base leading-relaxed text-warm-600">{product.description}</p>
             </Reveal>
 
@@ -159,16 +219,36 @@ export function ProductDetailLayout({ product }: { product: Product }) {
               </div>
             )}
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col 2xl:flex-row">
-              <AddToCart product={product} className="flex-1" />
+            <div ref={actionsRef} className="mt-8 space-y-3">
+              <div className="flex gap-3">
+                <div className="flex h-[3.25rem] shrink-0 items-center rounded-full border border-warm-300">
+                  <button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="flex h-full w-11 items-center justify-center" aria-label="Diminuer la quantité">
+                    <Minus size={15} />
+                  </button>
+                  <span className="price w-7 text-center">{quantity}</span>
+                  <button onClick={() => setQuantity((q) => Math.min(20, q + 1))} className="flex h-full w-11 items-center justify-center" aria-label="Augmenter la quantité">
+                    <Plus size={15} />
+                  </button>
+                </div>
+                <button onClick={handleAdd} disabled={soldOut} className="btn-secondary flex-1">
+                  {added ? <Check size={17} /> : <ShoppingBag size={17} />}
+                  {soldOut ? 'Épuisé' : added ? 'Ajouté' : 'Ajouter au panier'}
+                </button>
+              </div>
+              <button onClick={handleBuyNow} disabled={soldOut} className="btn-primary w-full">
+                <Zap size={16} /> Acheter maintenant
+              </button>
               <a
-                href={whatsappUrl(waMessage)}
+                href={whatsappLink(waMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-secondary flex-1 whitespace-nowrap"
+                className="btn-primary w-full !bg-[#1f7a4d]"
               >
-                Commander sur WhatsApp <ArrowUpRight size={16} />
+                <MessageCircle size={17} /> Commander sur WhatsApp
               </a>
+              <p className="pt-1 text-center text-xs text-warm-500">
+                Wave · Orange Money · MTN · Moov · ou paiement à la livraison
+              </p>
             </div>
 
             <ul className="mt-8 space-y-3 border-t border-warm-200 pt-6">
@@ -308,6 +388,41 @@ export function ProductDetailLayout({ product }: { product: Product }) {
           </div>
         </section>
       )}
+
+      {/* Barre d'achat mobile (visiteurs venant des publicités) */}
+      <AnimatePresence>
+        {!actionsVisible && !soldOut && (
+          <motion.div
+            initial={{ y: '110%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '110%' }}
+            transition={{ duration: 0.5, ease: EASE }}
+            className="fixed inset-x-0 bottom-0 z-30 border-t border-warm-200 bg-cream-white/95 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl lg:hidden"
+          >
+            <div className="flex items-center gap-3">
+              <div className="relative h-12 w-10 shrink-0 overflow-hidden rounded-md bg-warm-100">
+                <Image src={product.image} alt="" fill sizes="40px" className="object-cover" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-medium">{product.name}</p>
+                <p className="price text-sm text-gold-dark">{product.price.toLocaleString('fr-FR')} FCFA</p>
+              </div>
+              <a
+                href={whatsappLink(waMessage)}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Commander sur WhatsApp"
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#1f7a4d] text-white"
+              >
+                <MessageCircle size={18} />
+              </a>
+              <button onClick={handleBuyNow} className="btn-primary !min-h-11 shrink-0 !px-5 !text-[0.6875rem]">
+                Acheter
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

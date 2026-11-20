@@ -14,8 +14,8 @@ import { brands } from '@/lib/brands'
 import { WHATSAPP_NUMBER } from '@/lib/utils'
 
 const services = [
-  { icon: MessageCircle, title: 'Commande WhatsApp', text: 'Votre panier arrive directement chez nous, on confirme avec vous.' },
-  { icon: Truck, title: 'Livraison rapide', text: 'À Abidjan dès 1 500 FCFA, partout en Côte d’Ivoire.' },
+  { icon: MessageCircle, title: 'Paiement simple', text: 'Wave, Orange Money, MTN, Moov, à la livraison ou en un message WhatsApp.' },
+  { icon: Truck, title: 'Livraison partout', text: 'À Abidjan dès 1 500 FCFA, dans toute la Côte d’Ivoire et à l’international.' },
   { icon: Sparkles, title: 'Conseil personnalisé', text: 'Une question sur un soin, un parfum, une taille ? On vous guide.' },
   { icon: CrownIcon, title: 'Sélection exigeante', text: 'Des produits choisis et des pièces finies avec soin.' },
 ]

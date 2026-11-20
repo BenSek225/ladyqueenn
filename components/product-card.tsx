@@ -9,6 +9,7 @@ import { useCart } from '@/lib/store'
 import { getUniverseName, getVoletPath } from '@/lib/data/all-products'
 import { badgeLabel, cn } from '@/lib/utils'
 import { toast } from '@/components/shared/toast'
+import { Price } from '@/components/shared/price'
 
 interface ProductCardProps {
   product: Product
@@ -106,9 +107,7 @@ export function ProductCard({ product, priority = false, tone = 'light', showBra
             </Link>
           </h3>
           <p className="price mt-1.5 flex items-baseline gap-2 text-sm">
-            <span className={dark ? 'text-champagne-gold' : 'text-gold-dark'}>
-              {product.price.toLocaleString('fr-FR')} FCFA
-            </span>
+            <Price amount={product.price} className={dark ? 'text-champagne-gold' : 'text-gold-dark'} />
             {product.oldPrice && (
               <span className={cn('text-xs line-through', dark ? 'text-cream-white/40' : 'text-warm-400')}>
                 {product.oldPrice.toLocaleString('fr-FR')}
