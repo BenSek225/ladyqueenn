@@ -4,7 +4,7 @@
  */
 import { ABIDJAN_ZONES, getDeliveryFee } from '@/lib/data/delivery-zones'
 
-export const WHATSAPP_NUMBER = '2250710504007'
+export const WHATSAPP_NUMBER = '2250799503918'
 export const PENDING_ORDER_KEY = 'lady-queen-pending-order'
 
 export const COUNTRIES = [

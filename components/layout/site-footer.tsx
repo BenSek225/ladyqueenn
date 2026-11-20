@@ -117,6 +117,17 @@ export function SiteFooter() {
         <div className="mt-20 flex flex-col gap-3 border-t border-cream-white/10 pt-6 text-xs text-cream-white/40 md:flex-row md:items-center md:justify-between">
           <p>© {year} Lady Queen. Tous droits réservés.</p>
           <p className="font-mono uppercase tracking-[0.2em]">Beauty. Roots. Ritual.</p>
+          <p>
+            Developed by{' '}
+            <a
+              href="https://bendev.site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream-white/70 underline decoration-champagne-gold/50 underline-offset-4 transition-colors hover:text-champagne-gold"
+            >
+              Ben
+            </a>
+          </p>
         </div>
       </div>
     </footer>

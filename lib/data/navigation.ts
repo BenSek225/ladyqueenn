@@ -127,7 +127,7 @@ export const footerNavigation = {
     { label: 'Facebook', href: 'https://facebook.com/ladyqueenn' },
     { label: 'Instagram', href: 'https://instagram.com/ladyqueenn' },
     { label: 'TikTok', href: 'https://tiktok.com/@ladyqueenn' },
-    { label: 'WhatsApp', href: 'https://wa.me/2250710504007' }
+    { label: 'WhatsApp', href: 'https://wa.me/2250799503918' }
   ]
 }
 
@@ -136,7 +136,7 @@ export const siteConfig = {
   name: 'Lady Queen',
   tagline: 'La maison du raffinement ivoirien',
   description: 'Plateforme e-commerce multi-volets : soins capillaires Sweet-Hair, parfums Fragrance, et créations Crochet by THED.',
-  whatsapp: '+2250710504007',
+  whatsapp: '+2250799503918',
   email: 'estherdakoury9@gmail.com',
   address: 'Abidjan, Côte d\'Ivoire',
   social: {

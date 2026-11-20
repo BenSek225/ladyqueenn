@@ -102,7 +102,7 @@ export default function CommandePage() {
     const er: Partial<Record<keyof Customer, string>> = {}
     if (customer.firstName.trim().length < 2) er.firstName = 'Indiquez votre prénom'
     if (customer.lastName.trim().length < 2) er.lastName = 'Indiquez votre nom'
-    if (!/^\+?[\d\s().-]{8,20}$/.test(customer.phone.trim())) er.phone = 'Numéro invalide (ex. 07 10 50 40 07 ou +33 6…)'
+    if (!/^\+?[\d\s().-]{8,20}$/.test(customer.phone.trim())) er.phone = 'Numéro invalide (ex. 07 99 50 39 18 ou +33 6…)'
     if (customer.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email)) er.email = 'Adresse email invalide'
     if (!customer.city.trim()) er.city = local ? 'Choisissez votre ville' : 'Indiquez votre ville'
     if (local && customer.city === 'Abidjan' && !customer.commune) er.commune = 'Choisissez votre commune'
@@ -189,7 +189,7 @@ export default function CommandePage() {
                   <input id="f-lastName" autoComplete="family-name" value={customer.lastName} onChange={set('lastName')} className="field" />
                 </Field>
                 <Field id="phone" label="Téléphone / WhatsApp" error={errors.phone}>
-                  <input id="f-phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="07 10 50 40 07" value={customer.phone} onChange={set('phone')} className="field" />
+                  <input id="f-phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="07 99 50 39 18" value={customer.phone} onChange={set('phone')} className="field" />
                 </Field>
                 <Field id="email" label="Email" optional error={errors.email}>
                   <input id="f-email" type="email" autoComplete="email" placeholder="vous@exemple.com" value={customer.email} onChange={set('email')} className="field" />
