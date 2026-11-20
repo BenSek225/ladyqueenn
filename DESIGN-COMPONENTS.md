@@ -1,4 +1,4 @@
-# Composants UI Lady Queenn
+# Composants UI Lady Queen
 
 Guide d'implémentation des composants selon le Design System **Luxury Editorial × Organic Minimal**.
 
@@ -258,7 +258,7 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-10">
         <Image
           src="/images/home/hero-background.jpg"
-          alt="Lady Queenn"
+          alt="Lady Queen"
           fill
           priority
           quality={90}
@@ -583,4 +583,4 @@ export default function SweetHairPage() {
 
 ---
 
-**Design Components prêts pour Lady Queenn ! 👑**
+**Design Components prêts pour Lady Queen ! 👑**

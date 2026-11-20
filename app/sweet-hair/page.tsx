@@ -1,251 +1,181 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Droplet, Sparkles, Heart, Leaf } from 'lucide-react'
+import { ArrowRight, Droplets, Leaf, Sprout, Sparkles } from 'lucide-react'
+import { BrandCatalog } from '@/components/brand/brand-catalog'
+import { SweetHairLogo } from '@/components/brand/logo'
 import { Breadcrumb } from '@/components/layout/breadcrumb'
-import { ProductCard } from '@/components/product-card'
+import { AddToCart } from '@/components/add-to-cart'
+import { Parallax, Reveal, RevealGroup, RevealItem, SplitLines } from '@/components/motion/reveal'
 import { sweetHairProducts } from '@/lib/data/sweet-hair-products'
+import { whatsappUrl } from '@/lib/utils'
 
 export const metadata = {
-  title: 'Sweet-Hair — Soins Capillaires Naturels | Lady Queenn',
-  description: 'Soins biologiques formulés avec des ingrédients naturels pour des cheveux nourris, forts et resplendissants.',
+  title: 'Sweet-Hair — Soins capillaires naturels | Lady Queen',
+  description:
+    'Huiles, shampooings et pommades aux ingrédients naturels pour des cheveux nourris, forts et resplendissants.',
 }
 
+const promises = [
+  { icon: Leaf, title: '100 % naturel', text: 'Huiles végétales, beurres et extraits de plantes africaines.' },
+  { icon: Sprout, title: 'Pousse stimulée', text: 'Renforce les racines et réveille le cuir chevelu.' },
+  { icon: Droplets, title: 'Nutrition intense', text: 'Hydrate en profondeur, apporte volume et brillance.' },
+  { icon: Sparkles, title: 'Cheveux réparés', text: 'Apaise le cuir chevelu, répare les longueurs abîmées.' },
+]
+
+const ritual = [
+  { step: '01', title: 'Nourrir', text: 'Massez l’huile sur le cuir chevelu, cheveux secs ou humides, pour stimuler la circulation.' },
+  { step: '02', title: 'Laver', text: 'Le shampooing nettoie en douceur tout en préservant les huiles naturelles.' },
+  { step: '03', title: 'Sceller', text: 'La pommade définit les boucles, scelle l’hydratation et protège au quotidien.' },
+]
+
 export default function SweetHairPage() {
+  const kit = sweetHairProducts.find((p) => p.isKit)
+
   return (
-    <main className="volet-sweet-hair">
-      {/* Hero Section */}
-      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/images/hero/sweet-hair.png"
-            alt="Sweet-Hair Natural Hair Care"
-            fill
-            priority
-            quality={90}
-            sizes="100vw"
-            className="object-cover"
+    <div data-brand="sweet-hair" className="bg-cream-white">
+      {/* Hero */}
+      <section className="grain relative overflow-hidden bg-sh-light">
+        <div className="container-luxury grid items-center gap-10 pb-16 pt-8 lg:min-h-[78vh] lg:grid-cols-2 lg:gap-16 lg:py-16">
+          <div className="order-2 lg:order-1">
+            <Breadcrumb items={[{ label: 'Sweet-Hair', href: '/sweet-hair' }]} />
+            <Reveal className="mt-8">
+              <SweetHairLogo tone="dark" className="w-24 sm:w-28" />
+            </Reveal>
+            <p className="eyebrow-label mt-8 text-sh-olive">Soins capillaires naturels</p>
+            <SplitLines
+              delay={0.2}
+              className="mt-4 font-brand text-5xl leading-[1] tracking-tight text-sh-deep sm:text-6xl lg:text-7xl"
+              lines={['La nature', <em key="i" className="font-light">sublime</em>, 'vos cheveux.']}
+            />
+            <Reveal delay={0.5}>
+              <p className="mt-8 max-w-md text-base leading-relaxed text-sh-deep/75 sm:text-lg">
+                Des soins formulés avec des ingrédients naturels d’Afrique pour nourrir, fortifier et révéler toutes les
+                textures.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+                <Link href="#soins" className="btn-primary !bg-sh-deep">
+                  Découvrir les soins <ArrowRight size={16} />
+                </Link>
+                <Link href="#kit" className="link-underline text-xs font-medium uppercase tracking-[0.2em] text-sh-deep">
+                  Le kit complet
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal direction="none" duration={1.4} className="order-1 lg:order-2">
+            <div className="relative mx-auto max-w-[32rem]">
+              <Parallax amount={40} className="relative aspect-[4/5] rounded-t-[999px] rounded-b-soft">
+                <Image
+                  src="/images/hero/sweet-hair.png"
+                  alt="Soins Sweet-Hair"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                  className="object-cover"
+                />
+              </Parallax>
+              <div className="absolute -bottom-6 -left-4 rounded-soft bg-cream-white px-5 py-4 shadow-luxe sm:-left-10">
+                <p className="eyebrow-label text-sh-olive">Made in Côte d’Ivoire</p>
+                <p className="mt-1 font-brand text-xl text-sh-deep">Dès 2 000 FCFA</p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Promesses */}
+      <section className="border-b border-sh-sage/20 bg-cream-white py-16 lg:py-20">
+        <RevealGroup className="container-luxury grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {promises.map(({ icon: Icon, title, text }) => (
+            <RevealItem key={title}>
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-sh-light text-sh-olive">
+                <Icon size={20} strokeWidth={1.5} />
+              </span>
+              <h3 className="mt-5 font-brand text-xl text-sh-deep">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-warm-500">{text}</p>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+      </section>
+
+      {/* Catalogue */}
+      <section id="soins" className="scroll-mt-24 py-20 lg:py-28">
+        <div className="container-luxury">
+          <Reveal className="mb-10">
+            <p className="eyebrow-label mb-4 text-sh-olive">La collection</p>
+            <h2 className="font-brand text-4xl text-sh-deep sm:text-5xl">Les essentiels Sweet-Hair</h2>
+          </Reveal>
+          <BrandCatalog
+            products={sweetHairProducts}
+            noun={['soin', 'soins']}
+            filters={[
+              { key: 'all', label: 'Tous' },
+              { key: 'huile', label: 'Huiles' },
+              { key: 'shampooing', label: 'Shampooings' },
+              { key: 'pommade', label: 'Pommades' },
+              { key: 'kit', label: 'Kit' },
+            ]}
           />
-          {/* Overlay vert sauge subtil */}
-          <div className="absolute inset-0 bg-gradient-to-b from-sh-light/50 via-sh-light/30 to-cream-white/90" />
-        </div>
-
-        {/* Content */}
-        <div className="container-luxury text-center py-12 sm:py-16 lg:py-20">
-          <p className="eyebrow-label text-sh-olive mb-6 animate-fade-in">
-            SOIN NATUREL & LUXUEUX
-          </p>
-
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl leading-[0.95] mb-6 text-deep-black animate-slide-up [animation-delay:150ms]">
-            Lady Queenn
-            <br />
-            <span className="italic font-normal text-sh-olive">Sweet-Hair</span>
-          </h1>
-
-          <p className="text-sm sm:text-base md:text-lg text-dark-gray max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed animate-slide-up [animation-delay:300ms]">
-            Des soins biologiques, formulés avec des ingrédients naturels d'Ivoire 
-            pour des cheveux nourris, forts et resplendissants.
-          </p>
-
-          <Link 
-            href="#products" 
-            className="btn-primary bg-sh-olive hover:bg-sh-sage border-sh-olive inline-flex items-center gap-2 sm:gap-3 animate-scale-in [animation-delay:450ms]"
-          >
-            Découvrir nos rituels
-            <ArrowRight size={20} />
-          </Link>
         </div>
       </section>
 
-      {/* Breadcrumb */}
-      <div className="container-luxury pt-6">
-        <Breadcrumb items={[{ label: 'CHEVEUX', href: '/sweet-hair' }]} />
-      </div>
+      {/* Kit */}
+      {kit && (
+        <section id="kit" className="scroll-mt-24 px-3 pb-20 sm:px-5 lg:pb-28">
+          <div className="grain relative mx-auto grid max-w-[1400px] overflow-hidden rounded-[1.5rem] bg-sh-deep text-cream-white lg:grid-cols-2">
+            <div className="relative min-h-[360px] lg:min-h-[560px]">
+              <Image src={kit.image} alt={kit.name} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
+            </div>
+            <Reveal className="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
+              <p className="eyebrow-label text-sh-sage">Offre rituel complet</p>
+              <h2 className="mt-4 font-brand text-4xl leading-tight sm:text-5xl">
+                Le kit qui fait <em className="font-light">tout</em>.
+              </h2>
+              <p className="mt-5 max-w-md leading-relaxed text-cream-white/70">
+                Huile 60 ml, shampooing 250 ml et pommade : la routine complète pour des cheveux nourris, forts et
+                brillants. Emballage cadeau offert.
+              </p>
+              <p className="price mt-8 flex items-baseline gap-3">
+                <span className="text-4xl text-cream-white">{kit.price.toLocaleString('fr-FR')} FCFA</span>
+                {kit.oldPrice && (
+                  <span className="text-lg text-cream-white/40 line-through">{kit.oldPrice.toLocaleString('fr-FR')}</span>
+                )}
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <AddToCart product={kit} variant="light" />
+                <a
+                  href={whatsappUrl('Bonjour Lady Queen, je souhaite commander le Kit complet Sweet-Hair.')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-cream-white"
+                >
+                  Commander sur WhatsApp
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
-      {/* Section Bénéfices */}
-      <section className="py-16 lg:py-20 bg-cream-white">
+      {/* Rituel */}
+      <section className="bg-sh-light py-20 lg:py-28">
         <div className="container-luxury">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl mb-4">
-              Pourquoi choisir Sweet-Hair ?
-            </h2>
-            <p className="text-warm-500 max-w-2xl mx-auto">
-              Quatre promesses pour sublimer vos cheveux naturellement
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-            {/* Bénéfice 1 */}
-            <div className="text-center group p-4 sm:p-0">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">
-                <Leaf className="w-8 h-8 text-sh-olive" />
-              </div>
-              <h3 className="font-display text-xl mb-3">100% Naturel</h3>
-              <p className="text-sm text-warm-500 leading-relaxed">
-                Ingrédients biologiques et huiles végétales pures d'Afrique
-              </p>
-            </div>
-
-            {/* Bénéfice 2 */}
-            <div className="text-center group p-4 sm:p-0">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">
-                <Sparkles className="w-8 h-8 text-sh-olive" />
-              </div>
-              <h3 className="font-display text-xl mb-3">Pousse Accélérée</h3>
-              <p className="text-sm text-warm-500 leading-relaxed">
-                Stimule la croissance et renforce les racines
-              </p>
-            </div>
-
-            {/* Bénéfice 3 */}
-            <div className="text-center group p-4 sm:p-0">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">
-                <Droplet className="w-8 h-8 text-sh-olive" />
-              </div>
-              <h3 className="font-display text-xl mb-3">Hydratation Intense</h3>
-              <p className="text-sm text-warm-500 leading-relaxed">
-                Nourrit en profondeur et apporte volume et brillance
-              </p>
-            </div>
-
-            {/* Bénéfice 4 */}
-            <div className="text-center group p-4 sm:p-0">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sh-light mb-6 transition-all duration-normal group-hover:scale-110 group-hover:bg-sh-sage/30">
-                <Heart className="w-8 h-8 text-sh-olive" />
-              </div>
-              <h3 className="font-display text-xl mb-3">Réparation Totale</h3>
-              <p className="text-sm text-warm-500 leading-relaxed">
-                Traite les problèmes du cuir chevelu et répare les cheveux abîmés
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section Produits */}
-      <section id="products" className="py-20 lg:py-32 bg-cream-light">
-        <div className="container-luxury">
-          <div className="text-center mb-12">
-            <p className="eyebrow-label mb-3">Notre Gamme</p>
-            <h2 className="font-display text-4xl md:text-5xl mb-4">
-              Les essentiels Sweet-Hair
-            </h2>
-            <p className="text-lg text-warm-500 max-w-2xl mx-auto">
-              Huile, shampoing et pommade pour un rituel capillaire complet
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 lg:gap-8">
-            {sweetHairProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+          <Reveal className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="eyebrow-label mb-4 text-sh-olive">Le rituel</p>
+            <h2 className="font-brand text-4xl text-sh-deep sm:text-5xl">Trois gestes, des cheveux transformés</h2>
+          </Reveal>
+          <RevealGroup className="grid gap-6 md:grid-cols-3" stagger={0.15}>
+            {ritual.map((r) => (
+              <RevealItem key={r.step} className="rounded-soft bg-cream-white p-8 lg:p-10">
+                <span className="font-brand text-6xl font-light text-sh-sage">{r.step}</span>
+                <h3 className="mt-6 font-brand text-2xl text-sh-deep">{r.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-warm-500">{r.text}</p>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </section>
-
-      {/* Section Kit Highlight */}
-      <section className="py-20 lg:py-32 bg-sh-olive text-cream-white">
-        <div className="container-luxury">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block bg-champagne-gold text-deep-black px-4 py-1.5 rounded-full text-sm font-semibold uppercase tracking-wider mb-6">
-              Offre Spéciale
-            </div>
-
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl mb-6">
-              Kit Complet Sweet-Hair
-            </h2>
-
-            <p className="text-lg md:text-xl mb-4 leading-relaxed">
-              Huile 60ml + Shampoing 250ml + Pommade
-            </p>
-
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <span className="text-3xl md:text-4xl font-mono font-bold">5 000 FCFA</span>
-              <span className="text-xl text-cream-light line-through">6 000 FCFA</span>
-            </div>
-
-            <p className="text-base text-cream-light mb-10 max-w-2xl mx-auto">
-              Économisez 1 000 FCFA avec notre kit complet. 
-              Tout ce dont vos cheveux ont besoin pour un rituel de soin optimal.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="#products" 
-                className="bg-cream-white text-sh-olive px-8 py-4 rounded-soft font-medium hover:bg-champagne-gold hover:text-deep-black transition-all duration-normal inline-flex items-center justify-center gap-3"
-              >
-                Commander le kit
-                <ArrowRight size={20} />
-              </Link>
-              <a
-                href="https://wa.me/2250710504007?text=Bonjour%2C%20je%20souhaite%20commander%20le%20Kit%20Sweet-Hair%20complet"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-transparent border-2 border-cream-white text-cream-white px-8 py-4 rounded-lg font-medium hover:bg-cream-white hover:text-sh-olive transition-all duration-300 inline-flex items-center justify-center gap-3 bouncy-hover group"
-                aria-label="Commander le Kit Sweet-Hair via WhatsApp (ouvre dans un nouvel onglet)"
-              >
-                <span>Commander via WhatsApp</span>
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section Rituels (Optionnel) */}
-      <section className="py-20 lg:py-32 bg-cream-white">
-        <div className="container-luxury">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="font-display text-4xl md:text-5xl text-center mb-12">
-              Comment utiliser Sweet-Hair ?
-            </h2>
-
-            <div className="space-y-8">
-              {/* Étape 1 */}
-              <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sh-light flex items-center justify-center">
-                  <span className="font-display text-xl text-sh-olive">1</span>
-                </div>
-                <div>
-                  <h3 className="font-display text-xl mb-2">Préparez vos cheveux</h3>
-                  <p className="text-warm-500 leading-relaxed">
-                    Appliquez l'huile Sweet-Hair sur cheveux secs ou humides, 
-                    en massant le cuir chevelu pour stimuler la circulation.
-                  </p>
-                </div>
-              </div>
-
-              {/* Étape 2 */}
-              <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sh-light flex items-center justify-center">
-                  <span className="font-display text-xl text-sh-olive">2</span>
-                </div>
-                <div>
-                  <h3 className="font-display text-xl mb-2">Lavez en douceur</h3>
-                  <p className="text-warm-500 leading-relaxed">
-                    Utilisez le shampoing Sweet-Hair pour nettoyer en profondeur 
-                    tout en préservant les huiles naturelles.
-                  </p>
-                </div>
-              </div>
-
-              {/* Étape 3 */}
-              <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sh-light flex items-center justify-center">
-                  <span className="font-display text-xl text-sh-olive">3</span>
-                </div>
-                <div>
-                  <h3 className="font-display text-xl mb-2">Coiffez et protégez</h3>
-                  <p className="text-warm-500 leading-relaxed">
-                    Appliquez la pommade Sweet-Hair pour définir vos boucles, 
-                    sceller l'hydratation et protéger contre les agressions extérieures.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+    </div>
   )
 }

@@ -1,10 +1,10 @@
 ---
-name: "Design System Lady Queenn"
-description: "Direction artistique, règles de design et guidelines visuelles pour Lady Queenn"
+name: "Design System Lady Queen"
+description: "Direction artistique, règles de design et guidelines visuelles pour Lady Queen"
 inclusion: auto
 ---
 
-# Design System Lady Queenn 👑
+# Design System Lady Queen 👑
 
 ## 🎨 Direction Artistique
 
@@ -13,7 +13,7 @@ inclusion: auto
 
 ### ADN de Marque
 
-Lady Queenn incarne le **raffinement ivoirien contemporain** :
+Lady Queen incarne le **raffinement ivoirien contemporain** :
 - ✨ **Élégance** : Sans ostentation, naturelle et affirmée
 - 🌿 **Authenticité** : Matériaux naturels, artisanat valorisé
 - 🏛️ **Intemporalité** : Design qui traverse les modes
@@ -489,8 +489,8 @@ Avant de valider un composant/page :
 
 ## 🎯 Résumé en Une Phrase
 
-**Lady Queenn doit donner l'impression d'entrer dans une maison de raffinement contemporaine africaine : élégante, chaleureuse, authentique, avec une mise en page digne d'un magazine de luxe et une expérience fluide et unifiée.**
+**Lady Queen doit donner l'impression d'entrer dans une maison de raffinement contemporaine africaine : élégante, chaleureuse, authentique, avec une mise en page digne d'un magazine de luxe et une expérience fluide et unifiée.**
 
 ---
 
-*Design system créé pour Lady Queenn - La maison du raffinement ivoirien 👑*
+*Design system créé pour Lady Queen - La maison du raffinement ivoirien 👑*

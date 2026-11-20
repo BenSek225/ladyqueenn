@@ -1,8 +1,8 @@
-# Architecture Technique - Lady Queenn
+# Architecture Technique - Lady Queen
 
 ## 📋 Vue d'Ensemble
 
-Lady Queenn est une plateforme e-commerce **mono-site multi-volets** construite avec Next.js 16 (App Router).
+Lady Queen est une plateforme e-commerce **mono-site multi-volets** construite avec Next.js 16 (App Router).
 
 ### Principes de Conception
 
@@ -201,7 +201,7 @@ Résultats filtrés par volet
 ```css
 /* Suggestion pour chaque volet */
 :root {
-  /* Lady Queenn Global */
+  /* Lady Queen Global */
   --lq-primary: #... ;      /* Or/Doré (royauté) */
   --lq-secondary: #... ;    
   
@@ -230,7 +230,7 @@ Résultats filtrés par volet
 ## 🔐 Types TypeScript Principaux
 
 ```typescript
-// Volet (section de Lady Queenn)
+// Volet (section de Lady Queen)
 type Volet = 'sweet-hair' | 'fragrance' | 'crochet-by-thed'
 
 // Produit générique
@@ -377,4 +377,4 @@ L'architecture permet d'ajouter facilement :
 
 ---
 
-**Cette architecture est conçue pour grandir avec Lady Queenn ! 🚀**
+**Cette architecture est conçue pour grandir avec Lady Queen ! 🚀**

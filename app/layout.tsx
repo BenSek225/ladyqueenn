@@ -1,47 +1,19 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Playfair_Display, Inter, JetBrains_Mono } from 'next/font/google'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { ToastContainer } from '@/components/shared/toast'
 import { SmoothScrollProvider } from '@/components/providers/smooth-scroll-provider'
-import { RevealProvider } from '@/components/providers/reveal-provider'
 import { OrganizationSchema, WebsiteSchema } from '@/components/seo/structured-data'
 import './globals.css'
 
-// Fonts configuration - Design System Lady Queenn  
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  preload: true,
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-  weight: ['400', '500', '600'],
-  preload: true,
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-  weight: ['400', '500', '600'],
-  preload: false, // Used less, not critical
-})
-
 export const metadata: Metadata = {
-  title: 'Lady Queenn — La maison du raffinement ivoirien',
-  description: 'Lady Queenn — Soins naturels Sweet-Hair, parfums Fragrance, créations Crochet by THED. Beauty. Roots. Ritual.',
-  keywords: ['Lady Queenn', 'Sweet-Hair', 'Fragrance', 'Crochet by THED', 'soins naturels', 'parfums', 'crochet', 'Abidjan', 'Côte d\'Ivoire'],
-  authors: [{ name: 'Lady Queenn' }],
-  creator: 'Lady Queenn',
-  publisher: 'Lady Queenn',
+  title: 'Lady Queen — La maison du raffinement ivoirien',
+  description: 'Lady Queen — Soins naturels Sweet-Hair, parfums Fragrance, créations Crochet by THED. Beauty. Roots. Ritual.',
+  keywords: ['Lady Queen', 'Sweet-Hair', 'Fragrance', 'Crochet by THED', 'soins naturels', 'parfums', 'crochet', 'Abidjan', 'Côte d\'Ivoire'],
+  authors: [{ name: 'Lady Queen' }],
+  creator: 'Lady Queen',
+  publisher: 'Lady Queen',
   formatDetection: {
     email: false,
     address: false,
@@ -52,24 +24,24 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Lady Queenn — Beauty. Roots. Ritual.',
+    title: 'Lady Queen — Beauty. Roots. Ritual.',
     description: 'Soins naturels, parfums intemporels et créations artisanales. L\'élégance africaine sublimée.',
     type: 'website',
     locale: 'fr_CI',
     url: '/',
-    siteName: 'Lady Queenn',
+    siteName: 'Lady Queen',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Lady Queenn - Beauty, Roots, Ritual',
+        alt: 'Lady Queen - Beauty, Roots, Ritual',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lady Queenn — Beauty. Roots. Ritual.',
+    title: 'Lady Queen — Beauty. Roots. Ritual.',
     description: 'Soins naturels, parfums intemporels et créations artisanales.',
     images: ['/images/og-image.jpg'],
   },
@@ -104,11 +76,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F9F6F1' },
-    { media: '(prefers-color-scheme: dark)', color: '#1A1714' },
-  ],
+  colorScheme: 'light',
+  themeColor: '#1A1714',
 }
 
 export default function RootLayout({
@@ -117,27 +86,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="fr" className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://wa.me" />
-      </head>
-      <body className="antialiased font-sans bg-cream-white text-deep-black selection:bg-champagne-gold/20">
+    <html lang="fr">
+      <body>
         <OrganizationSchema />
         <WebsiteSchema />
         <a href="#main-content" className="skip-link">
           Aller au contenu principal
         </a>
         <SmoothScrollProvider>
-          <RevealProvider>
             <SiteHeader />
             <main className="min-h-screen" id="main-content">
               {children}
             </main>
             <SiteFooter />
             <ToastContainer />
-          </RevealProvider>
         </SmoothScrollProvider>
         <Analytics />
       </body>

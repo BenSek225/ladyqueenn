@@ -1,4 +1,4 @@
-# 🎨 Refonte Complète Lady Queenn - Vision & Execution
+# 🎨 Refonte Complète Lady Queen - Vision & Execution
 
 ## 📸 Analyse des Visuels Fournis
 
@@ -8,7 +8,7 @@ Les visuels fournis définissent parfaitement la direction **Luxury Editorial ×
 
 1. **Logo & Branding**
    - Couronne élégante (👑 symbole)
-   - "Lady Queenn" en Serif élégante
+   - "Lady Queen" en Serif élégante
    - Taglines : "FRAGRANCE", "CROCHET BY THED", "Sweet-Hair"
    - Sous-titres en petites caps : "CÔTE D'IVOIRE"
 
@@ -109,7 +109,7 @@ Les visuels fournis définissent parfaitement la direction **Luxury Editorial ×
 ### ✅ Documentation Complète
 
 1. **README.md** (REFAIT)
-   - Vision "Embrace Your Queenn Energy"
+   - Vision "Embrace Your Queen Energy"
    - 3 univers détaillés (pas "volets")
    - Stack technique moderne
    - Roadmap claire
@@ -143,7 +143,7 @@ Les visuels fournis définissent parfaitement la direction **Luxury Editorial ×
 ### ⚙️ Configuration Technique
 
 6. **tailwind.config.ts** (CRÉÉ)
-   - Palette Lady Queenn
+   - Palette Lady Queen
    - Fonts configurées
    - Spacing system
    - Animations custom
@@ -178,7 +178,7 @@ Les visuels fournis définissent parfaitement la direction **Luxury Editorial ×
 git add .
 git commit -m "feat: complete refonte - vision, design system, implementation plan
 
-- README refait avec vision 'Embrace Your Queenn Energy'
+- README refait avec vision 'Embrace Your Queen Energy'
 - IMPLEMENTATION.md avec plan 12 phases détaillé
 - Design system complet (.kiro/steering/design-system.md)
 - Tailwind config + globals.css avec palette crème/or
@@ -197,7 +197,7 @@ git push origin main
 - [ ] Photos parfums Fragrance (8)
 - [ ] Photos créations Crochet (9)
 - [ ] Hero images (4 : accueil + 3 univers)
-- [ ] Logo Lady Queenn avec couronne (SVG)
+- [ ] Logo Lady Queen avec couronne (SVG)
 
 **Specs** :
 - Format : WebP optimisé
@@ -217,7 +217,7 @@ git push origin main
 ### 4. Phase 2 (Accueil)
 
 **Hero Section** :
-- Implémenter design "Embrace Your Queenn Energy"
+- Implémenter design "Embrace Your Queen Energy"
 - Image éditoriale haute qualité
 - CTA principal
 
@@ -350,7 +350,7 @@ lady-queenn/                          # Maison mère
 
 ## 🎯 Résumé en 3 Phrases
 
-1. **Lady Queenn** est une maison de luxe ivoirienne contemporaine avec **trois univers** : Sweet-Hair (soins capillaires), Fragrance (parfumerie), et Crochet by THED (créations artisanales).
+1. **Lady Queen** est une maison de luxe ivoirienne contemporaine avec **trois univers** : Sweet-Hair (soins capillaires), Fragrance (parfumerie), et Crochet by THED (créations artisanales).
 
 2. Le design suit **Luxury Editorial × Organic Minimal** avec palette crème/or/noir, typographie Playfair+Inter, et photos éditoriales haute qualité.
 

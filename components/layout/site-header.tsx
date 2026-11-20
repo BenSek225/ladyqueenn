@@ -1,225 +1,239 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
-import { Search, ShoppingBag, Menu, X, Sparkles, Droplet, Home } from 'lucide-react'
-import { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react'
+import { ArrowUpRight, Menu, Search, ShoppingBag, X } from 'lucide-react'
 import { useCart } from '@/lib/store'
+import { brands } from '@/lib/brands'
+import { siteConfig } from '@/lib/data/navigation'
+import { cn } from '@/lib/utils'
+import { LadyQueenLogo } from '@/components/brand/logo'
 import { SearchBar } from '@/components/search/search-bar'
 
-// Dynamic import pour optimiser le bundle
-const CartDrawer = dynamic(() => import('@/components/cart-drawer').then(mod => ({ default: mod.CartDrawer })), {
+const CartDrawer = dynamic(() => import('@/components/cart-drawer').then((m) => ({ default: m.CartDrawer })), {
   ssr: false,
-  loading: () => null
+  loading: () => null,
 })
 
+const EASE = [0.16, 1, 0.3, 1] as const
+
+const dotColor: Record<string, string> = {
+  'sweet-hair': 'bg-sh-sage',
+  fragrance: 'bg-fr-plum',
+  'crochet-by-thed': 'bg-cr-terracotta',
+}
+
 export function SiteHeader() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [isCartOpen, setIsCartOpen] = useState(false)
-  const items = useCart((state) => state.items)
+  const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const count = useCart((s) => s.items.reduce((n, i) => n + i.quantity, 0))
+  const { scrollY } = useScroll()
 
-  const cartItemsCount = items.reduce((sum, item) => sum + item.quantity, 0)
+  useEffect(() => setMounted(true), [])
 
-  // Prevent body scroll when mobile menu is open
+  useMotionValueEvent(scrollY, 'change', (y) => {
+    const prev = scrollY.getPrevious() ?? 0
+    setScrolled(y > 24)
+    setHidden(y > 240 && y > prev && !menuOpen)
+  })
+
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
+    setMenuOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
     }
-  }, [isMenuOpen])
+  }, [menuOpen])
 
-  const navItems = [
-    { 
-      label: 'SWEET-HAIR', 
-      href: '/sweet-hair', 
-      universe: 'sweet-hair',
-      icon: Sparkles,
-      color: 'sh-olive',
-      description: 'Soins capillaires naturels'
-    },
-    { 
-      label: 'FRAGRANCE', 
-      href: '/fragrance', 
-      universe: 'fragrance',
-      icon: Droplet,
-      color: 'fr-plum',
-      description: 'Parfums artisanaux'
-    },
-    { 
-      label: 'CROCHET BY THED', 
-      href: '/crochet-by-thed', 
-      universe: 'crochet',
-      icon: Home,
-      color: 'cr-earth',
-      description: 'Créations crochet'
-    },
-  ]
+  const cartCount = mounted ? count : 0
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-cream-white/95 backdrop-blur-sm border-b border-warm-200">
-        <div className="container mx-auto px-3 sm:px-4 lg:px-12 xl:px-20 2xl:px-32">
-          <div className="flex h-16 lg:h-20 xl:h-24 items-center justify-between gap-2">
-            {/* Logo */}
-            <Link 
-              href="/" 
-              className="flex items-center gap-2 group transition-opacity hover:opacity-70 relative z-50"
-            >
-              <Image
-                src="/images/logo-lady-queenn.png"
-                alt="Lady Queenn"
-                width={180}
-                height={56}
+      {/* Bandeau maison */}
+      <div className="bg-deep-black text-cream-white/80">
+        <div className="container-luxury flex h-9 items-center justify-center gap-6 text-[0.6875rem] uppercase tracking-[0.2em]">
+          <span className="hidden sm:inline">Livraison à Abidjan & partout en Côte d’Ivoire</span>
+          <span className="hidden h-3 w-px bg-cream-white/25 sm:inline-block" />
+          <span>Commande simple via WhatsApp</span>
+        </div>
+      </div>
+
+      <motion.header
+        animate={{ y: hidden ? '-100%' : '0%' }}
+        transition={{ duration: 0.5, ease: EASE }}
+        className={cn(
+          'sticky top-0 z-40 w-full transition-[background-color,box-shadow,border-color] duration-500',
+          scrolled
+            ? 'border-b border-warm-200/80 bg-cream-white/85 shadow-[0_8px_30px_-20px_rgba(26,23,20,0.35)] backdrop-blur-xl'
+            : 'border-b border-transparent bg-cream-white',
+        )}
+      >
+        <div className="container-luxury">
+          <div
+            className={cn(
+              'grid grid-cols-[1fr_auto_1fr] items-center transition-[height] duration-500',
+              scrolled ? 'h-16 lg:h-[4.5rem]' : 'h-[4.5rem] lg:h-24',
+            )}
+          >
+            {/* Gauche : navigation / menu mobile */}
+            <div className="flex items-center">
+              <button
+                onClick={() => setMenuOpen(true)}
+                className="-ml-2 flex h-11 w-11 items-center justify-center lg:hidden"
+                aria-label="Ouvrir le menu"
+              >
+                <Menu className="h-6 w-6" strokeWidth={1.5} />
+              </button>
+              <nav className="hidden items-center gap-9 lg:flex" aria-label="Nos marques">
+                {brands.map((b) => {
+                  const active = pathname.startsWith(b.href)
+                  return (
+                    <Link
+                      key={b.slug}
+                      href={b.href}
+                      className="group relative flex items-center gap-2 py-2 text-[0.75rem] font-medium uppercase tracking-[0.2em]"
+                    >
+                      <span
+                        className={cn(
+                          'h-1.5 w-1.5 rounded-full transition-transform duration-500',
+                          dotColor[b.slug],
+                          active ? 'scale-100' : 'scale-0 group-hover:scale-100',
+                        )}
+                      />
+                      {b.name}
+                      <span
+                        className={cn(
+                          'absolute -bottom-0.5 left-3.5 right-0 h-px origin-left bg-deep-black transition-transform duration-500',
+                          active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
+                        )}
+                      />
+                    </Link>
+                  )
+                })}
+              </nav>
+            </div>
+
+            {/* Centre : logo */}
+            <Link href="/" aria-label="Lady Queen — accueil" className="transition-opacity hover:opacity-75">
+              <LadyQueenLogo
                 priority
-                className="w-32 sm:w-36 lg:w-44 h-auto object-contain"
+                className={cn('transition-[width] duration-500', scrolled ? 'w-28 lg:w-32' : 'w-32 lg:w-44')}
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-12 2xl:gap-16" aria-label="Navigation principale">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="text-sm font-medium tracking-[0.18em] uppercase text-deep-black hover:text-champagne-gold transition-colors duration-300"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* Actions */}
-            <div className="flex items-center gap-1 sm:gap-2 lg:gap-3 relative z-50">
-              {/* Search Button */}
+            {/* Droite : actions */}
+            <div className="flex items-center justify-end gap-1">
               <button
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-1.5 sm:p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
+                onClick={() => setSearchOpen(true)}
+                className="flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-warm-100"
                 aria-label="Rechercher"
               >
-                <Search className="w-5 h-5" />
+                <Search className="h-5 w-5" strokeWidth={1.5} />
               </button>
-
-              {/* Cart Button */}
               <button
-                onClick={() => setIsCartOpen(true)}
-                className="relative p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label={`Panier - ${cartItemsCount} article${cartItemsCount > 1 ? 's' : ''}`}
+                onClick={() => setCartOpen(true)}
+                className="relative flex h-11 w-11 items-center justify-center rounded-full transition-colors hover:bg-warm-100"
+                aria-label={`Panier, ${cartCount} article${cartCount > 1 ? 's' : ''}`}
               >
-                <ShoppingBag className="w-5 h-5" />
-                {cartItemsCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-champagne-gold text-deep-black text-xs font-mono font-semibold w-5 h-5 flex items-center justify-center rounded-full">
-                    {cartItemsCount}
-                  </span>
-                )}
-              </button>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="md:hidden p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-              >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+                <AnimatePresence>
+                  {cartCount > 0 && (
+                    <motion.span
+                      key={cartCount}
+                      initial={{ scale: 0.4, opacity: 0 }}
+                      animate={{ scale: [1.35, 1], opacity: 1 }}
+                      exit={{ scale: 0, opacity: 0 }}
+                      transition={{ duration: 0.45, ease: EASE }}
+                      className="absolute right-0.5 top-0.5 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full bg-champagne-gold px-1 font-mono text-[0.625rem] font-semibold text-deep-black"
+                    >
+                      {cartCount}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </button>
             </div>
           </div>
         </div>
-      </header>
+      </motion.header>
 
-      {/* Mobile Menu Drawer */}
-      {isMenuOpen && (
-        <>
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-deep-black/60 backdrop-blur-sm z-40 md:hidden animate-fade-in"
-            onClick={() => setIsMenuOpen(false)}
-            aria-hidden="true"
-          />
-          
-          {/* Drawer */}
-          <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-cream-white z-50 md:hidden animate-slide-in-right shadow-2xl">
-            <div className="flex flex-col h-full">
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-warm-200">
-                <h2 className="font-display text-xl font-semibold">Menu</h2>
-                <button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="p-1.5 sm:p-2 hover:bg-warm-100 rounded-md transition-colors min-w-[40px] min-h-[40px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
-                  aria-label="Fermer le menu"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
-
-              {/* Navigation */}
-              <nav className="flex-1 overflow-y-auto px-6 py-8" aria-label="Navigation mobile">
-                <div className="space-y-2">
-                  {navItems.map((item, index) => {
-                    const Icon = item.icon
-                    return (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className="group flex items-start gap-4 p-4 rounded-lg hover:bg-warm-100 transition-all duration-300 animate-slide-in-left min-h-[68px]"
-                        style={{ animationDelay: `${index * 100}ms` }}
-                      >
-                        <div className={`flex-shrink-0 w-12 h-12 rounded-full bg-${item.color}/10 flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                          <Icon className={`w-6 h-6 text-${item.color}`} />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3 className="text-base font-medium tracking-[0.12em] uppercase text-deep-black group-hover:text-champagne-gold transition-colors">
-                            {item.label}
-                          </h3>
-                          <p className="text-sm text-warm-500 mt-1">
-                            {item.description}
-                          </p>
-                        </div>
-                      </Link>
-                    )
-                  })}
-                </div>
-
-                {/* Secondary Links */}
-                <div className="mt-8 pt-8 border-t border-warm-200 space-y-2">
-                  <button
-                    type="button"
-                    onClick={() => { setIsMenuOpen(false); setIsCartOpen(true) }}
-                    className="flex w-full items-center gap-3 px-4 py-3 text-base font-medium text-deep-black hover:text-champagne-gold transition-colors rounded-lg hover:bg-warm-100 min-h-[52px]"
-                  >
-                    <ShoppingBag className="w-5 h-5" />
-                    <span>Ouvrir le panier</span>
-                    {cartItemsCount > 0 && (
-                      <span className="ml-auto bg-champagne-gold text-deep-black text-xs font-mono font-semibold px-2 py-1 rounded-full">
-                        {cartItemsCount}
-                      </span>
-                    )}
-                  </button>
-                </div>
-              </nav>
-
-              {/* Footer */}
-              <div className="px-6 py-6 border-t border-warm-200 bg-warm-50">
-                <p className="text-xs text-warm-500 text-center">
-                  © 2024 Lady Queenn. Tous droits réservés.
-                </p>
-              </div>
+      {/* Menu mobile plein écran */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 flex flex-col bg-deep-black text-cream-white lg:hidden"
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.7, ease: EASE }}
+            data-lenis-prevent
+          >
+            <div className="container-luxury flex h-[4.5rem] items-center justify-between">
+              <LadyQueenLogo tone="light" className="w-28" />
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="-mr-2 flex h-11 w-11 items-center justify-center"
+                aria-label="Fermer le menu"
+              >
+                <X className="h-6 w-6" strokeWidth={1.5} />
+              </button>
             </div>
-          </div>
-        </>
-      )}
 
-      {/* Search Modal */}
-      <SearchBar isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+            <nav className="container-luxury flex flex-1 flex-col justify-center gap-2" aria-label="Menu mobile">
+              <p className="eyebrow-label mb-4 text-champagne-gold">Nos marques</p>
+              {[{ name: 'Accueil', href: '/', category: 'La maison Lady Queen', slug: 'home' }, ...brands].map(
+                (b, i) => (
+                  <motion.div
+                    key={b.href}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.25 + i * 0.08, ease: EASE }}
+                  >
+                    <Link
+                      href={b.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="group flex items-end justify-between border-b border-cream-white/10 py-5"
+                    >
+                      <span>
+                        <span className="block font-display text-4xl leading-none">{b.name}</span>
+                        <span className="mt-2 block text-xs uppercase tracking-[0.2em] text-cream-white/50">
+                          {b.category}
+                        </span>
+                      </span>
+                      <ArrowUpRight className="mb-1 h-5 w-5 text-champagne-gold transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                    </Link>
+                  </motion.div>
+                ),
+              )}
+            </nav>
 
-      {/* Cart Drawer */}
-      <CartDrawer open={isCartOpen} onOpenChange={setIsCartOpen} />
+            <motion.div
+              className="container-luxury flex items-center justify-between pb-8 pt-6 text-xs uppercase tracking-[0.18em] text-cream-white/60"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              <a href={`https://wa.me/${siteConfig.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer">
+                WhatsApp
+              </a>
+              <span>Beauty. Roots. Ritual.</span>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <SearchBar isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+      <CartDrawer open={cartOpen} onOpenChange={setCartOpen} />
     </>
   )
 }

@@ -15,7 +15,7 @@ export function getUniverseName(volet: string): string {
   if (volet === 'sweet-hair') return 'Sweet-Hair'
   if (volet === 'fragrance') return 'Fragrance'
   if (volet === 'crochet-by-thed') return 'Crochet by THED'
-  return 'Lady Queenn'
+  return 'Lady Queen'
 }
 
 // Helper pour convertir volet en path

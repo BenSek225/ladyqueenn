@@ -6,13 +6,13 @@ interface OrganizationSchemaProps {
   name?: string
 }
 
-export function OrganizationSchema({ name = 'Lady Queenn' }: OrganizationSchemaProps) {
+export function OrganizationSchema({ name = 'Lady Queen' }: OrganizationSchemaProps) {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: name,
     url: 'https://ladyqueenn.vercel.app',
-    logo: 'https://ladyqueenn.vercel.app/placeholder-logo.png',
+    logo: 'https://ladyqueenn.vercel.app/images/brand/logo-lady-queen-dark.png',
     description: 'Soins naturels Sweet-Hair, parfums Fragrance, créations Crochet by THED. Beauty. Roots. Ritual.',
     address: {
       '@type': 'PostalAddress',
@@ -55,7 +55,7 @@ export function ProductSchema({
   image,
   price,
   sku,
-  brand = 'Lady Queenn',
+  brand = 'Lady Queen',
 }: ProductSchemaProps) {
   const schema = {
     '@context': 'https://schema.org',
@@ -76,7 +76,7 @@ export function ProductSchema({
       availability: 'https://schema.org/InStock',
       seller: {
         '@type': 'Organization',
-        name: 'Lady Queenn',
+        name: 'Lady Queen',
       },
     },
   }
@@ -93,7 +93,7 @@ export function WebsiteSchema() {
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Lady Queenn',
+    name: 'Lady Queen',
     url: 'https://ladyqueenn.vercel.app',
     description: 'Soins naturels, parfums intemporels et créations artisanales.',
     potentialAction: {

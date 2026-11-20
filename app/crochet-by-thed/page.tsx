@@ -1,361 +1,219 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
-import { ArrowRight, Heart, Scissors, Sparkles, MessageCircle } from 'lucide-react'
+import { ArrowRight, Heart, Ruler, Shirt, Sparkles } from 'lucide-react'
+import { BrandCatalog } from '@/components/brand/brand-catalog'
+import { BrandWordmark, PresentedBy } from '@/components/brand/logo'
 import { Breadcrumb } from '@/components/layout/breadcrumb'
-import { ProductCard } from '@/components/product-card'
+import { Parallax, Reveal, RevealGroup, RevealItem } from '@/components/motion/reveal'
 import { crochetProducts } from '@/lib/data/crochet-products'
+import { whatsappUrl } from '@/lib/utils'
+
+export const metadata = {
+  title: 'Crochet by THED — L’élégance faite à la main | Lady Queen',
+  description:
+    'Robes, ensembles, tops, sacs et pièces pour toute la famille, crochetés à la main. Prêt-à-porter et sur commande.',
+}
+
+const features = [
+  { icon: Shirt, title: 'Tenues au crochet', text: 'Robes, ensembles, tops, shorts, jupes…' },
+  { icon: Ruler, title: 'Modèles personnalisés', text: 'Selon vos envies et vos mesures.' },
+  { icon: Sparkles, title: 'Travail soigné', text: 'Finitions propres, qualité assurée.' },
+  { icon: Heart, title: 'Style & confort', text: 'Des créations tendance et uniques.' },
+]
+
+const steps = [
+  { n: '01', title: 'Votre idée', text: 'Envoyez-nous une photo, un croquis ou simplement votre envie sur WhatsApp.' },
+  { n: '02', title: 'Couleurs & mesures', text: 'On choisit ensemble le fil, les couleurs et on prend vos mesures.' },
+  { n: '03', title: 'Le crochet', text: 'THED confectionne votre pièce à la main, maille après maille (7 à 14 jours).' },
+  { n: '04', title: 'La livraison', text: 'Votre pièce unique vous est livrée, prête à être portée.' },
+]
 
 export default function CrochetPage() {
-  const [activeTab, setActiveTab] = useState<'boutique' | 'sur-mesure' | 'galerie'>('boutique')
-  const tabsSectionRef = useRef<HTMLElement>(null)
-
-  const handleTabChange = (tab: 'boutique' | 'sur-mesure' | 'galerie') => {
-    setActiveTab(tab)
-    requestAnimationFrame(() => tabsSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
-  }
+  const gallery = crochetProducts
+    .flatMap((p) => (p.images ?? [p.image]).filter((img) => img.includes('lifestyle') || img.includes('detail')))
+    .slice(0, 8)
 
   return (
-    <main className="volet-crochet">
-      {/* Hero Section - Lifestyle Artisanal */}
-      <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src="/images/hero/crochet-by-thed.png"
-            alt="Crochet by THED - Handmade Creations"
-            fill
-            priority
-            quality={90}
-            sizes="100vw"
-            className="object-cover"
-          />
-          {/* Overlay terracotta chaud */}
-          <div className="absolute inset-0 bg-gradient-to-b from-cr-light/60 via-cr-terracotta/20 to-cream-white/90" />
-        </div>
+    <div data-brand="crochet-by-thed" className="bg-cr-light">
+      {/* Hero */}
+      <section className="grain relative overflow-hidden">
+        <div className="container-luxury grid items-center gap-12 pb-16 pt-8 lg:min-h-[80vh] lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:py-14">
+          <div className="relative z-10">
+            <Breadcrumb items={[{ label: 'Crochet by THED', href: '/crochet-by-thed' }]} />
+            <Reveal className="mt-8">
+              <PresentedBy />
+            </Reveal>
+            <Reveal delay={0.15} duration={1.2}>
+              <BrandWordmark brand="crochet-by-thed" size="xl" className="mt-6 !text-[4.75rem] sm:!text-8xl lg:!text-[7.5rem]" />
+            </Reveal>
+            <Reveal delay={0.3}>
+              <p className="mt-4 text-xs font-medium uppercase tracking-[0.32em] text-deep-black sm:text-sm">
+                L’élégance faite à la main
+              </p>
+              <div className="stitch-line mt-6 w-40 text-champagne-gold" />
+              <p className="mt-6 max-w-md text-base leading-relaxed text-warm-600 sm:text-lg">
+                Des créations uniques confectionnées au crochet avec passion et précision, pour{' '}
+                <strong className="font-semibold text-cr-earth">sublimer votre style</strong>.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
+                <Link href="#boutique" className="btn-primary !bg-cr-deep">
+                  Voir les créations <ArrowRight size={16} />
+                </Link>
+                <Link href="#sur-mesure" className="link-underline text-xs font-medium uppercase tracking-[0.2em] text-cr-earth">
+                  Sur commande
+                </Link>
+              </div>
+            </Reveal>
+          </div>
 
-        {/* Content */}
-        <div className="container-luxury text-center py-12 sm:py-16 lg:py-20">
-          <p className="eyebrow-label text-cr-earth mb-6 animate-fade-in">
-            FAIT À LA MAIN, PORTÉ AVEC INTENTION
-          </p>
-
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl leading-[0.95] mb-6 text-deep-black animate-slide-up [animation-delay:150ms]">
-            Crochet
-            <br />
-            <span className="italic font-normal text-cr-earth">by THED</span>
-          </h1>
-
-          <p className="text-sm sm:text-base md:text-lg text-dark-gray max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed animate-slide-up [animation-delay:300ms]">
-            Pièces intemporelles au crochet, confectionnées avec intention 
-            et enracinées dans la tradition artisanale ivoirienne.
-          </p>
-
-          <Link 
-            href="#products" 
-            className="btn-primary bg-cr-earth hover:bg-cr-terracotta border-cr-earth inline-flex items-center gap-2 sm:gap-3 animate-scale-in [animation-delay:450ms]"
-          >
-            Découvrir nos créations
-            <ArrowRight size={20} />
-          </Link>
-        </div>
-      </section>
-
-      {/* Breadcrumb */}
-      <div className="container-luxury pt-6">
-        <Breadcrumb items={[{ label: 'CROCHET BY THED', href: '/crochet-by-thed' }]} />
-      </div>
-
-      {/* Section Introduction */}
-      <section className="py-16 lg:py-20 bg-cream-white">
-        <div className="container-luxury">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Texte */}
-            <div>
-              <p className="eyebrow-label text-cr-earth mb-4">L'ARTISANAT COMME HÉRITAGE</p>
-              
-              <h2 className="font-display text-4xl md:text-5xl mb-6">
-                Chaque maille raconte 
+          {/* Collage d'arches, comme sur les affiches */}
+          <div className="relative grid grid-cols-[1.25fr_1fr] gap-3 sm:gap-4">
+            <Reveal direction="up" duration={1.3} className="row-span-2">
+              <Parallax amount={30} className="relative aspect-[3/4.4] rounded-t-[999px] rounded-b-soft border border-champagne-gold/60">
+                <Image
+                  src="/images/hero/crochet-by-thed.png"
+                  alt="Création Crochet by THED"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 55vw, 28vw"
+                  className="object-cover"
+                />
+              </Parallax>
+            </Reveal>
+            <Reveal delay={0.15} duration={1.3}>
+              <div className="relative aspect-[3/3.6] overflow-hidden rounded-t-[999px] rounded-b-soft border border-champagne-gold/60">
+                <Image src="/images/gallery/crochet-lifestyle.png" alt="" fill sizes="25vw" className="object-cover" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.3} duration={1.3}>
+              <div className="relative aspect-[3/3.6] overflow-hidden rounded-t-[999px] rounded-b-soft border border-champagne-gold/60">
+                <Image src={crochetProducts[1]?.image ?? '/images/gallery/crochet-lifestyle.png'} alt="" fill sizes="25vw" className="object-cover" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.6} direction="none" className="absolute left-[52%] top-[46%] -translate-x-1/2">
+              <span className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-2 border-champagne-gold bg-deep-black text-center text-[0.5625rem] font-medium uppercase leading-tight tracking-[0.14em] text-cream-white shadow-luxe sm:h-28 sm:w-28 sm:text-[0.625rem]">
+                Fait main
                 <br />
-                <span className="italic font-normal text-cr-terracotta">une histoire</span>
-              </h2>
-              
-              <p className="text-lg text-warm-500 leading-relaxed mb-6">
-                THED crée des pièces uniques au crochet, alliant savoir-faire traditionnel 
-                et design contemporain. Chaque création est pensée pour traverser le temps 
-                et accompagner vos moments précieux.
-              </p>
-              
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 sm:mb-16">
-                <div className="flex items-start gap-3">
-                  <Heart className="w-5 h-5 text-cr-earth mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-deep-black">Fait main avec amour</p>
-                    <p className="text-sm text-warm-500">Chaque pièce est unique</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Scissors className="w-5 h-5 text-cr-earth mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-deep-black">Personnalisable</p>
-                    <p className="text-sm text-warm-500">Couleurs et tailles sur-mesure</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Image */}
-            <div className="relative aspect-[4/5] rounded-soft overflow-hidden">
-              <Image
-src="/images/gallery/crochet-lifestyle.png"
-                alt="Artisanat crochet THED"
-                fill
-                className="object-cover"
-              />
-            </div>
+                avec amour
+                <Heart size={12} className="mt-1 fill-champagne-gold text-champagne-gold" />
+              </span>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Tabs Navigation */}
-      <section ref={tabsSectionRef} className="py-3 sm:py-5 lg:py-6 bg-cr-light/95 backdrop-blur-sm sticky top-16 lg:top-20 z-30 border-b border-cr-terracotta/20">
-        <div className="container-luxury px-3 sm:px-6">
-          <div className="flex justify-center gap-2 sm:gap-3">
-            <button
-              onClick={() => handleTabChange('boutique')}
-              className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-300 ${
-                activeTab === 'boutique'
-                  ? 'bg-cr-earth text-cream-white scale-105'
-                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20 hover:scale-105'
-              }`}
-            >
-              Prêt-à-porter
-            </button>
-            <button
-              onClick={() => handleTabChange('sur-mesure')}
-              className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-300 ${
-                activeTab === 'sur-mesure'
-                  ? 'bg-cr-earth text-cream-white scale-105'
-                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20 hover:scale-105'
-              }`}
-            >
-              Sur-mesure
-            </button>
-            <button
-              onClick={() => handleTabChange('galerie')}
-              className={`flex-1 sm:flex-none px-3 sm:px-6 py-2.5 sm:py-3 rounded-lg text-xs sm:text-sm font-medium uppercase tracking-[0.08em] sm:tracking-wider transition-all duration-300 ${
-                activeTab === 'galerie'
-                  ? 'bg-cr-earth text-cream-white scale-105'
-                  : 'bg-white text-cr-earth hover:bg-cr-earth/10 border border-cr-earth/20 hover:scale-105'
-              }`}
-            >
-              Galerie
-            </button>
-          </div>
+      {/* Atouts */}
+      <section className="border-y border-champagne-gold/30 bg-cream-white py-14 lg:py-16">
+        <RevealGroup className="container-luxury grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4 lg:divide-x lg:divide-champagne-gold/30">
+          {features.map(({ icon: Icon, title, text }) => (
+            <RevealItem key={title} className="text-center lg:px-6">
+              <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-deep-black text-champagne-gold">
+                <Icon size={22} strokeWidth={1.4} />
+              </span>
+              <h3 className="mt-4 text-xs font-semibold uppercase tracking-[0.14em]">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-warm-500">{text}</p>
+            </RevealItem>
+          ))}
+        </RevealGroup>
+      </section>
+
+      {/* Boutique */}
+      <section id="boutique" className="scroll-mt-24 py-20 lg:py-28">
+        <div className="container-luxury">
+          <Reveal className="mb-10">
+            <p className="font-hand text-3xl text-cr-terracotta">prêt-à-porter</p>
+            <h2 className="mt-1 font-display text-4xl sm:text-5xl">Les créations disponibles</h2>
+          </Reveal>
+          <BrandCatalog
+            products={crochetProducts}
+            noun={['création', 'créations']}
+            filters={[
+              { key: 'all', label: 'Tout' },
+              { key: 'femme', label: 'Femme' },
+              { key: 'homme', label: 'Homme' },
+              { key: 'enfant', label: 'Enfant' },
+              { key: 'accessoire', label: 'Accessoires' },
+            ]}
+          />
         </div>
       </section>
 
-      {/* Section Prêt-à-porter */}
-      {activeTab === 'boutique' && (
-        <section id="products" className="py-20 lg:py-32 bg-cream-light">
-          <div className="container-luxury">
-            <div className="text-center mb-12">
-              <h2 className="font-display text-4xl md:text-5xl mb-4">
-                Nos créations prêtes à porter
+      {/* Sur-mesure */}
+      <section id="sur-mesure" className="grain relative scroll-mt-24 overflow-hidden bg-cr-deep py-20 text-cream-white lg:py-28">
+        <div className="container-luxury">
+          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+            <Reveal>
+              <span className="inline-flex rounded-full bg-champagne-gold px-4 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-deep-black">
+                Sur commande
+              </span>
+              <h2 className="mt-6 font-display text-4xl leading-[1.1] sm:text-5xl">
+                Votre style, <span className="text-champagne-gold">notre passion.</span>
               </h2>
-              <p className="text-lg text-warm-500 max-w-2xl mx-auto">
-                Pièces uniques disponibles immédiatement
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-              {crochetProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Section Sur-mesure */}
-      {activeTab === 'sur-mesure' && (
-        <section className="py-20 lg:py-32 bg-cream-light">
-          <div className="container-luxury max-w-5xl">
-            <div className="text-center mb-16">
-              <h2 className="font-display text-4xl md:text-5xl mb-6">
-                Créons ensemble votre pièce unique
-              </h2>
-              <p className="text-lg text-warm-500 max-w-2xl mx-auto">
-                Commandez une création sur-mesure adaptée à vos envies : 
-                couleurs, taille, design personnalisé.
-              </p>
-            </div>
-
-            {/* Process 4 étapes */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-              {/* Étape 1 */}
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-cr-light mb-4">
-                  <MessageCircle className="w-8 h-8 text-cr-earth" />
-                </div>
-                <h3 className="font-display text-lg mb-2">1. Contact</h3>
-                <p className="text-sm text-warm-500">
-                  Décrivez votre projet via WhatsApp
-                </p>
-              </div>
-
-              {/* Étape 2 */}
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-cr-light mb-4">
-                  <Sparkles className="w-8 h-8 text-cr-earth" />
-                </div>
-                <h3 className="font-display text-lg mb-2">2. Design</h3>
-                <p className="text-sm text-warm-500">
-                  Choisissez couleurs, taille et style
-                </p>
-              </div>
-
-              {/* Étape 3 */}
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-cr-light mb-4">
-                  <Scissors className="w-8 h-8 text-cr-earth" />
-                </div>
-                <h3 className="font-display text-lg mb-2">3. Confection</h3>
-                <p className="text-sm text-warm-500">
-                  THED confectionne votre pièce (7-14 jours)
-                </p>
-              </div>
-
-              {/* Étape 4 */}
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-cr-light mb-4">
-                  <Heart className="w-8 h-8 text-cr-earth" />
-                </div>
-                <h3 className="font-display text-lg mb-2">4. Livraison</h3>
-                <p className="text-sm text-warm-500">
-                  Recevez votre création unique
-                </p>
-              </div>
-            </div>
-
-            {/* CTA Sur-mesure */}
-            <div className="bg-cr-earth text-cream-white rounded-soft p-8 md:p-12 text-center">
-              <h3 className="font-display text-3xl mb-4">
-                Prêt à créer votre pièce sur-mesure ?
-              </h3>
-              <p className="text-lg text-cream-light mb-8 max-w-2xl mx-auto">
-                Contactez THED pour discuter de votre projet. 
-                Ensemble, nous donnerons vie à la pièce de vos rêves.
+              <p className="mt-6 max-w-md leading-relaxed text-cream-white/70">
+                Une robe pour un mariage, un ensemble pour les vacances, une tenue de baptême : décrivez-nous votre
+                pièce rêvée, on la crochète pour vous.
               </p>
               <a
-                href="https://wa.me/2250710504007?text=Bonjour%2C%20je%20souhaite%20commander%20une%20pièce%20crochet%20sur-mesure"
+                href={whatsappUrl('Bonjour Lady Queen, je souhaite commander une pièce Crochet by THED sur-mesure.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-cream-white text-cr-earth px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-champagne-gold hover:text-deep-black hover:-translate-y-1 transition-all duration-300 inline-flex items-center gap-2 sm:gap-3"
+                className="btn-gold mt-10"
               >
-                Commander sur-mesure
-                <ArrowRight size={20} />
+                Passez votre commande <ArrowRight size={16} />
               </a>
-            </div>
+              <p className="mt-10 font-script text-5xl text-champagne-gold">Fait main</p>
+              <p className="mt-1 text-xs uppercase tracking-[0.3em] text-cream-white/60">fait avec amour</p>
+            </Reveal>
+
+            <RevealGroup className="grid gap-4 sm:grid-cols-2" stagger={0.12}>
+              {steps.map((s) => (
+                <RevealItem key={s.n} className="rounded-soft border border-cream-white/10 bg-cream-white/[0.04] p-7">
+                  <span className="font-display text-5xl italic text-champagne-gold">{s.n}</span>
+                  <h3 className="mt-5 font-display text-xl">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-cream-white/60">{s.text}</p>
+                </RevealItem>
+              ))}
+            </RevealGroup>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* Section Galerie */}
-      {activeTab === 'galerie' && (
-        <section className="py-20 lg:py-32 bg-cream-light">
-          <div className="container-luxury">
-            <div className="text-center mb-12">
-              <h2 className="font-display text-4xl md:text-5xl mb-4">
-                Galerie de réalisations
-              </h2>
-              <p className="text-lg text-warm-500 max-w-2xl mx-auto">
-                Découvrez nos créations précédentes et laissez-vous inspirer
-              </p>
-            </div>
-
-            {/* Grid Masonry-style */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
-                <div 
-                  key={i} 
-                  className={`relative rounded-soft overflow-hidden bg-warm-gray-100 hover:shadow-xl transition-all duration-normal ${
-                    i % 3 === 0 ? 'aspect-[4/5]' : 'aspect-square'
-                  }`}
+      {/* Galerie */}
+      <section id="galerie" className="scroll-mt-24 py-20 lg:py-28">
+        <div className="container-luxury">
+          <Reveal className="mb-12 text-center">
+            <p className="font-hand text-3xl text-cr-terracotta">la galerie</p>
+            <h2 className="mt-1 font-display text-4xl sm:text-5xl">Maille après maille</h2>
+          </Reveal>
+          <div className="columns-2 gap-3 sm:gap-5 lg:columns-4">
+            {gallery.map((src, i) => (
+              <Reveal key={src} delay={(i % 4) * 0.08} className="mb-3 break-inside-avoid sm:mb-5">
+                <div
+                  className={`group relative overflow-hidden rounded-soft ${i % 3 === 0 ? 'aspect-[3/4]' : 'aspect-square'}`}
                 >
                   <Image
-src="/images/hero/crochet-by-thed.png"
-                    alt={`Création crochet ${i}`}
+                    src={src}
+                    alt="Réalisation Crochet by THED"
                     fill
-                    className="object-cover"
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-[1200ms] group-hover:scale-105"
                   />
                 </div>
-              ))}
-            </div>
-
-            {/* CTA Galerie */}
-            <div className="text-center mt-12">
-              <p className="text-sm text-warm-500 mb-4">
-                Envie d'une pièce similaire ?
-              </p>
-              <a
-                href="https://wa.me/2250710504007?text=Bonjour%2C%20j'ai%20vu%20une%20création%20dans%20votre%20galerie%20qui%20m'intéresse"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-cr-earth hover:text-cr-terracotta transition-colors"
-              >
-                Contactez-nous
-                <ArrowRight size={16} />
-              </a>
-            </div>
+              </Reveal>
+            ))}
           </div>
-        </section>
-      )}
-
-      {/* Section Valeurs */}
-      <section className="py-20 lg:py-32 bg-cream-white">
-        <div className="container-luxury max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-4xl md:text-5xl mb-12">
-            Pourquoi choisir Crochet by THED ?
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-cr-light mb-4">
-                <Heart className="w-7 h-7 text-cr-earth" />
-              </div>
-              <h3 className="font-display text-lg mb-2">Fait avec amour</h3>
-              <p className="text-sm text-warm-500">
-                Chaque maille est crochetée avec soin et passion
-              </p>
-            </div>
-
-            <div>
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-cr-light mb-4">
-                <Sparkles className="w-7 h-7 text-cr-earth" />
-              </div>
-              <h3 className="font-display text-lg mb-2">Pièces uniques</h3>
-              <p className="text-sm text-warm-500">
-                Aucune création n'est identique, chacune est spéciale
-              </p>
-            </div>
-
-            <div>
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-cr-light mb-4">
-                <svg className="w-7 h-7 text-cr-earth" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
-                </svg>
-              </div>
-              <h3 className="font-display text-lg mb-2">Durabilité</h3>
-              <p className="text-sm text-warm-500">
-                Des créations conçues pour durer et se transmettre
-              </p>
-            </div>
-          </div>
+          <Reveal className="mt-12 text-center">
+            <a
+              href={whatsappUrl('Bonjour Lady Queen, j’ai vu une création Crochet by THED qui m’intéresse.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary text-cr-deep"
+            >
+              Une pièce vous plaît ? Écrivez-nous
+            </a>
+          </Reveal>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

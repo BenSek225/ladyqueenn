@@ -2,46 +2,111 @@
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
+/* Polices auto-hébergées (fontsource) : aucune dépendance réseau au build */
+@import '@fontsource-variable/playfair-display/wght.css';
+@import '@fontsource-variable/playfair-display/wght-italic.css';
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+@import '@fontsource-variable/bodoni-moda/wght.css';
+@import '@fontsource-variable/bodoni-moda/wght-italic.css';
+@import '@fontsource-variable/fraunces/wght.css';
+@import '@fontsource-variable/fraunces/wght-italic.css';
+@import '@fontsource/pinyon-script/400.css';
+@import '@fontsource/caveat/500.css';
+
 @custom-variant dark (&:is(.dark *));
 
+/* ==========================================================================
+   1. TOKENS — source unique de vérité (Tailwind v4)
+   ========================================================================== */
+
 @theme inline {
-  /* Lady Queenn Custom Colors */
-  --color-deep-black: #1A1714;
-  --color-dark-gray: #2D2A27;
-  --color-cream-white: #F9F6F1;
-  --color-cream-light: #F7F3EC;
-  --color-champagne-gold: #C6A87C;
-  --color-soft-gold: #B89B6A;
-  --color-gold-dark: #9D8159;
-  --color-warm-100: #F5F1ED;
-  --color-warm-200: #E8E3DD;
-  --color-warm-300: #D1CBC3;
-  --color-warm-400: #AFA89F;
-  --color-warm-500: #8D877D;
-  --color-sh-sage: #8A9A7B;
-  --color-sh-olive: #6B7D5C;
-  --color-sh-light: #E8EDE5;
-  --color-fr-plum: #6B4E71;
-  --color-fr-rose: #B88E97;
-  --color-fr-light: #F2EDF0;
-  --color-cr-terracotta: #D4A59A;
-  --color-cr-earth: #9D8579;
-  --color-cr-light: #F0EBE8;
-  
-  /* Shadcn/UI System Colors */
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  /* Maison Lady Queen */
+  --color-deep-black: #1a1714;
+  --color-dark-gray: #2d2a27;
+  --color-cream-white: #f9f6f1;
+  --color-cream-light: #f3eee5;
+  --color-champagne-gold: #c6a87c;
+  --color-soft-gold: #b89b6a;
+  --color-gold-dark: #8f744d;
+
+  --color-warm-50: #fbf9f6;
+  --color-warm-100: #f5f1ed;
+  --color-warm-200: #e8e3dd;
+  --color-warm-300: #d1cbc3;
+  --color-warm-400: #afa89f;
+  --color-warm-500: #7c766c;
+  --color-warm-600: #5f5a52;
+  --color-warm-700: #3f3b36;
+
+  /* Alias historiques (anciens composants) */
+  --color-warm-gray-100: #f5f1ed;
+  --color-warm-gray-200: #e8e3dd;
+  --color-warm-gray-300: #d1cbc3;
+  --color-warm-gray-400: #afa89f;
+  --color-warm-gray-500: #7c766c;
+
+  /* Sweet-Hair — botanique */
+  --color-sh-sage: #8a9a7b;
+  --color-sh-olive: #5c6e4e;
+  --color-sh-deep: #2f3a28;
+  --color-sh-light: #e8ede5;
+
+  /* Fragrance — nocturne */
+  --color-fr-plum: #6b4e71;
+  --color-fr-rose: #c9a0a9;
+  --color-fr-night: #1c1420;
+  --color-fr-light: #f2edf0;
+
+  /* Crochet by THED — artisanal */
+  --color-cr-terracotta: #b8742f;
+  --color-cr-earth: #7a4a24;
+  --color-cr-deep: #3d2414;
+  --color-cr-light: #f5ece0;
+
+  /* Couleurs de la marque active (changent avec data-brand) */
+  --color-brand: var(--brand);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-ink: var(--brand-ink);
+
+  /* Typographie */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Playfair Display Variable', Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+  --font-script: 'Pinyon Script', 'Playfair Display Variable', cursive;
+  --font-hand: 'Caveat', cursive;
+  --font-brand: var(--brand-font);
+
+  /* Durées & courbes */
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Rayons */
+  --radius-soft: 0.625rem;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Ombres */
+  --shadow-gold-soft: 0 10px 30px -12px rgb(198 168 124 / 0.55);
+  --shadow-luxe: 0 30px 60px -30px rgb(26 23 20 / 0.35);
+
+  /* Animations utilitaires */
+  --animate-fade-in: fade-in 0.4s var(--ease-soft) both;
+  --animate-slide-up: slide-up 0.8s var(--ease-luxe) both;
+  --animate-slide-down: slide-down 0.35s var(--ease-luxe) both;
+  --animate-slide-in-right: slide-in-right 0.45s var(--ease-luxe) both;
+  --animate-slide-in-left: slide-in-left 0.45s var(--ease-luxe) both;
+  --animate-scale-in: scale-in 0.5s var(--ease-luxe) both;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+
+  /* Variables shadcn */
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -53,7 +118,6 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-brand-accent: var(--brand-accent);
   --color-primary: var(--primary);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
@@ -61,1151 +125,465 @@
   --color-card: var(--card);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@theme {
+  --duration-normal: 300ms;
+  --duration-slow: 700ms;
+}
+
+/* Le site est volontairement clair : on ignore le mode sombre du téléphone */
 :root {
   color-scheme: light;
-  
-  /* Lady Queenn Design System - Luxury Editorial × Organic Minimal */
-  
-  /* Couleurs principales */
-  --cream-white: #F9F6F1;
-  --cream-light: #F7F3EC;
-  --deep-black: #1A1714;
-  --dark-gray: #2D2A27;
-  --champagne-gold: #C6A87C;
-  --soft-gold: #B89B6A;
-  --gold-dark: #9D8159;
-  
-  /* Backgrounds & Cards */
-  --background: oklch(0.98 0.01 75); /* Cream white chaud */
-  --foreground: oklch(0.12 0.01 30); /* Deep black */
-  --card: oklch(1 0 0); /* Pure white pour cards */
-  --card-foreground: oklch(0.12 0.01 30);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.01 30);
-  
-  /* Primaire (Deep Black) */
-  --primary: oklch(0.12 0.01 30);
-  --primary-foreground: oklch(0.98 0.01 75);
-  
-  /* Accent (Champagne Gold) */
-  --brand-accent: oklch(0.70 0.08 75);
-  --accent: oklch(0.70 0.08 75);
-  --accent-foreground: oklch(0.12 0.01 30);
-  
-  /* Secondaire (Warm Gray) */
-  --secondary: oklch(0.95 0.01 60);
-  --secondary-foreground: oklch(0.12 0.01 30);
-  
-  /* Muted */
-  --muted: oklch(0.93 0.01 60);
-  --muted-foreground: oklch(0.55 0.01 30);
-  
-  /* Destructive */
-  --destructive: oklch(0.577 0.245 27.325);
-  
-  /* Borders & Inputs */
-  --border: oklch(0.91 0.01 60);
-  --input: oklch(0.91 0.01 60);
-  --ring: oklch(0.70 0.08 75);
-  
-  /* Charts */
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  
-  /* Border Radius - Soft (8px) */
-  --radius: 0.5rem;
-  
-  /* Sidebar */
-  --sidebar: oklch(0.98 0.01 75);
-  --sidebar-foreground: oklch(0.12 0.01 30);
-  --sidebar-primary: oklch(0.12 0.01 30);
-  --sidebar-primary-foreground: oklch(0.98 0.01 75);
-  --sidebar-accent: oklch(0.95 0.01 60);
-  --sidebar-accent-foreground: oklch(0.12 0.01 30);
-  --sidebar-border: oklch(0.91 0.01 60);
-  --sidebar-ring: oklch(0.70 0.08 75);
+  --radius: 0.625rem;
+
+  --background: #f9f6f1;
+  --foreground: #1a1714;
+  --card: #ffffff;
+  --card-foreground: #1a1714;
+  --popover: #ffffff;
+  --popover-foreground: #1a1714;
+  --primary: #1a1714;
+  --primary-foreground: #f9f6f1;
+  --secondary: #f5f1ed;
+  --secondary-foreground: #1a1714;
+  --muted: #f5f1ed;
+  --muted-foreground: #7c766c;
+  --accent: #c6a87c;
+  --accent-foreground: #1a1714;
+  --destructive: #b42318;
+  --border: #e8e3dd;
+  --input: #e8e3dd;
+  --ring: #c6a87c;
+
+  /* Marque par défaut = la maison */
+  --brand: #c6a87c;
+  --brand-deep: #1a1714;
+  --brand-soft: #f3eee5;
+  --brand-ink: #8f744d;
+  --brand-font: var(--font-display);
 }
 
-.dark {
-  color-scheme: dark;
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+/* ==========================================================================
+   2. THÈMES DE MARQUE
+   ========================================================================== */
+
+[data-brand='sweet-hair'] {
+  --brand: #8a9a7b;
+  --brand-deep: #2f3a28;
+  --brand-soft: #e8ede5;
+  --brand-ink: #5c6e4e;
+  --brand-font: 'Fraunces Variable', Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    color-scheme: dark;
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-  }
+[data-brand='fragrance'] {
+  --brand: #c9a0a9;
+  --brand-deep: #1c1420;
+  --brand-soft: #f2edf0;
+  --brand-ink: #6b4e71;
+  --brand-font: 'Bodoni Moda Variable', 'Playfair Display Variable', serif;
 }
 
-.eyebrow { font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted-foreground); }
-.hero-grid { display: grid; gap: 1rem; }
-@media (min-width: 768px) { .hero-grid { grid-template-columns: 0.9fr 1.1fr; } }
+[data-brand='crochet-by-thed'] {
+  --brand: #b8742f;
+  --brand-deep: #3d2414;
+  --brand-soft: #f5ece0;
+  --brand-ink: #7a4a24;
+  --brand-font: 'Playfair Display Variable', Georgia, serif;
+}
+
+/* ==========================================================================
+   3. BASE
+   ========================================================================== */
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
 
-
-/* ============================================
-   Lady Queenn - Custom Styles
-   Design System: Luxury Editorial × Organic Minimal
-   ============================================ */
-
-@layer base {
-  /* Typography - Luxury Editorial */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display), 'Playfair Display', serif;
-    letter-spacing: -0.02em;
-  }
-  
-  /* Smooth Scrolling */
   html {
-    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
   }
-  
-  /* Body avec fond crème chaud */
+
   body {
-    background-color: #F9F6F1;
-    color: #1A1714;
-    font-family: var(--font-sans), 'Inter', sans-serif;
+    @apply bg-cream-white text-deep-black font-sans antialiased;
+    overflow-x: clip;
   }
-}
 
-@layer components {
-  /* Eyebrow - Labels élégants */
-  .eyebrow-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: #8D877D; /* warm-500 */
-    font-weight: 500;
-  }
-  
-  /* Bouton Primaire - Luxury */
-  .btn-primary {
-    background-color: #1A1714;
-    color: #F9F6F1;
-    padding: 0.875rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .btn-primary:hover {
-    background-color: #C6A87C;
-    color: #1A1714;
-    transform: translateY(-0.125rem);
-    box-shadow: 0 8px 24px rgba(198, 168, 124, 0.3);
-  }
-  
-  /* Bouton Secondaire - Outline */
-  .btn-secondary {
-    background-color: transparent;
-    border: 1px solid #1A1714;
-    color: #1A1714;
-    padding: 0.875rem 2rem;
-    border-radius: 0.5rem;
-    font-weight: 500;
-    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .btn-secondary:hover {
-    background-color: #1A1714;
-    color: #F9F6F1;
-  }
-  
-  /* Bouton Tertiaire - Ghost */
-  .btn-ghost {
-    background-color: transparent;
-    color: #1A1714;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    transition: color 300ms;
-  }
-  
-  .btn-ghost:hover {
-    color: #C6A87C;
-    text-decoration: none;
-  }
-  
-  /* Card Produit - Editorial Style */
-  .product-card {
-    background-color: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  
-  .product-card:hover {
-    box-shadow: 0 8px 24px rgba(26, 23, 20, 0.12);
-    transform: scale(1.02);
-  }
-  
-  /* Badge - Par Volet */
-  .badge-nouveau {
-    background-color: #E8EDE5;
-    color: #6B7D5C;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  .badge-promo {
-    background-color: #F2EDF0;
-    color: #6B4E71;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  .badge-coup-de-coeur {
-    background-color: #C6A87C;
-    color: #1A1714;
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  
-  /* Section avec fond alterné */
-  .section-alt {
-    background-color: #F7F3EC;
-  }
-  
-  /* Container avec marges luxueuses */
-  .container-luxury {
-    max-width: 80rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-  
-  @media (min-width: 1024px) {
-    .container-luxury {
-      padding-left: 5rem;
-      padding-right: 5rem;
-    }
-  }
-  
-  /* Hero Section - Plein écran */
-  .hero-section {
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Grid Swiss - Catalogue */
-  .grid-swiss {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 1.5rem;
-  }
-  
-  @media (min-width: 768px) {
-    .grid-swiss {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .grid-swiss {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2rem;
-    }
-  }
-  
-  /* Asymétrique 60/40 */
-  .grid-asymmetric {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    gap: 2rem;
-  }
-  
-  @media (min-width: 1024px) {
-    .grid-asymmetric {
-      grid-template-columns: 60% 40%;
-      gap: 3rem;
-    }
-  }
-  
-  /* Prix - Mono élégant */
-  .price {
-    font-family: var(--font-mono), 'JetBrains Mono', monospace;
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: #9D8159;
-  }
-  
-  /* ===================================
-   Animations Avancées & Micro-interactions
-   =================================== */
-
-/* Reveal animations avec différents délais */
-.reveal-fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-  animation: revealFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.reveal-fade-left {
-  opacity: 0;
-  transform: translateX(40px);
-  animation: revealFadeLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.reveal-fade-right {
-  opacity: 0;
-  transform: translateX(-40px);
-  animation: revealFadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes revealFadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes revealFadeLeft {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes revealFadeRight {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Animation staggered pour listes */
-.stagger-animation {
-  animation-delay: var(--stagger-delay, 0ms);
-}
-
-/* Hover flottant pour cards */
-.float-on-hover {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.float-on-hover:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(26, 23, 20, 0.15);
-}
-
-/* Pulse subtil pour éléments importants */
-.pulse-soft {
-  animation: pulseSoft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulseSoft {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.02);
-  }
-}
-}
-
-@layer utilities {
-  /* Text Balance pour titres */
-  .text-balance {
+  h1,
+  h2,
+  h3 {
     text-wrap: balance;
   }
-  
-  /* Smooth Transitions */
-  .transition-smooth {
-    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+  p {
+    text-wrap: pretty;
   }
-  
-  /* Ombre dorée douce */
-  .shadow-gold-soft {
-    box-shadow: 0 4px 16px rgba(198, 168, 124, 0.2);
+
+  ::selection {
+    background: rgb(198 168 124 / 0.3);
   }
-}
 
-/* ============================================
-   Volet-Specific Accents
-   ============================================ */
-
-/* Sweet-Hair - Nature & Soin */
-.volet-sweet-hair {
-  --volet-color: var(--sh-olive);
-  --volet-light: var(--sh-light);
-}
-
-/* Fragrance - Luxe & Mystère */
-.volet-fragrance {
-  --volet-color: var(--fr-plum);
-  --volet-light: var(--fr-light);
-}
-
-/* Crochet by THED - Artisanat & Chaleur */
-.volet-crochet {
-  --volet-color: var(--cr-earth);
-  --volet-light: var(--cr-light);
-}
-
-/* ============================================
-   Animations Personnalisées
-   ============================================ */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  :focus-visible {
+    outline: 2px solid var(--color-champagne-gold);
+    outline-offset: 3px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  img {
+    -webkit-user-drag: none;
   }
 }
 
-@keyframes scaleInSoft {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.animate-scale-in-soft {
-  animation: scaleInSoft 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-
-/* Search & Filter Animations */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.2s ease-out;
-}
-
-.animate-slide-down {
-  animation: slide-down 0.3s ease-out;
-}
-
-/* Custom Scrollbar for search results */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 8px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: var(--cream-light);
-  border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--champagne-gold);
-  border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-dark);
-}
-
-
-/* Toast Animations */
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-slide-in-right {
-  animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.animate-scale-in {
-  animation: scale-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-
-/* Lenis Smooth Scroll */
+/* Lenis (défilement fluide) */
 html.lenis,
 html.lenis body {
   height: auto;
 }
-
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
-
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
-
 .lenis.lenis-stopped {
   overflow: hidden;
 }
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
+/* ==========================================================================
+   4. COMPOSANTS
+   ========================================================================== */
 
-
-/* Scroll Reveal Animations */
-.reveal-section {
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Fade Up */
-.reveal-fade-up {
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.reveal-fade-up.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Fade In */
-.reveal-fade-in {
-  opacity: 0;
-}
-
-.reveal-fade-in.is-visible {
-  opacity: 1;
-}
-
-/* Fade Left */
-.reveal-fade-left {
-  opacity: 0;
-  transform: translateX(40px);
-}
-
-.reveal-fade-left.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Fade Right */
-.reveal-fade-right {
-  opacity: 0;
-  transform: translateX(-40px);
-}
-
-.reveal-fade-right.is-visible {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Scale Up */
-.reveal-scale-up {
-  opacity: 0;
-  transform: scale(0.95);
-}
-
-.reveal-scale-up.is-visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-
-/* ===================================
-   Micro-interactions & Button States
-   =================================== */
-
-/* Bouton primaire - CTA principal */
-.btn-primary {
-  @apply inline-flex items-center justify-center gap-2 px-8 py-4 
-         bg-deep-black text-cream-white rounded-lg font-medium
-         transition-all duration-300 ease-out
-         hover:bg-champagne-gold hover:text-deep-black 
-         hover:-translate-y-1 hover:shadow-xl
-         active:translate-y-0 active:shadow-lg
-         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-gold focus-visible:ring-offset-2
-         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
-}
-
-/* Bouton secondaire - Action alternative */
-.btn-secondary {
-  @apply inline-flex items-center justify-center gap-2 px-8 py-4
-         bg-transparent text-deep-black rounded-lg font-medium
-         border-2 border-deep-black
-         transition-all duration-300 ease-out
-         hover:bg-deep-black hover:text-cream-white
-         hover:-translate-y-1 hover:shadow-lg
-         active:translate-y-0
-         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-deep-black focus-visible:ring-offset-2
-         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
-}
-
-/* Bouton ghost - Lien stylisé */
-.btn-ghost {
-  @apply inline-flex items-center justify-center gap-2 px-4 py-2
-         bg-transparent text-deep-black font-medium
-         transition-all duration-300 ease-out
-         hover:text-champagne-gold hover:gap-3
-         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-gold focus-visible:ring-offset-2;
-}
-
-/* Bouton icon - Bouton rond avec icône */
-.btn-icon {
-  @apply inline-flex items-center justify-center
-         w-12 h-12 rounded-full bg-deep-black text-cream-white
-         transition-all duration-300 ease-out
-         hover:bg-champagne-gold hover:text-deep-black hover:scale-110 hover:shadow-lg
-         active:scale-100
-         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-gold focus-visible:ring-offset-2
-         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100;
-}
-
-/* Lien avec underline animé */
-.link-animated {
-  @apply relative inline-block text-deep-black transition-colors duration-300
-         after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-champagne-gold
-         after:transition-all after:duration-300 after:ease-out
-         hover:text-champagne-gold hover:after:w-full
-         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-champagne-gold focus-visible:ring-offset-2 focus-visible:rounded;
-}
-
-/* Card interactive */
-.card-interactive {
-  @apply transition-all duration-300 ease-out
-         hover:-translate-y-2 hover:shadow-xl
-         active:translate-y-0 active:shadow-lg;
-}
-
-/* Badge avec pulse subtil */
-.badge-pulse {
-  @apply animate-pulse;
-}
-
-@keyframes pulse-subtle {
-  0%, 100% {
-    opacity: 1;
+@layer components {
+  .container-luxury {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
   }
-  50% {
-    opacity: 0.85;
+  @media (min-width: 768px) {
+    .container-luxury {
+      padding-inline: 2.5rem;
+    }
   }
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Input focus style */
-.input-focus {
-  @apply transition-all duration-300
-         focus:border-champagne-gold focus:ring-2 focus:ring-champagne-gold/20 focus:outline-none;
-}
-
-/* Icon hover rotation */
-.icon-hover-rotate {
-  @apply transition-transform duration-300
-         hover:rotate-12;
-}
-
-/* Icon hover scale */
-.icon-hover-scale {
-  @apply transition-transform duration-300
-         hover:scale-125;
-}
-
-/* Ripple effect (pour boutons) */
-@keyframes ripple {
-  0% {
-    transform: scale(0);
-    opacity: 0.5;
+  @media (min-width: 1280px) {
+    .container-luxury {
+      padding-inline: 4.5rem;
+    }
   }
-  100% {
-    transform: scale(4);
-    opacity: 0;
+
+  .eyebrow-label,
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-warm-500);
   }
-}
 
-.btn-ripple {
-  @apply relative overflow-hidden;
-}
-
-.btn-ripple::after {
-  content: '';
-  @apply absolute top-1/2 left-1/2 w-4 h-4 bg-white rounded-full;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-}
-
-.btn-ripple:active::after {
-  animation: ripple 0.6s ease-out;
-}
-
-/* Smooth transitions globales */
-a, button {
-  @apply transition-colors duration-300 ease-out;
-}
-
-/* Focus visible pour accessibilité */
-*:focus-visible {
-  @apply outline-none ring-2 ring-champagne-gold ring-offset-2 rounded;
-}
-
-/* Active state subtil */
-button:active:not(:disabled) {
-  @apply scale-[0.98];
-}
-
-/* Disabled state */
-button:disabled, a[aria-disabled="true"] {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-
-/* ===================================
-   Page Transitions
-   =================================== */
-
-.page-transition {
-  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost,
+  .btn-gold {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 3.25rem;
+    padding: 0 1.75rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+      color 0.5s var(--ease-luxe),
+      background-color 0.5s var(--ease-luxe),
+      border-color 0.5s var(--ease-luxe),
+      transform 0.5s var(--ease-luxe);
   }
-  to {
-    opacity: 1;
+  /* Remplissage qui monte au survol */
+  .btn-primary::before,
+  .btn-secondary::before,
+  .btn-gold::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: translateY(101%);
+    border-radius: inherit;
+    transition: transform 0.6s var(--ease-luxe);
+  }
+  .btn-primary:hover::before,
+  .btn-secondary:hover::before,
+  .btn-gold:hover::before {
     transform: translateY(0);
   }
-}
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-gold:active {
+    transform: scale(0.98);
+  }
 
-/* Transitions pour les liens */
-a {
-  @apply transition-opacity duration-200;
-}
+  .btn-primary {
+    background: var(--color-deep-black);
+    color: var(--color-cream-white);
+  }
+  .btn-primary::before {
+    background: var(--color-champagne-gold);
+  }
+  .btn-primary:hover {
+    color: var(--color-deep-black);
+  }
 
-a:active {
-  @apply opacity-70;
-}
+  .btn-gold {
+    background: var(--color-champagne-gold);
+    color: var(--color-deep-black);
+  }
+  .btn-gold::before {
+    background: var(--color-cream-white);
+  }
 
-/* ============================================
-   Mobile Optimizations - Typography & Touch & Animations
-   ============================================ */
+  .btn-secondary {
+    border: 1px solid currentColor;
+    background: transparent;
+  }
+  .btn-secondary::before {
+    background: var(--color-deep-black);
+  }
+  .btn-secondary:hover {
+    color: var(--color-cream-white);
+    border-color: var(--color-deep-black);
+  }
 
-@layer base {
-  /* Typographie mobile optimisée */
-  @media (max-width: 640px) {
-    html {
-      font-size: 15px; /* Base légèrement réduite pour mobile */
-    }
-    
-    body {
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    
-    /* Titres mobiles - meilleure lisibilité */
-    h1 {
-      font-size: 2rem;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-    
-    h2 {
-      font-size: 1.75rem;
-      line-height: 1.15;
-      letter-spacing: -0.01em;
-    }
-    
-    h3 {
-      font-size: 1.5rem;
-      line-height: 1.2;
-    }
-    
-    h4 {
-      font-size: 1.25rem;
-      line-height: 1.3;
-    }
-    
-    /* Paragraphes mobiles */
-    p {
-      font-size: 1rem;
-      line-height: 1.65;
-      letter-spacing: 0.01em;
-    }
-    
-    /* Eyebrow plus petits sur mobile */
-    .eyebrow-label {
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-    }
+  .btn-ghost {
+    padding: 0;
+    min-height: 2.75rem;
+    border-radius: 0;
   }
-  
-  /* Touch targets minimum 44px (WCAG AAA) */
-  button,
-  a[role="button"],
-  input[type="button"],
-  input[type="submit"],
-  [role="tab"],
-  [role="menuitem"] {
-    min-height: 44px;
-    min-width: 44px;
-  }
-  
-  /* Améliorer la lisibilité des petits textes */
-  @media (max-width: 640px) {
-    small,
-    .text-xs,
-    .text-sm {
-      line-height: 1.5;
-    }
-  }
-}
 
-/* Mobile-specific animations */
-@media (max-width: 640px) {
-  /* Animations plus rapides sur mobile */
-  .reveal-fade-up, .reveal-fade-left, .reveal-fade-right {
-    animation-duration: 0.6s;
+  .btn-primary:disabled,
+  .btn-secondary:disabled,
+  .btn-gold:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
   }
-  
-  /* Hover states réduits sur mobile (touch) */
-  .float-on-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(26, 23, 20, 0.1);
-  }
-  
-  /* Smooth scrolling plus rapide sur mobile */
-  html.lenis {
-    scroll-behavior: auto;
-  }
-  
-  /* Réduire les animations trop fortes sur mobile */
-  .scale-on-hover {
-    transition: transform 0.2s ease-out;
-  }
-  
-  .scale-on-hover:active {
-    transform: scale(0.95);
-  }
-}
 
-/* Touch feedback amélioré */
-@media (hover: none) and (pointer: coarse) {
-  /* Pour les appareils tactiles uniquement */
-  button:active,
-  a[role="button"]:active,
-  [role="tab"]:active {
-    transform: scale(0.97);
-    transition: transform 0.1s ease-out;
+  /* Lien souligné animé */
+  .link-underline {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: 0.375rem;
   }
-  
-  /* États hover désactivés sur tactile */
-  .hover-only {
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0.35);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-luxe);
+  }
+  .link-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  .price {
+    font-family: var(--font-mono);
+    font-feature-settings: 'tnum';
+    letter-spacing: -0.01em;
+  }
+
+  /* Chips de filtre */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 1.125rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-warm-300);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: all 0.4s var(--ease-luxe);
+  }
+  .chip:hover {
+    border-color: var(--brand-ink);
+    color: var(--brand-ink);
+  }
+  .chip[aria-pressed='true'] {
+    background: var(--brand-deep);
+    border-color: var(--brand-deep);
+    color: var(--color-cream-white);
+  }
+
+  .chip-dark {
+    border-color: rgb(249 246 241 / 0.2);
+    color: rgb(249 246 241 / 0.8);
+  }
+  .chip-dark:hover {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+  .chip-dark[aria-pressed='true'] {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: var(--brand-deep);
+  }
+
+  /* Texture grain discrète pour les fonds */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Point de maille (Crochet by THED) */
+  .stitch-line {
+    height: 6px;
+    background-image: radial-gradient(circle, currentColor 1.4px, transparent 1.6px);
+    background-size: 12px 6px;
+    background-repeat: repeat-x;
+    background-position: center;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-warm-300);
+    border-radius: 999px;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 }
 
-/* Container responsive avec padding optimal */
-@layer utilities {
-  .container-luxury {
-    max-width: 1600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  @media (min-width: 640px) {
-    .container-luxury {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .container-luxury {
-      padding-left: 2.5rem;
-      padding-right: 2.5rem;
-    }
-  }
-  
-  @media (min-width: 1024px) {
-    .container-luxury {
-      padding-left: 5rem;
-      padding-right: 5rem;
-    }
-  }
-  
-  @media (min-width: 1536px) {
-    .container-luxury {
-      padding-left: 8rem;
-      padding-right: 8rem;
-    }
-  }
-}
+/* ==========================================================================
+   5. UTILITAIRES D'ANIMATION (rétro-compatibles)
+   ========================================================================== */
 
-/* Smooth scroll Lenis - Désactiver sur mobile */
-@media (max-width: 768px) {
-  html.lenis {
-    overflow: auto;
-  }
-  
-  html.lenis body {
-    overflow: auto;
-  }
-}
-/* ===== MICRO-INTERACTIONS PREMIUM ===== */
-
-/* Loading Shimmer */
-@keyframes shimmer {
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
-}
-
-/* Loading States */
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.4),
-    transparent
-  );
-  background-size: 200px 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-/* Micro-interactions avancées */
-.scale-on-hover {
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.scale-on-hover:hover {
-  transform: scale(1.02);
-}
-
-.scale-on-hover:active {
-  transform: scale(0.98);
-  transition-duration: 0.1s;
-}
-
-/* Animation delays pour stagger */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
-
-/* Bouncy hover effects */
-.bouncy-hover {
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.bouncy-hover:hover {
-  transform: translateY(-4px) scale(1.05);
-}
-
-/* Glow effects */
-.glow-on-hover {
-  transition: box-shadow 0.3s ease;
-}
-
-.glow-on-hover:hover {
-  box-shadow: 0 0 30px rgba(218, 165, 32, 0.3);
-}
-
-/* Smooth underline animation */
-.underline-animate {
-  position: relative;
-}
-
-.underline-animate::after {
-  content: '';
+.skip-link {
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: currentColor;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--color-deep-black);
+  color: var(--color-cream-white);
+  font-size: 0.875rem;
+  transition: top 0.3s var(--ease-luxe);
+}
+.skip-link:focus {
+  top: 1rem;
 }
 
-.underline-animate:hover::after {
-  width: 100%;
+.shadow-gold-soft {
+  box-shadow: var(--shadow-gold-soft);
 }
-/* ===== CRITICAL CSS OPTIMIZATIONS ===== */
-
-/* Critical path CSS for LCP */
-.hero-section {
-  content-visibility: auto;
-  contain-intrinsic-size: 100vh;
+.float-on-hover,
+.scale-on-hover,
+.bouncy-hover,
+.glow-on-hover {
+  transition: transform 0.5s var(--ease-luxe), box-shadow 0.5s var(--ease-luxe);
 }
-
-.product-grid {
-  content-visibility: auto;
-  contain-intrinsic-size: 400px;
+.float-on-hover:hover {
+  transform: translateY(-4px);
 }
-
-/* Optimized for rendering performance */
-.gpu-accelerated {
-  transform: translateZ(0);
-  will-change: transform;
+.bouncy-hover:hover,
+.scale-on-hover:hover {
+  transform: scale(1.03);
 }
-
-/* Reduce layout shifts */
-.aspect-ratio-container {
-  position: relative;
-  width: 100%;
-  height: 0;
+.glow-on-hover:hover {
+  box-shadow: var(--shadow-gold-soft);
 }
-
-.aspect-4-5 {
-  padding-bottom: 125%; /* 5/4 * 100% */
+.pulse-soft,
+.animate-pulse-subtle,
+.badge-pulse {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--color-warm-100) 0%, var(--color-warm-200) 50%, var(--color-warm-100) 100%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
 }
 
-.aspect-16-9 {
-  padding-bottom: 56.25%; /* 9/16 * 100% */
+/* Anciennes classes de révélation : visibles par défaut (plus de contenu invisible) */
+.reveal-section,
+.reveal-fade-up,
+.reveal-fade-in,
+.reveal-fade-left,
+.reveal-fade-right,
+.reveal-scale-up {
+  opacity: 1;
 }
 
-/* Performance optimizations */
-img, video {
-  height: auto;
-  max-width: 100%;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.94); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.75; }
 }
 
-/* Optimize animations for performance */
+/* Écrans tactiles : pas d'effets de survol bloquants */
+@media (hover: none) {
+  .hover-only {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1213,88 +591,6 @@ img, video {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
-
-/* Focus visible amélioré pour navigation clavier */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible,
-[tabindex="0"]:focus-visible {
-  outline: 2px solid #C6A87C;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(198, 168, 124, 0.2);
-}
-
-/* Skip link pour navigation clavier */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: #1A1714;
-  color: #F9F6F1;
-  padding: 8px;
-  text-decoration: none;
-  border-radius: 4px;
-  z-index: 100;
-  font-weight: 600;
-}
-
-.skip-link:focus {
-  top: 6px;
-}
-
-/* Amélioration des touch targets */
-@media (hover: none) and (pointer: coarse) {
-  button,
-  a,
-  input,
-  [role="button"] {
-    min-height: 48px;
-    min-width: 48px;
-  }
-}
-
-/* Screen reader only content */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .text-warm-500 {
-    color: #000;
-  }
-  
-  .border-warm-200 {
-    border-color: #000;
-  }
-}
-
-/* Reduced motion respecté */
-@media (prefers-reduced-motion: reduce) {
-  .animate-bounce,
-  .animate-ping,
-  .animate-pulse,
-  .animate-spin {
-    animation: none;
-  }
-  
-  .transition-all,
-  .transition-colors,
-  .transition-transform,
-  .transition-opacity {
-    transition: none;
+    scroll-behavior: auto !important;
   }
 }

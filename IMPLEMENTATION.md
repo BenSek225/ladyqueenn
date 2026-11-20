@@ -1,8 +1,8 @@
-# Plan de Refonte & Implémentation - Lady Queenn
+# Plan de Refonte & Implémentation - Lady Queen
 
 ## 🎯 Vision de la Refonte
 
-Transformer le site actuel en une **expérience e-commerce premium** qui incarne **Luxury Editorial × Organic Minimal × Image-First**, avec 3 univers distincts mais unifiés sous l'identité Lady Queenn.
+Transformer le site actuel en une **expérience e-commerce premium** qui incarne **Luxury Editorial × Organic Minimal × Image-First**, avec 3 univers distincts mais unifiés sous l'identité Lady Queen.
 
 ### Objectifs Stratégiques
 
@@ -138,7 +138,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 **Structure** :
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ 👑 Logo Lady Queenn    [CHEVEUX] [CORPS] [MAISON]   🔍 👤 🛒│
+│ 👑 Logo Lady Queen    [CHEVEUX] [CORPS] [MAISON]   🔍 👤 🛒│
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -171,7 +171,7 @@ export function SiteHeader() {
           <Link href="/" className="flex items-center gap-2">
             <span className="text-2xl">👑</span>
             <span className="font-display text-2xl tracking-tight">
-              Lady Queenn
+              Lady Queen
             </span>
           </Link>
 
@@ -260,7 +260,7 @@ export function SiteHeader() {
 
 **Fichier** : `app/page.tsx` (REFAIRE COMPLET)
 
-**Design référence** : Visuel "Embrace Your Queenn Energy"
+**Design référence** : Visuel "Embrace Your Queen Energy"
 
 **Structure** :
 ```
@@ -271,7 +271,7 @@ export function SiteHeader() {
 │       BEAUTY. ROOTS. RITUAL.                   │
 │                                                │
 │       Embrace Your                             │
-│       Queenn Energy                            │
+│       Queen Energy                            │
 │                                                │
 │   Natural care, timeless fragrance, and        │
 │   handmade pieces that celebrate African       │
@@ -305,7 +305,7 @@ export default function HomePage() {
         <div className="absolute inset-0 -z-10">
           <Image
             src="/images/home/hero-queenn-energy.jpg"
-            alt="Lady Queenn - African Elegance"
+            alt="Lady Queen - African Elegance"
             fill
             priority
             quality={90}
@@ -323,7 +323,7 @@ export default function HomePage() {
           <h1 className="font-display text-6xl md:text-8xl leading-none mb-8 text-balance">
             Embrace Your
             <br />
-            <span className="italic font-normal">Queenn Energy</span>
+            <span className="italic font-normal">Queen Energy</span>
           </h1>
 
           <p className="text-lg md:text-xl text-warm-500 max-w-2xl mx-auto mb-12 leading-relaxed">
@@ -502,7 +502,7 @@ export function UniverseCard({ title, subtitle, description, image, href, accent
 **Hero Sweet-Hair** :
 - Background : Image produits sur pierre/bois
 - Overlay : vert sauge subtil
-- Titre : "Lady Queenn Sweet-Hair"
+- Titre : "Lady Queen Sweet-Hair"
 - Tagline : "LA NATURE SUBLIME VOS CHEVEUX"
 - Eyebrow : "SOIN NATUREL & LUXUEUX"
 
@@ -529,7 +529,7 @@ export default function SweetHairPage() {
           </p>
 
           <h1 className="font-display text-6xl md:text-8xl mb-6">
-            Lady Queenn
+            Lady Queen
             <br />
             <span className="italic font-normal">Sweet-Hair</span>
           </h1>
@@ -1091,7 +1091,7 @@ export function ProductDetailLayout({ product }: { product: AnyProduct }) {
 **Actuellement** : ~~Images Unsplash placeholder~~ → **Images réelles intégrées**
 
 **Fait** :
-- [x] Logo Lady Queenn PNG (883 KB) intégré dans header
+- [x] Logo Lady Queen PNG (883 KB) intégré dans header
 - [x] 4 images hero (home, sweet-hair, fragrance, crochet-by-thed) - avg 1.6 MB
 - [x] 3 images gallery lifestyle (sweet-hair, fragrance, crochet) - avg 1.9 MB
 - [x] Photos produits Sweet-Hair : 4 produits × 4 images = 16 images
@@ -1148,7 +1148,7 @@ public/images/
 #### 10.2 - Logo & Optimisations Next.js ✅
 
 **Créé/Intégré** :
-- [x] Logo Lady Queenn PNG (180×56px) dans header avec `priority`
+- [x] Logo Lady Queen PNG (180×56px) dans header avec `priority`
 - [x] All-products.ts mis à jour avec toutes les références images
 - [x] Next.js Image optimisé avec `sizes` responsive :
   - Hero images : `sizes="100vw"`
@@ -1589,4 +1589,4 @@ components/
 
 ---
 
-**Lady Queenn** — La maison du raffinement ivoirien 👑
+**Lady Queen** — La maison du raffinement ivoirien 👑

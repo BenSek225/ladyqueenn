@@ -1,17 +1,17 @@
-# Lady Queenn 👑
+# Lady Queen 👑
 
 > **La maison du raffinement ivoirien**  
 > *Beauty. Roots. Ritual.*
 
-Lady Queenn est une **maison de luxe ivoirienne contemporaine** qui célèbre l'élégance africaine à travers trois univers complémentaires. Nous créons une expérience d'achat où tradition et modernité se rencontrent, où chaque produit raconte une histoire d'authenticité et de savoir-faire.
+Lady Queen est une **maison de luxe ivoirienne contemporaine** qui célèbre l'élégance africaine à travers trois univers complémentaires. Nous créons une expérience d'achat où tradition et modernité se rencontrent, où chaque produit raconte une histoire d'authenticité et de savoir-faire.
 
 ---
 
 ## 🌟 Notre Vision
 
-**"Embrace Your Queenn Energy"**
+**"Embrace Your Queen Energy"**
 
-Lady Queenn incarne le **raffinement accessible**, une élégance naturelle qui ne cherche pas à impressionner mais à inspirer. Nous croyons que le luxe véritable réside dans l'authenticité des matières, la qualité du geste artisanal, et la beauté intemporelle des rituels quotidiens.
+Lady Queen incarne le **raffinement accessible**, une élégance naturelle qui ne cherche pas à impressionner mais à inspirer. Nous croyons que le luxe véritable réside dans l'authenticité des matières, la qualité du geste artisanal, et la beauté intemporelle des rituels quotidiens.
 
 ### Notre ADN
 
@@ -25,7 +25,7 @@ Lady Queenn incarne le **raffinement accessible**, une élégance naturelle qui 
 
 ## 🏛️ Nos Univers
 
-Lady Queenn n'est pas une marketplace, mais **une seule maison avec trois expressions**. Chaque univers reflète une facette du raffinement ivoirien contemporain.
+Lady Queen n'est pas une marketplace, mais **une seule maison avec trois expressions**. Chaque univers reflète une facette du raffinement ivoirien contemporain.
 
 ### 🌿 Sweet-Hair — Soin Naturel & Luxueux
 
@@ -345,7 +345,7 @@ Le site sera accessible sur [http://localhost:3000](http://localhost:3000)
 
 ## 🎯 Positionnement
 
-### Ce que Lady Queenn EST
+### Ce que Lady Queen EST
 
 ✅ **Une maison** avec plusieurs lignes de produits  
 ✅ **Une identité unifiée** : même vision, même excellence  
@@ -353,17 +353,17 @@ Le site sera accessible sur [http://localhost:3000](http://localhost:3000)
 ✅ **Un panier global** : commande simplifiée  
 ✅ **Une histoire** : le raffinement ivoirien contemporain
 
-### Ce que Lady Queenn N'EST PAS
+### Ce que Lady Queen N'EST PAS
 
 ❌ Une marketplace multi-vendeurs  
 ❌ Un agrégateur de boutiques indépendantes  
 ❌ Trois sites séparés sous un nom commun
 
-**Analogie** : Lady Queenn est comme un **grand magasin de luxe avec plusieurs rayons**, pas comme un centre commercial avec différentes boutiques.
+**Analogie** : Lady Queen est comme un **grand magasin de luxe avec plusieurs rayons**, pas comme un centre commercial avec différentes boutiques.
 
 ---
 
-## 👥 L'Équipe Lady Queenn
+## 👥 L'Équipe Lady Queen
 
 Nous sommes une équipe passionnée basée à Abidjan qui croit en la puissance de l'authenticité africaine et du savoir-faire artisanal. 
 
@@ -384,7 +384,7 @@ Ce projet est en développement actif. Pour toute suggestion, collaboration ou p
 
 ## 📄 Licence
 
-© 2025 Lady Queenn - Tous droits réservés
+© 2025 Lady Queen - Tous droits réservés
 
 ---
 
@@ -396,6 +396,6 @@ Ce projet est en développement actif. Pour toute suggestion, collaboration ou p
 
 ---
 
-*Embrace Your Queenn Energy* 👑
+*Embrace Your Queen Energy* 👑
 
 </div>

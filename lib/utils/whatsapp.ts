@@ -30,7 +30,7 @@ export function generateOrderMessage(
     ? `${formData.commune}, ${formData.city}`
     : formData.city
   
-  const message = `Bonjour Lady Queenn ! Je souhaite confirmer ma commande.
+  const message = `Bonjour Lady Queen ! Je souhaite confirmer ma commande.
 
 📦 *COMMANDE*
 ${itemsList}

@@ -17,12 +17,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   
   if (!product || product.volet !== 'sweet-hair') {
     return {
-      title: 'Produit non trouvé | Lady Queenn',
+      title: 'Produit non trouvé | Lady Queen',
     }
   }
 
   return {
-    title: `${product.name} — Sweet-Hair | Lady Queenn`,
+    title: `${product.name} — Sweet-Hair | Lady Queen`,
     description: product.description,
   }
 }

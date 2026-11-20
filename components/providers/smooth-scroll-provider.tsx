@@ -1,36 +1,33 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Lenis from 'lenis'
 
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
+  const lenisRef = useRef<Lenis | null>(null)
+  const pathname = usePathname()
+
   useEffect(() => {
-    // Initialiser Lenis
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
+      anchors: { offset: -80 },
+      autoRaf: true,
     })
-
-    // Fonction RAF (Request Animation Frame)
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    // Cleanup
+    lenisRef.current = lenis
     return () => {
       lenis.destroy()
+      lenisRef.current = null
     }
   }, [])
+
+  // Revenir en haut à chaque nouvelle page
+  useEffect(() => {
+    lenisRef.current?.scrollTo(0, { immediate: true })
+  }, [pathname])
 
   return <>{children}</>
 }

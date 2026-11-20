@@ -133,7 +133,7 @@ export const footerNavigation = {
 
 // Constantes du site
 export const siteConfig = {
-  name: 'Lady Queenn',
+  name: 'Lady Queen',
   tagline: 'La maison du raffinement ivoirien',
   description: 'Plateforme e-commerce multi-volets : soins capillaires Sweet-Hair, parfums Fragrance, et créations Crochet by THED.',
   whatsapp: '+2250710504007',

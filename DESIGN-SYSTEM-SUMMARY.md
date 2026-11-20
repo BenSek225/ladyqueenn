@@ -23,7 +23,7 @@
 ### 2. ⚙️ Configuration Tailwind
 
 **`tailwind.config.ts`**
-- Couleurs Lady Queenn intégrées
+- Couleurs Lady Queen intégrées
 - Fonts configurées (display, sans, mono)
 - Spacing system (multiples de 8px)
 - Shadows douces (soft, elevated, gold-glow)
@@ -294,7 +294,7 @@ const jetbrains = JetBrains_Mono({
 
 // Titre display
 <h1 className="font-display text-6xl">
-  Lady Queenn
+  Lady Queen
 </h1>
 
 // Prix
@@ -344,7 +344,7 @@ const jetbrains = JetBrains_Mono({
 
 ## 🎯 Résumé en Une Phrase
 
-**Le design system Lady Queenn combine l'élégance éditoriale d'un magazine de luxe avec la chaleur organique de l'artisanat africain, créant une expérience visuelle raffinée, authentique et moderne.**
+**Le design system Lady Queen combine l'élégance éditoriale d'un magazine de luxe avec la chaleur organique de l'artisanat africain, créant une expérience visuelle raffinée, authentique et moderne.**
 
 ---
 
@@ -357,4 +357,4 @@ Pour toute question sur l'implémentation du design system :
 
 ---
 
-**Design System Lady Queenn - Prêt à Créer l'Excellence ! 👑✨**
+**Design System Lady Queen - Prêt à Créer l'Excellence ! 👑✨**

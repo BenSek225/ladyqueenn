@@ -1,4 +1,4 @@
-// Types globaux Lady Queenn
+// Types globaux Lady Queen
 
 export type Volet = 'sweet-hair' | 'fragrance' | 'crochet-by-thed'
 

@@ -1,41 +1,35 @@
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export interface BreadcrumbItem {
   label: string
   href: string
 }
 
-interface BreadcrumbProps {
-  items: BreadcrumbItem[]
-}
-
-export function Breadcrumb({ items }: BreadcrumbProps) {
+export function Breadcrumb({ items, tone = 'light' }: { items: BreadcrumbItem[]; tone?: 'light' | 'dark' }) {
+  const dark = tone === 'dark'
   return (
-    <nav aria-label="Fil d'Ariane" className="py-4">
-      <ol className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-warm-gray-500">
+    <nav aria-label="Fil d'Ariane" className="py-3">
+      <ol
+        className={cn(
+          'flex flex-wrap items-center gap-2 text-[0.6875rem] uppercase tracking-[0.18em]',
+          dark ? 'text-cream-white/50' : 'text-warm-500',
+        )}
+      >
         <li>
-          <Link 
-            href="/" 
-            className="hover:text-champagne-gold transition-colors"
-          >
-            ACCUEIL
+          <Link href="/" className="transition-colors hover:text-champagne-gold">
+            Lady Queen
           </Link>
         </li>
         {items.map((item, index) => {
           const isLast = index === items.length - 1
           return (
             <li key={item.href} className="flex items-center gap-2">
-              <ChevronRight className="w-3 h-3" />
+              <span className="h-px w-4 bg-current opacity-50" />
               {isLast ? (
-                <span className="text-deep-black font-semibold">
-                  {item.label}
-                </span>
+                <span className={cn('line-clamp-1', dark ? 'text-cream-white' : 'text-deep-black')}>{item.label}</span>
               ) : (
-                <Link 
-                  href={item.href}
-                  className="hover:text-champagne-gold transition-colors"
-                >
+                <Link href={item.href} className="transition-colors hover:text-champagne-gold">
                   {item.label}
                 </Link>
               )}
